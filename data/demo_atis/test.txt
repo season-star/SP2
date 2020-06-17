@@ -1,0 +1,601 @@
+i O
+would O
+like O
+to O
+find O
+a O
+flight O
+from O
+charlotte B-fromloc.city_name
+to O
+las B-toloc.city_name
+vegas I-toloc.city_name
+that O
+makes O
+a O
+stop O
+in O
+st. B-stoploc.city_name
+louis I-stoploc.city_name
+atis_flight
+
+on O
+april B-depart_date.month_name
+first B-depart_date.day_number
+i O
+need O
+a O
+ticket O
+from O
+tacoma B-fromloc.city_name
+to O
+san B-toloc.city_name
+jose I-toloc.city_name
+departing O
+before B-depart_time.time_relative
+7 B-depart_time.time
+am I-depart_time.time
+atis_airfare
+
+on O
+april B-depart_date.month_name
+first B-depart_date.day_number
+i O
+need O
+a O
+flight O
+going O
+from O
+phoenix B-fromloc.city_name
+to O
+san B-toloc.city_name
+diego I-toloc.city_name
+atis_flight
+
+i O
+would O
+like O
+a O
+flight O
+traveling O
+one B-round_trip
+way I-round_trip
+from O
+phoenix B-fromloc.city_name
+to O
+san B-toloc.city_name
+diego I-toloc.city_name
+on O
+april B-depart_date.month_name
+first B-depart_date.day_number
+atis_flight
+
+i O
+would O
+like O
+a O
+flight O
+from O
+orlando B-fromloc.city_name
+to O
+salt B-toloc.city_name
+lake I-toloc.city_name
+city I-toloc.city_name
+for O
+april B-depart_date.month_name
+first B-depart_date.day_number
+on O
+delta B-airline_name
+airlines I-airline_name
+atis_flight
+
+i O
+need O
+a O
+flight O
+from O
+toronto B-fromloc.city_name
+to O
+newark B-toloc.city_name
+one B-round_trip
+way I-round_trip
+leaving O
+wednesday B-depart_date.day_name
+evening B-depart_time.period_of_day
+or O
+thursday B-depart_date.day_name
+morning B-depart_time.period_of_day
+atis_flight
+
+monday B-depart_date.day_name
+morning B-depart_time.period_of_day
+i O
+would O
+like O
+to O
+fly O
+from O
+columbus B-fromloc.city_name
+to O
+indianapolis B-toloc.city_name
+atis_flight
+
+on O
+wednesday B-depart_date.day_name
+april B-depart_date.month_name
+sixth B-depart_date.day_number
+i O
+would O
+like O
+to O
+fly O
+from O
+long B-fromloc.city_name
+beach I-fromloc.city_name
+to O
+columbus B-toloc.city_name
+after B-depart_time.time_relative
+3 B-depart_time.time
+pm I-depart_time.time
+atis_flight
+
+after B-depart_time.time_relative
+12 B-depart_time.time
+pm I-depart_time.time
+on O
+wednesday B-depart_date.day_name
+april B-depart_date.month_name
+sixth B-depart_date.day_number
+i O
+would O
+like O
+to O
+fly O
+from O
+long B-fromloc.city_name
+beach I-fromloc.city_name
+to O
+columbus B-toloc.city_name
+atis_flight
+
+are O
+there O
+any O
+flights O
+from O
+long B-fromloc.city_name
+beach I-fromloc.city_name
+to O
+columbus B-toloc.city_name
+on O
+wednesday B-depart_date.day_name
+april B-depart_date.month_name
+sixth B-depart_date.day_number
+atis_flight
+
+find O
+a O
+flight O
+from O
+memphis B-fromloc.city_name
+to O
+tacoma B-toloc.city_name
+dinner B-meal_description
+atis_flight
+
+on O
+next B-depart_date.date_relative
+wednesday B-depart_date.day_name
+flight O
+from O
+kansas B-fromloc.city_name
+city I-fromloc.city_name
+to O
+chicago B-toloc.city_name
+should O
+arrive O
+in O
+chicago B-toloc.city_name
+around B-arrive_time.time_relative
+7 B-arrive_time.time
+pm I-arrive_time.time
+return O
+flight O
+on O
+thursday B-return_date.day_name
+atis_flight
+
+show O
+flight O
+and O
+prices O
+kansas B-fromloc.city_name
+city I-fromloc.city_name
+to O
+chicago B-toloc.city_name
+on O
+next B-depart_date.date_relative
+wednesday B-depart_date.day_name
+arriving O
+in O
+chicago B-toloc.city_name
+by B-arrive_time.time_relative
+7 B-arrive_time.time
+pm I-arrive_time.time
+atis_flight#atis_airfare
+
+flight O
+on O
+american B-airline_name
+from O
+miami B-fromloc.city_name
+to O
+chicago B-toloc.city_name
+arrive O
+in O
+chicago B-toloc.city_name
+about B-arrive_time.time_relative
+5 B-arrive_time.time
+pm I-arrive_time.time
+atis_flight
+
+find O
+flights O
+arriving O
+new B-toloc.city_name
+york I-toloc.city_name
+city I-toloc.city_name
+next B-arrive_date.date_relative
+saturday B-arrive_date.day_name
+atis_flight
+
+find O
+nonstop B-flight_stop
+flights O
+from O
+salt B-fromloc.city_name
+lake I-fromloc.city_name
+city I-fromloc.city_name
+to O
+new B-toloc.city_name
+york I-toloc.city_name
+on O
+saturday B-depart_date.day_name
+april B-depart_date.month_name
+ninth B-depart_date.day_number
+atis_flight
+
+show O
+flights O
+from O
+burbank B-fromloc.city_name
+to O
+milwaukee B-toloc.city_name
+for O
+today B-depart_date.today_relative
+atis_flight
+
+show O
+flights O
+tomorrow B-depart_date.today_relative
+evening B-depart_time.period_of_day
+from O
+milwaukee B-fromloc.city_name
+to O
+st. B-toloc.city_name
+louis I-toloc.city_name
+atis_flight
+
+show O
+flights O
+saturday B-depart_date.day_name
+evening B-depart_time.period_of_day
+from O
+st. B-fromloc.city_name
+louis I-fromloc.city_name
+to O
+burbank B-toloc.city_name
+atis_flight
+
+show O
+flights O
+from O
+burbank B-fromloc.city_name
+to O
+st. B-toloc.city_name
+louis I-toloc.city_name
+on O
+monday B-depart_date.day_name
+atis_flight
+
+show O
+flights O
+from O
+burbank B-fromloc.city_name
+to O
+milwaukee B-toloc.city_name
+on O
+monday B-depart_date.day_name
+atis_flight
+
+show O
+flights O
+tuesday B-depart_date.day_name
+evening B-depart_time.period_of_day
+from O
+milwaukee B-fromloc.city_name
+to O
+st. B-toloc.city_name
+louis I-toloc.city_name
+atis_flight
+
+show O
+flights O
+wednesday B-depart_date.day_name
+evening B-depart_time.period_of_day
+from O
+st. B-fromloc.city_name
+louis I-fromloc.city_name
+to O
+burbank B-toloc.city_name
+atis_flight
+
+which O
+flights O
+travel O
+from O
+kansas B-fromloc.city_name
+city I-fromloc.city_name
+to O
+los B-toloc.city_name
+angeles I-toloc.city_name
+atis_flight
+
+what O
+flights O
+travel O
+from O
+las B-fromloc.city_name
+vegas I-fromloc.city_name
+to O
+los B-toloc.city_name
+angeles I-toloc.city_name
+atis_flight
+
+which O
+flights O
+travel O
+from O
+kansas B-fromloc.city_name
+city I-fromloc.city_name
+to O
+los B-toloc.city_name
+angeles I-toloc.city_name
+on O
+april B-depart_date.month_name
+ninth B-depart_date.day_number
+atis_flight
+
+which O
+flights O
+travel O
+from O
+las B-fromloc.city_name
+vegas I-fromloc.city_name
+to O
+los B-toloc.city_name
+angeles I-toloc.city_name
+california B-toloc.state_name
+and O
+arrive O
+on O
+april B-arrive_date.month_name
+ninth B-arrive_date.day_number
+between O
+4 B-arrive_time.start_time
+and O
+5 B-arrive_time.end_time
+pm I-arrive_time.end_time
+atis_flight
+
+which O
+flights O
+on O
+us B-airline_name
+air I-airline_name
+go O
+from O
+orlando B-fromloc.city_name
+to O
+cleveland B-toloc.city_name
+atis_flight
+
+which O
+flights O
+travel O
+from O
+cleveland B-fromloc.city_name
+to O
+indianapolis B-toloc.city_name
+on O
+april B-depart_date.month_name
+fifth B-depart_date.day_number
+atis_flight
+
+which O
+flights O
+travel O
+from O
+indianapolis B-fromloc.city_name
+to O
+san B-toloc.city_name
+diego I-toloc.city_name
+on O
+april B-depart_date.month_name
+fifth B-depart_date.day_number
+atis_flight
+
+which O
+flights O
+go O
+from O
+cleveland B-fromloc.city_name
+to O
+indianapolis B-toloc.city_name
+on O
+april B-depart_date.month_name
+fifth B-depart_date.day_number
+atis_flight
+
+which O
+flights O
+travel O
+from O
+nashville B-fromloc.city_name
+to O
+tacoma B-toloc.city_name
+atis_flight
+
+does O
+tacoma B-airport_name
+airport I-airport_name
+offer O
+transportation O
+from O
+the O
+airport O
+to O
+the O
+downtown O
+area O
+atis_ground_service
+
+which O
+flights O
+travel O
+from O
+tacoma B-fromloc.city_name
+to O
+san B-toloc.city_name
+jose I-toloc.city_name
+atis_flight
+
+what O
+day O
+of O
+the O
+week O
+do O
+flights O
+from O
+nashville B-fromloc.city_name
+to O
+tacoma B-toloc.city_name
+fly O
+on O
+atis_day_name
+
+what O
+are O
+the O
+flights O
+from O
+tacoma B-fromloc.city_name
+to O
+san B-toloc.city_name
+jose I-toloc.city_name
+atis_flight
+
+what O
+days O
+of O
+the O
+week O
+do O
+flights O
+from O
+san B-fromloc.city_name
+jose I-fromloc.city_name
+to O
+nashville B-toloc.city_name
+fly O
+on O
+atis_day_name
+
+what O
+are O
+the O
+flights O
+from O
+tacoma B-fromloc.city_name
+to O
+san B-toloc.city_name
+jose I-toloc.city_name
+atis_flight
+
+i O
+need O
+a O
+flight O
+that O
+goes O
+from O
+boston B-fromloc.city_name
+to O
+orlando B-toloc.city_name
+atis_flight
+
+are O
+there O
+any O
+flights O
+from O
+boston B-fromloc.city_name
+to O
+orlando B-toloc.city_name
+connecting B-connect
+in O
+new B-stoploc.city_name
+york I-stoploc.city_name
+atis_flight
+
+are O
+there O
+any O
+flights O
+from O
+boston B-fromloc.city_name
+to O
+orlando B-toloc.city_name
+connecting B-connect
+in O
+columbus B-stoploc.city_name
+atis_flight
+
+does O
+this O
+flight O
+serve O
+dinner B-meal_description
+atis_flight
+
+i O
+need O
+a O
+flight O
+from O
+charlotte B-fromloc.city_name
+to O
+miami B-toloc.city_name
+atis_flight
+
+i O
+need O
+a O
+nonstop B-flight_stop
+flight O
+from O
+miami B-fromloc.city_name
+to O
+toronto B-toloc.city_name
+atis_flight

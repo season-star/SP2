@@ -1,0 +1,156 @@
+make O
+an O
+appointment O
+to O
+reserve O
+conference B-room
+room I-room
+100 I-room
+later O
+this O
+week O
+for B-agenda
+a I-agenda
+meeting I-agenda
+schedule
+
+Monday B-date
+at O
+3pm. O
+schedule
+
+Is O
+there O
+supposed O
+to O
+be O
+a O
+blizzard B-weather_attribute
+in O
+brentwood O
+on O
+friday O
+weather
+
+Thanks. O
+weather
+
+Address O
+to O
+the O
+gas B-poi_type
+station I-poi_type
+navigate
+
+OK O
+please O
+give O
+me O
+directions O
+via O
+a O
+route B-traffic_info
+that I-traffic_info
+avoids I-traffic_info
+all I-traffic_info
+heavy I-traffic_info
+traffic. O
+navigate
+
+Awesome O
+thank O
+you O
+navigate
+
+get O
+me O
+directions O
+to O
+the O
+nearest B-traffic_info
+starbucks B-poi
+navigate
+
+Yes O
+please. O
+navigate
+
+Yes O
+please. O
+navigate
+
+Thank O
+you O
+car O
+please O
+set O
+the O
+GPS O
+to O
+get O
+there O
+on O
+fastest B-traffic_info
+route. O
+navigate
+
+remind O
+me O
+of O
+the O
+time O
+for O
+todays O
+dinner B-event
+schedule
+
+thank O
+you O
+schedule
+
+remind O
+me O
+that O
+i O
+need O
+to O
+get B-event
+my I-event
+shot I-event
+on O
+the O
+12th B-date
+at O
+about O
+5 B-time
+pm I-time
+schedule
+
+Great. O
+Thanks O
+schedule
+
+what O
+is O
+the O
+weather O
+today B-date
+weather
+
+I O
+want O
+to O
+know O
+if O
+it O
+is O
+raining B-weather_attribute
+in O
+Alhambra B-location
+today B-date
+weather
+
+Thank O
+you O
+weather
+

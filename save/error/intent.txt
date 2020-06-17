@@ -1,0 +1,59 @@
+Thanks	schedule
+so	schedule
+much	schedule
+for	schedule
+your	schedule
+help.	schedule
+navigate	schedule
+
+What	schedule
+is	schedule
+the	schedule
+address	schedule
+weather	schedule
+
+show	navigate
+me	navigate
+the	navigate
+closest	navigate
+location	navigate
+where	navigate
+i	navigate
+schedule	navigate
+
+OK	navigate
+please	navigate
+give	navigate
+me	navigate
+an	navigate
+address	navigate
+weather	navigate
+
+Thank	navigate
+you	weather
+navigate	weather
+
+Okay	navigate
+perfect	schedule
+Thanks.	schedule
+weather	schedule
+
+It	navigate
+is	navigate
+on	navigate
+schedule	navigate
+
+check	navigate
+forecast	navigate
+for	navigate
+schedule	navigate
+
+Will	navigate
+it	navigate
+be	navigate
+weather	navigate
+
+Will	navigate
+it	navigate
+weather	navigate
+

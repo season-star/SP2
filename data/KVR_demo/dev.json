@@ -1,0 +1,907 @@
+[
+    {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "make an appointment to reserve conference room 100 later this week for a meeting"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "room": true,
+                "agenda": true,
+                "time": false,
+                "date": false,
+                "party": false,
+                "event": true
+              },
+              "slots": {
+                "event": "meeting",
+                "agenda": "for a meeting",
+                "room": "conference room 100"
+              },
+              "utterance": "What day and time should I set an appointment to reserve the conference room?"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Monday at 3pm."
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "room": false,
+                "agenda": false,
+                "time": true,
+                "date": true,
+                "party": false,
+                "event": false
+              },
+              "slots": {
+                "date": "Monday ",
+                "time": "3pm"
+              },
+              "utterance": "I have made an appointment for Monday at 3 pm for the meeting. "
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": null,
+            "column_names": [
+              "event",
+              "time",
+              "date",
+              "room",
+              "agenda",
+              "party"
+            ],
+            "kb_title": "calendar"
+          },
+          "task": {
+            "intent": "schedule"
+          },
+          "uuid": "95c74b9f-b560-41ff-95da-6581d70514f9"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Is there supposed to be a blizzard in brentwood on friday?"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "weather_attribute": true,
+                "date": true,
+                "location": true
+              },
+              "slots": {
+                "weather_attribute": "blizzard",
+                "date": "Friday",
+                "location": "Brentwood"
+              },
+              "utterance": "On Friday it's gonna rain in Brentwood"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Thanks."
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "weather_attribute": false,
+                "date": false,
+                "location": false
+              },
+              "slots": {},
+              "utterance": "You're welcome!"
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "monday": "snow, low of 60F, high of 80F",
+                "tuesday": "overcast, low of 60F, high of 80F",
+                "friday": "stormy, low of 20F, high of 40F",
+                "wednesday": "hail, low of 50F, high of 60F",
+                "thursday": "drizzle, low of 80F, high of 100F",
+                "sunday": "drizzle, low of 30F, high of 50F",
+                "location": "san francisco",
+                "saturday": "cloudy, low of 80F, high of 100F",
+                "today": "monday"
+              },
+              {
+                "monday": "windy, low of 40F, high of 60F",
+                "tuesday": "raining, low of 30F, high of 50F",
+                "friday": "dew, low of 90F, high of 100F",
+                "wednesday": "blizzard, low of 30F, high of 40F",
+                "thursday": "foggy, low of 80F, high of 90F",
+                "sunday": "cloudy, low of 20F, high of 30F",
+                "location": "atherton",
+                "saturday": "cloudy, low of 80F, high of 90F",
+                "today": "monday"
+              },
+              {
+                "monday": "humid, low of 50F, high of 70F",
+                "tuesday": "clear skies, low of 20F, high of 30F",
+                "friday": "rain, low of 50F, high of 60F",
+                "wednesday": "clear skies, low of 70F, high of 80F",
+                "thursday": "clear skies, low of 70F, high of 90F",
+                "sunday": "stormy, low of 70F, high of 90F",
+                "location": "menlo park",
+                "saturday": "cloudy, low of 60F, high of 70F",
+                "today": "monday"
+              },
+              {
+                "monday": "dew, low of 30F, high of 40F",
+                "tuesday": "drizzle, low of 20F, high of 40F",
+                "friday": "dry, low of 50F, high of 60F",
+                "wednesday": "drizzle, low of 30F, high of 50F",
+                "thursday": "hail, low of 20F, high of 40F",
+                "sunday": "raining, low of 40F, high of 50F",
+                "location": "danville",
+                "saturday": "windy, low of 20F, high of 40F",
+                "today": "monday"
+              },
+              {
+                "monday": "raining, low of 30F, high of 40F",
+                "tuesday": "misty, low of 90F, high of 100F",
+                "friday": "cloudy, low of 20F, high of 30F",
+                "wednesday": "dew, low of 90F, high of 100F",
+                "thursday": "hail, low of 60F, high of 80F",
+                "sunday": "foggy, low of 40F, high of 60F",
+                "location": "new york",
+                "saturday": "drizzle, low of 50F, high of 60F",
+                "today": "monday"
+              },
+              {
+                "monday": "cloudy, low of 70F, high of 90F",
+                "tuesday": "blizzard, low of 30F, high of 40F",
+                "friday": "rain, low of 80F, high of 90F",
+                "wednesday": "misty, low of 50F, high of 60F",
+                "thursday": "stormy, low of 80F, high of 90F",
+                "sunday": "misty, low of 20F, high of 40F",
+                "location": "brentwood",
+                "saturday": "overcast, low of 60F, high of 80F",
+                "today": "monday"
+              },
+              {
+                "monday": "foggy, low of 70F, high of 90F",
+                "tuesday": "rain, low of 80F, high of 100F",
+                "friday": "dry, low of 40F, high of 60F",
+                "wednesday": "hot, low of 60F, high of 80F",
+                "thursday": "misty, low of 30F, high of 40F",
+                "sunday": "foggy, low of 50F, high of 70F",
+                "location": "manhattan",
+                "saturday": "rain, low of 20F, high of 40F",
+                "today": "monday"
+              }
+            ],
+            "column_names": [
+              "location",
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday",
+              "today"
+            ],
+            "kb_title": "weekly forecast"
+          },
+          "task": {
+            "intent": "weather"
+          },
+          "uuid": "805f137c-90e7-42d8-aa93-b43e1cae146d"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Address to the gas station "
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": true,
+                "address": true,
+                "poi": false
+              },
+              "slots": {
+                "poi_type": "gas station"
+              },
+              "utterance": "Valero is located at 200 Alester Ave. "
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "OK, please give me directions via a route that avoids all heavy traffic. "
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": true,
+                "poi_type": false,
+                "address": true,
+                "poi": false
+              },
+              "slots": {
+                "traffic_info": "route that avoids all heavy traffic"
+              },
+              "utterance": "Since there is a road block nearby, I found another route for you and I sent it on your screen"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Awesome thank you"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": false,
+                "address": false,
+                "poi": false 
+              },
+              "slots": {},
+              "utterance": "You're welcome; drive carefully. "
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "distance": "3 miles",
+                "traffic_info": "car collision nearby",
+                "poi_type": "grocery store",
+                "address": "638 Amherst St",
+                "poi": "Sigona Farmers Market"
+              },
+              {
+                "distance": "1 miles",
+                "traffic_info": "car collision nearby",
+                "poi_type": "coffee or tea place",
+                "address": "269 Alger Dr",
+                "poi": "Cafe Venetia"
+              },
+              {
+                "distance": "5 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "certain address",
+                "address": "5672 barringer street",
+                "poi": "5672 barringer street"
+              },
+              {
+                "distance": "2 miles",
+                "traffic_info": "road block nearby",
+                "poi_type": "gas station",
+                "address": "200 Alester Ave",
+                "poi": "Valero"
+              },
+              {
+                "distance": "5 miles",
+                "traffic_info": "moderate traffic",
+                "poi_type": "hospital",
+                "address": "899 Ames Ct",
+                "poi": "Stanford Childrens Health"
+              },
+              {
+                "distance": "1 miles",
+                "traffic_info": "moderate traffic",
+                "poi_type": "parking garage",
+                "address": "481 Amaranta Ave",
+                "poi": "Palo Alto Garage R"
+              },
+              {
+                "distance": "1 miles",
+                "traffic_info": "road block nearby",
+                "poi_type": "coffee or tea place",
+                "address": "145 Amherst St",
+                "poi": "Teavana"
+              },
+              {
+                "distance": "5 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "grocery store",
+                "address": "409 Bollard St",
+                "poi": "Willows Market"
+              }
+            ],
+            "column_names": [
+              "poi",
+              "poi_type",
+              "address",
+              "distance",
+              "traffic_info"
+            ],
+            "kb_title": "location information"
+          },
+          "task": {
+            "intent": "navigate"
+          },
+          "uuid": "da812f06-522a-4cba-b963-7f72c2f3ca77"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "get me directions to the nearest starbucks"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": true,
+                "poi_type": false,
+                "address": true,
+                "poi": true
+              },
+              "slots": {
+                "traffic_info": "nearest",
+                "poi": "starbucks"
+              },
+              "utterance": "There is no Starbucks listed locally, would you like directions to a different coffee shop?"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Yes please."
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": true,
+                "address": false,
+                "poi": true
+              },
+              "slots": {
+                "poi_type": "coffee shop"
+              },
+              "utterance": "There is a Coupa 6 miles away. Would you like directions? "
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Yes please. "
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": false,
+                "address": true,
+                "poi": true
+              },
+              "slots": {
+                "poi": "coupa"
+              },
+              "utterance": "The address for Coupa is 394 Van Ness Ave"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Thank you car, please set the GPS to get there on the fastest route."
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "distance": false,
+                "traffic_info": true,
+                "poi_type": false,
+                "address": false,
+                "poi": true
+              },
+              "slots": {
+                "traffic_info": "fastest ",
+                "poi": "coupa"
+              },
+              "utterance": "You're welcome, setting GPS to quickest route. We will be there soon. "
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "poi": "Trader Joes",
+                "distance": "5 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "grocery store",
+                "address": "408 University Ave"
+              },
+              {
+                "poi": "Valero",
+                "distance": "2 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "gas station",
+                "address": "200 Alester Ave"
+              },
+              {
+                "poi": "5677 springer street",
+                "distance": "1 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "certain address",
+                "address": "5677 springer street"
+              },
+              {
+                "poi": "Coupa",
+                "distance": "6 miles",
+                "traffic_info": "moderate traffic",
+                "poi_type": "coffee or tea place",
+                "address": "394 Van Ness Ave"
+              },
+              {
+                "poi": "Midtown Shopping Center",
+                "distance": "3 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "shopping center",
+                "address": "338 Alester Ave"
+              },
+              {
+                "poi": "Hotel Keen",
+                "distance": "5 miles",
+                "traffic_info": "heavy traffic",
+                "poi_type": "rest stop",
+                "address": "578 Arbol Dr"
+              },
+              {
+                "poi": "Stanford Express Care",
+                "distance": "3 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "hospital",
+                "address": "214 El Camino Real"
+              }
+            ],
+            "column_names": [
+              "poi",
+              "poi_type",
+              "address",
+              "distance",
+              "traffic_info"
+            ],
+            "kb_title": "location information"
+          },
+          "task": {
+            "intent": "navigate"
+          },
+          "uuid": "842c8245-5e06-4448-8268-0292901b33ca"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "remind me of the time for today's dinner"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "room": false,
+                "agenda": false,
+                "time": true,
+                "date": true,
+                "party": false,
+                "event": true
+              },
+              "slots": {
+                "date": "Wednesday ",
+                "event": "Dinner",
+                "time": "5 PM"
+              },
+              "utterance": "Dinner event time, 5 PM, Wednesday evening. "
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "thank you"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "room": false,
+                "agenda": false,
+                "time": true,
+                "date": false,
+                "party": false,
+                "event": false
+              },
+              "slots": {},
+              "utterance": "You are welcome."
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "room": "-",
+                "agenda": "-",
+                "time": "2 pm",
+                "date": "wednesday",
+                "party": "-",
+                "event": "tennis activity"
+              },
+              {
+                "room": "conference room 100",
+                "agenda": "discuss the company picnic",
+                "time": "7 pm",
+                "date": "wednesday",
+                "party": "HR",
+                "event": "meeting"
+              },
+              {
+                "room": "-",
+                "agenda": "-",
+                "time": "1 pm",
+                "date": "tuesday",
+                "party": "-",
+                "event": "dentist"
+              },
+              {
+                "room": "-",
+                "agenda": "-",
+                "time": "5 pm",
+                "date": "wednesday",
+                "party": "-",
+                "event": "dinner"
+              },
+              {
+                "room": "-",
+                "agenda": "-",
+                "time": "10 am",
+                "date": "tuesday",
+                "party": "-",
+                "event": "football activity"
+              },
+              {
+                "room": "-",
+                "agenda": "-",
+                "time": "11 am",
+                "date": "monday",
+                "party": "-",
+                "event": "medicine"
+              }
+            ],
+            "column_names": [
+              "event",
+              "time",
+              "date",
+              "room",
+              "agenda",
+              "party"
+            ],
+            "kb_title": "calendar"
+          },
+          "task": {
+            "intent": "schedule"
+          },
+          "uuid": "6f79b4fb-2d5b-49e2-a95d-c3a8ce9bef7c"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "remind me that i need to get my shot on the 12th at about 5 pm"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "room": false,
+                "agenda": false,
+                "time": true,
+                "date": true,
+                "party": false,
+                "event": true
+              },
+              "slots": {
+                "date": "12th",
+                "event": "get my shot",
+                "time": "5 pm"
+              },
+              "utterance": "Reminder has been set for 5PM at the 12th."
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Great. Thanks"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "room": false,
+                "agenda": false,
+                "time": true,
+                "date": true,
+                "party": false,
+                "event": true
+              },
+              "slots": {
+                "date": "12th",
+                "event": "Shots",
+                "time": "5pm"
+              },
+              "utterance": "No problem."
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": null,
+            "column_names": [
+              "event",
+              "time",
+              "date",
+              "room",
+              "agenda",
+              "party"
+            ],
+            "kb_title": "calendar"
+          },
+          "task": {
+            "intent": "schedule"
+          },
+          "uuid": "b61c0149-9399-4961-a3cd-34aab072eb20"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "what is the weather today"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "weather_attribute": true,
+                "date": true,
+                "location": false
+              },
+              "slots": {
+                "date": "today"
+              },
+              "utterance": "What location, specifically, are you asking about? "
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "I want to know if it is raining in Alhambra today"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "weather_attribute": true,
+                "date": true,
+                "location": true
+              },
+              "slots": {
+                "weather_attribute": "raining",
+                "date": "today",
+                "location": "Alhambra"
+              },
+              "utterance": "No raining in Alhambra today, the prediction is overcast"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Thank you!"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "weather_attribute": false,
+                "date": false,
+                "location": false
+              },
+              "slots": {},
+              "utterance": "You're very welcome!"
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "monday": "foggy, low of 30F, high of 50F",
+                "tuesday": "raining, low of 50F, high of 60F",
+                "friday": "hail, low of 30F, high of 50F",
+                "wednesday": "overcast, low of 80F, high of 100F",
+                "thursday": "hail, low of 50F, high of 70F",
+                "sunday": "overcast, low of 30F, high of 50F",
+                "location": "san francisco",
+                "saturday": "foggy, low of 80F, high of 100F",
+                "today": "monday"
+              },
+              {
+                "monday": "blizzard, low of 40F, high of 50F",
+                "tuesday": "snow, low of 30F, high of 40F",
+                "friday": "stormy, low of 70F, high of 90F",
+                "wednesday": "overcast, low of 40F, high of 50F",
+                "thursday": "foggy, low of 50F, high of 60F",
+                "sunday": "foggy, low of 80F, high of 90F",
+                "location": "grand rapids",
+                "saturday": "clear skies, low of 40F, high of 60F",
+                "today": "monday"
+              },
+              {
+                "monday": "overcast, low of 70F, high of 80F",
+                "tuesday": "snow, low of 70F, high of 90F",
+                "friday": "rain, low of 20F, high of 30F",
+                "wednesday": "hot, low of 50F, high of 70F",
+                "thursday": "windy, low of 80F, high of 90F",
+                "sunday": "foggy, low of 60F, high of 70F",
+                "location": "alhambra",
+                "saturday": "stormy, low of 30F, high of 50F",
+                "today": "monday"
+              },
+              {
+                "monday": "cloudy, low of 60F, high of 70F",
+                "tuesday": "hot, low of 50F, high of 70F",
+                "friday": "windy, low of 80F, high of 90F",
+                "wednesday": "drizzle, low of 20F, high of 40F",
+                "thursday": "dry, low of 90F, high of 100F",
+                "sunday": "hail, low of 90F, high of 100F",
+                "location": "boston",
+                "saturday": "foggy, low of 20F, high of 40F",
+                "today": "monday"
+              },
+              {
+                "monday": "rain, low of 60F, high of 70F",
+                "tuesday": "frost, low of 20F, high of 30F",
+                "friday": "overcast, low of 60F, high of 80F",
+                "wednesday": "dry, low of 50F, high of 70F",
+                "thursday": "overcast, low of 40F, high of 60F",
+                "sunday": "drizzle, low of 90F, high of 100F",
+                "location": "oakland",
+                "saturday": "warm, low of 90F, high of 100F",
+                "today": "monday"
+              },
+              {
+                "monday": "stormy, low of 80F, high of 100F",
+                "tuesday": "foggy, low of 70F, high of 90F",
+                "friday": "clear skies, low of 80F, high of 100F",
+                "wednesday": "raining, low of 40F, high of 50F",
+                "thursday": "dry, low of 70F, high of 80F",
+                "sunday": "warm, low of 90F, high of 100F",
+                "location": "downtown chicago",
+                "saturday": "hail, low of 80F, high of 90F",
+                "today": "monday"
+              },
+              {
+                "monday": "dry, low of 40F, high of 50F",
+                "tuesday": "foggy, low of 80F, high of 100F",
+                "friday": "windy, low of 70F, high of 80F",
+                "wednesday": "rain, low of 60F, high of 70F",
+                "thursday": "dry, low of 80F, high of 90F",
+                "sunday": "dry, low of 70F, high of 80F",
+                "location": "san mateo",
+                "saturday": "cloudy, low of 90F, high of 100F",
+                "today": "monday"
+              }
+            ],
+            "column_names": [
+              "location",
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday",
+              "today"
+            ],
+            "kb_title": "weekly forecast"
+          },
+          "task": {
+            "intent": "weather"
+          },
+          "uuid": "837c083e-6a0a-49d0-b272-e13ac08216ed"
+        }
+      }
+]

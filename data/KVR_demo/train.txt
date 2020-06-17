@@ -1,0 +1,188 @@
+wheres O
+the O
+nearest B-distance
+parking B-poi_type
+garage I-poi_type
+navigate
+
+Yes O
+please O
+set O
+directions O
+via O
+a O
+route O
+that O
+avoids B-traffic_info
+all O
+heavy I-traffic_info
+traffic I-traffic_info
+if O
+possible. O
+navigate
+
+Thanks O
+so O
+much O
+for O
+your O
+help. O
+navigate
+
+Where O
+is O
+the O
+nearest B-distance
+gas B-poi_type
+station I-poi_type
+navigate
+
+What O
+is O
+the O
+address O
+navigate
+
+Thanks O
+navigate
+
+show O
+me O
+the O
+closest B-distance
+location O
+where O
+i O
+can O
+get O
+chinese B-poi_type
+food O
+navigate
+
+OK O
+please O
+give O
+me O
+an O
+address O
+and O
+directions O
+via O
+a O
+route O
+that O
+avoids B-traffic_info
+all O
+heavy I-traffic_info
+traffic. I-traffic_info
+navigate
+
+Thank O
+you O
+navigate
+
+Hi O
+please O
+set O
+up O
+a O
+reminder O
+for O
+my O
+dinner B-event
+on O
+the O
+11th B-date
+at O
+4pm B-time
+with O
+sister. O
+Thanks O
+schedule
+
+What O
+time O
+is O
+dinner B-event
+and O
+who O
+it O
+with O
+schedule
+
+Okay O
+perfect O
+Thanks. O
+schedule
+
+schedule O
+dentist B-event
+appointment I-event
+schedule
+
+It O
+is O
+on O
+Sunday B-date
+at O
+2 B-time
+pm. I-time
+schedule
+
+check O
+forecast O
+for O
+new B-location
+york I-location
+weather
+
+Will O
+it O
+be O
+overcast B-weather_attribute
+on O
+friday O
+weather
+
+Thank O
+you O
+weather
+
+Will O
+it O
+be O
+warm B-weather_attribute
+in O
+Camarillo B-location
+over O
+the O
+next B-date
+2 I-date
+days I-date
+weather
+
+Thank O
+you O
+car O
+weather
+
+whats O
+the O
+highest B-weather_attribute
+temperature I-weather_attribute
+for O
+this B-date
+week I-date
+weather
+
+Menlo B-location
+Park I-location
+please O
+weather
+
+Excellent O
+thats O
+very O
+helpful. O
+weather
+

@@ -1,0 +1,108 @@
+wheres	O	O	navigate
+the	O	O	navigate
+nearest	O	O	navigate
+parking	O	O	schedule
+garage	O	O	schedule
+schedule	schedule
+
+Yes	O	O	navigate
+please	O	O	navigate
+set	O	O	navigate
+directions	O	O	navigate
+via	O	O	navigate
+a	O	O	navigate
+route	O	O	navigate
+that	O	O	navigate
+avoids	O	O	schedule
+all	O	O	schedule
+heavy	O	O	schedule
+traffic	O	O	schedule
+if	B-traffic_info	O	schedule
+possible.	O	O	schedule
+navigate	navigate
+
+Thanks	O	O	schedule
+so	O	O	schedule
+much	O	O	schedule
+for	O	O	schedule
+your	O	O	schedule
+help.	O	O	schedule
+navigate	schedule
+
+Where	O	O	navigate
+is	O	O	navigate
+the	O	O	navigate
+nearest	B-distance	O	navigate
+gas	O	O	navigate
+station	O	O	navigate
+navigate	navigate
+
+What	O	O	schedule
+is	O	O	schedule
+the	O	O	schedule
+address	B-weather_attribute	O	schedule
+weather	schedule
+
+Thanks	O	O	weather
+schedule	schedule
+
+show	O	O	navigate
+me	O	O	navigate
+the	O	O	navigate
+closest	B-date	O	navigate
+location	O	O	navigate
+where	B-time	O	navigate
+i	I-time	O	navigate
+schedule	navigate
+
+OK	O	O	navigate
+please	O	O	navigate
+give	O	O	navigate
+me	B-weather_attribute	O	navigate
+an	O	O	navigate
+address	O	O	navigate
+weather	navigate
+
+Thank	O	O	navigate
+you	O	O	weather
+navigate	weather
+
+Hi	O	O	navigate
+please	O	O	navigate
+set	O	O	navigate
+up	B-distance	O	navigate
+a	B-poi_type	O	navigate
+reminder	I-poi_type	O	navigate
+navigate	navigate
+
+What	O	O	navigate
+time	O	O	navigate
+is	B-distance	O	navigate
+dinner	B-poi_type	O	navigate
+and	I-poi_type	O	navigate
+navigate	navigate
+
+Okay	O	O	navigate
+perfect	O	O	schedule
+Thanks.	O	O	schedule
+weather	schedule
+
+It	O	O	navigate
+is	O	O	navigate
+on	O	O	navigate
+schedule	navigate
+
+check	O	O	navigate
+forecast	B-event	O	navigate
+for	I-event	O	navigate
+schedule	navigate
+
+Will	O	O	navigate
+it	O	O	navigate
+be	O	O	navigate
+weather	navigate
+
+Will	O	O	navigate
+it	O	O	navigate
+weather	navigate
+

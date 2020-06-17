@@ -1,0 +1,15 @@
+O	0
+B-distance	1
+B-poi_type	2
+I-poi_type	3
+B-traffic_info	4
+I-traffic_info	5
+B-event	6
+B-date	7
+B-time	8
+I-event	9
+I-time	10
+B-location	11
+I-location	12
+B-weather_attribute	13
+I-date	14

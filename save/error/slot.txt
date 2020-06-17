@@ -1,0 +1,78 @@
+wheres	O	O
+the	O	O
+nearest	O	O
+parking	O	O
+garage	O	O
+
+Yes	O	O
+please	O	O
+set	O	O
+directions	O	O
+via	O	O
+a	O	O
+route	O	O
+that	O	O
+avoids	O	O
+all	O	O
+heavy	O	O
+traffic	O	O
+if	B-traffic_info	O
+possible.	O	O
+
+Thanks	O	O
+so	O	O
+much	O	O
+for	O	O
+your	O	O
+help.	O	O
+
+Where	O	O
+is	O	O
+the	O	O
+nearest	B-distance	O
+gas	O	O
+station	O	O
+
+What	O	O
+is	O	O
+the	O	O
+address	B-weather_attribute	O
+
+Thanks	O	O
+
+show	O	O
+me	O	O
+the	O	O
+closest	B-date	O
+location	O	O
+where	B-time	O
+i	I-time	O
+
+OK	O	O
+please	O	O
+give	O	O
+me	B-weather_attribute	O
+an	O	O
+address	O	O
+
+Hi	O	O
+please	O	O
+set	O	O
+up	B-distance	O
+a	B-poi_type	O
+reminder	I-poi_type	O
+
+What	O	O
+time	O	O
+is	B-distance	O
+dinner	B-poi_type	O
+and	I-poi_type	O
+
+Okay	O	O
+perfect	O	O
+Thanks.	O	O
+
+check	O	O
+forecast	B-event	O
+for	I-event	O
+

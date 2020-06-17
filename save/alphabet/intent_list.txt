@@ -1,0 +1,3 @@
+navigate	9
+schedule	5
+weather	5

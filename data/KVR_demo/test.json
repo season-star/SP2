@@ -1,0 +1,895 @@
+[
+    {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "remind me to take my pills"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "room": false,
+                "agenda": false,
+                "time": false,
+                "date": false,
+                "party": false,
+                "event": true
+              },
+              "slots": {
+                "event": "take pills"
+              },
+              "utterance": "What time do you need to take your pills?"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "i need to take my pills at 7 pm."
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "room": false,
+                "agenda": false,
+                "time": true,
+                "date": false,
+                "party": false,
+                "event": true
+              },
+              "slots": {
+                  "time": "7pm"
+              },
+              "utterance": "Ok setting your medicine appointment for 7pm"
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": null,
+            "column_names": [
+              "event",
+              "time",
+              "date",
+              "room",
+              "agenda",
+              "party"
+            ],
+            "kb_title": "calendar"
+          },
+          "task": {
+            "intent": "schedule"
+          },
+          "uuid": "e6a4e9dc-a952-47dc-bb7f-3586cdb1c3ff"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "What gas stations are here?"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": true,
+                "address": false,
+                "poi": false
+              },
+              "slots": {
+                "poi_type": "gas stations"
+              },
+              "utterance": "There is a Chevron."
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "That's good! Please pick the quickest route to get there and avoid all heavy traffic!"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": true,
+                "traffic_info": true,
+                "poi_type": false,
+                "address": false,
+                "poi": false
+              },
+              "slots": {
+                "distance": "quickest ",
+                "traffic_info": "avoid all heavy traffic"
+              },
+              "utterance": "Taking you to Chevron."
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "What is the address?"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": false,
+                "address": true,
+                "poi": false
+              },
+              "slots": {},
+              "utterance": "783 Arcadia Pl is the address for Chevron gas station"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Perfect. Thank you"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": false,
+                "address": false,
+                "poi": true
+              },
+              "slots": {
+                "poi": "chevron"
+              },
+              "utterance": "You're welcome, happy to help. "
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "distance": "5 miles",
+                "traffic_info": "moderate traffic",
+                "poi_type": "gas station",
+                "address": "783 Arcadia Pl",
+                "poi": "Chevron"
+              },
+              {
+                "distance": "5 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "shopping center",
+                "address": "383 University Ave",
+                "poi": "Town and Country"
+              },
+              {
+                "distance": "5 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "friends house",
+                "address": "864 Almanor Ln",
+                "poi": "jacks house"
+              },
+              {
+                "distance": "6 miles",
+                "traffic_info": "heavy traffic",
+                "poi_type": "home",
+                "address": "5671 barringer street",
+                "poi": "home"
+              },
+              {
+                "distance": "4 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "rest stop",
+                "address": "657 Ames Ave",
+                "poi": "The Clement Hotel"
+              },
+              {
+                "distance": "1 miles",
+                "traffic_info": "heavy traffic",
+                "poi_type": "grocery store",
+                "address": "638 Amherst St",
+                "poi": "Sigona Farmers Market"
+              },
+              {
+                "distance": "6 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "chinese restaurant",
+                "address": "830 Almanor Ln",
+                "poi": "tai pan"
+              }
+            ],
+            "column_names": [
+              "poi",
+              "poi_type",
+              "address",
+              "distance",
+              "traffic_info"
+            ],
+            "kb_title": "location information"
+          },
+          "task": {
+            "intent": "navigate"
+          },
+          "uuid": "d70e1162-8bcb-4f28-9d14-078f90974351"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "what's the temperature going to be like on friday"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "weather_attribute": true,
+                "date": true,
+                "location": false
+              },
+              "slots": {
+                "weather_attribute": "temperature",
+                "date": "Friday"
+              },
+              "utterance": "What city should I find Friday's temperature for?"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "alhambra"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "weather_attribute": false,
+                "date": false,
+                "location": true
+              },
+              "slots": {
+                "location": "Alhambra"
+              },
+              "utterance": "On Friday there will be clear skies in Alhambra"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "And the temperature?"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "weather_attribute": true,
+                "date": false,
+                "location": false
+              },
+              "slots": {
+                "weather_attribute": "temperature"
+              },
+              "utterance": "It will be between 20-30F in Alhambra on Friday."
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Thank you."
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "weather_attribute": false,
+                "date": false,
+                "location": false
+              },
+              "slots": {},
+              "utterance": "You're welcome."
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "monday": "hot, low of 90F, high of 100F",
+                "tuesday": "foggy, low of 30F, high of 50F",
+                "friday": "stormy, low of 50F, high of 60F",
+                "wednesday": "cloudy, low of 90F, high of 100F",
+                "thursday": "overcast, low of 80F, high of 100F",
+                "sunday": "overcast, low of 20F, high of 30F",
+                "location": "danville",
+                "saturday": "dry, low of 80F, high of 90F",
+                "today": "monday"
+              },
+              {
+                "monday": "rain, low of 80F, high of 100F",
+                "tuesday": "cloudy, low of 40F, high of 60F",
+                "friday": "clear skies, low of 20F, high of 30F",
+                "wednesday": "foggy, low of 90F, high of 100F",
+                "thursday": "cloudy, low of 90F, high of 100F",
+                "sunday": "stormy, low of 90F, high of 100F",
+                "location": "alhambra",
+                "saturday": "drizzle, low of 30F, high of 40F",
+                "today": "monday"
+              },
+              {
+                "monday": "snow, low of 40F, high of 50F",
+                "tuesday": "cloudy, low of 90F, high of 100F",
+                "friday": "stormy, low of 70F, high of 90F",
+                "wednesday": "dry, low of 40F, high of 60F",
+                "thursday": "rain, low of 40F, high of 60F",
+                "sunday": "warm, low of 50F, high of 70F",
+                "location": "inglewood",
+                "saturday": "warm, low of 70F, high of 90F",
+                "today": "monday"
+              },
+              {
+                "monday": "rain, low of 80F, high of 100F",
+                "tuesday": "cloudy, low of 40F, high of 50F",
+                "friday": "hail, low of 90F, high of 100F",
+                "wednesday": "windy, low of 30F, high of 40F",
+                "thursday": "rain, low of 40F, high of 50F",
+                "sunday": "overcast, low of 50F, high of 70F",
+                "location": "durham",
+                "saturday": "hail, low of 70F, high of 80F",
+                "today": "monday"
+              },
+              {
+                "monday": "clear skies, low of 40F, high of 50F",
+                "tuesday": "cloudy, low of 20F, high of 40F",
+                "friday": "warm, low of 80F, high of 90F",
+                "wednesday": "drizzle, low of 80F, high of 100F",
+                "thursday": "clear skies, low of 60F, high of 70F",
+                "sunday": "hail, low of 90F, high of 100F",
+                "location": "san francisco",
+                "saturday": "foggy, low of 80F, high of 90F",
+                "today": "monday"
+              },
+              {
+                "monday": "clear skies, low of 90F, high of 100F",
+                "tuesday": "dry, low of 70F, high of 90F",
+                "friday": "foggy, low of 60F, high of 80F",
+                "wednesday": "stormy, low of 20F, high of 40F",
+                "thursday": "dry, low of 80F, high of 100F",
+                "sunday": "raining, low of 20F, high of 40F",
+                "location": "compton",
+                "saturday": "raining, low of 70F, high of 80F",
+                "today": "monday"
+              },
+              {
+                "monday": "dry, low of 70F, high of 90F",
+                "tuesday": "overcast, low of 90F, high of 100F",
+                "friday": "hail, low of 70F, high of 90F",
+                "wednesday": "hail, low of 20F, high of 40F",
+                "thursday": "dry, low of 80F, high of 90F",
+                "sunday": "humid, low of 90F, high of 100F",
+                "location": "brentwood",
+                "saturday": "dry, low of 20F, high of 40F",
+                "today": "monday"
+              }
+            ],
+            "column_names": [
+              "location",
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday",
+              "today"
+            ],
+            "kb_title": "weekly forecast"
+          },
+          "task": {
+            "intent": "weather"
+          },
+          "uuid": "db03e551-eca1-44ec-af26-2959190e2316"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "give me directions to the closest grocery store"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": true,
+                "address": true,
+                "poi": false
+              },
+              "slots": {
+                "poi_type": "grocery store"
+              },
+              "utterance": "There are Whole Foods 2 miles away and Sigona Farmers Market 4 miles away. Where do we go?"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "I need the one that avoids all heavy traffic."
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": true,
+                "poi_type": false,
+                "address": false,
+                "poi": false
+              },
+              "slots": {
+                "traffic_info": "avoid Heavy traffic"
+              },
+              "utterance": "Sigona Farmers Market is located 4 miles away with no traffic. It's located at 638 Amherst St. "
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Thank you. "
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": false,
+                "address": false,
+                "poi": true
+              },
+              "slots": {
+                "poi": "sigona farmers market"
+              },
+              "utterance": "Great, glad I could help. Have a great day. We will be there soon. "
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "poi": "The Westin",
+                "distance": "4 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "rest stop",
+                "address": "329 El Camino Real"
+              },
+              {
+                "poi": "Palo Alto Garage R",
+                "distance": "2 miles",
+                "traffic_info": "moderate traffic",
+                "poi_type": "parking garage",
+                "address": "481 Amaranta Ave"
+              },
+              {
+                "poi": "Mandarin Roots",
+                "distance": "4 miles",
+                "traffic_info": "moderate traffic",
+                "poi_type": "chinese restaurant",
+                "address": "271 Springer Street"
+              },
+              {
+                "poi": "Sigona Farmers Market",
+                "distance": "4 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "grocery store",
+                "address": "638 Amherst St"
+              },
+              {
+                "poi": "Whole Foods",
+                "distance": "2 miles",
+                "traffic_info": "heavy traffic",
+                "poi_type": "grocery store",
+                "address": "819 Alma St"
+              },
+              {
+                "poi": "Stanford Shopping Center",
+                "distance": "2 miles",
+                "traffic_info": "moderate traffic",
+                "poi_type": "shopping center",
+                "address": "773 Alger Dr"
+              },
+              {
+                "poi": "toms house",
+                "distance": "1 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "friends house",
+                "address": "580 Van Ness Ave"
+              }
+            ],
+            "column_names": [
+              "poi",
+              "poi_type",
+              "address",
+              "distance",
+              "traffic_info"
+            ],
+            "kb_title": "location information"
+          },
+          "task": {
+            "intent": "navigate"
+          },
+          "uuid": "933a3e6a-510c-4428-88d4-69557821f8e2"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "What will the weather in Fresno be in the next 48 hours?"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "weather_attribute": true,
+                "date": true,
+                "location": true
+              },
+              "slots": {
+                "date": "next 48 hours",
+                "location": "fresno"
+              },
+              "utterance": "The weather in fresno over the next 48 hours will be cloudy with snow."
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Thanks"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "weather_attribute": false,
+                "date": false,
+                "location": false
+              },
+              "slots": {},
+              "utterance": "you are welcome"
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "monday": "stormy, low of 90F, high of 100F",
+                "tuesday": "foggy, low of 50F, high of 70F",
+                "friday": "humid, low of 50F, high of 70F",
+                "wednesday": "dry, low of 80F, high of 100F",
+                "thursday": "cloudy, low of 60F, high of 80F",
+                "sunday": "rain, low of 80F, high of 90F",
+                "location": "durham",
+                "saturday": "clear skies, low of 80F, high of 100F",
+                "today": "monday"
+              },
+              {
+                "monday": "foggy, low of 80F, high of 90F",
+                "tuesday": "raining, low of 30F, high of 40F",
+                "friday": "humid, low of 80F, high of 90F",
+                "wednesday": "raining, low of 80F, high of 100F",
+                "thursday": "rain, low of 30F, high of 50F",
+                "sunday": "snow, low of 80F, high of 100F",
+                "location": "manhattan",
+                "saturday": "misty, low of 90F, high of 100F",
+                "today": "monday"
+              },
+              {
+                "monday": "rain, low of 80F, high of 100F",
+                "tuesday": "overcast, low of 60F, high of 70F",
+                "friday": "rain, low of 70F, high of 90F",
+                "wednesday": "misty, low of 50F, high of 70F",
+                "thursday": "dry, low of 60F, high of 80F",
+                "sunday": "stormy, low of 30F, high of 50F",
+                "location": "grand rapids",
+                "saturday": "warm, low of 60F, high of 70F",
+                "today": "monday"
+              },
+              {
+                "monday": "raining, low of 50F, high of 60F",
+                "tuesday": "clear skies, low of 90F, high of 100F",
+                "friday": "foggy, low of 50F, high of 60F",
+                "wednesday": "misty, low of 40F, high of 50F",
+                "thursday": "dew, low of 40F, high of 60F",
+                "sunday": "clear skies, low of 70F, high of 90F",
+                "location": "san francisco",
+                "saturday": "dry, low of 90F, high of 100F",
+                "today": "monday"
+              },
+              {
+                "monday": "foggy, low of 40F, high of 50F",
+                "tuesday": "drizzle, low of 70F, high of 80F",
+                "friday": "raining, low of 70F, high of 90F",
+                "wednesday": "overcast, low of 70F, high of 90F",
+                "thursday": "foggy, low of 30F, high of 50F",
+                "sunday": "cloudy, low of 80F, high of 100F",
+                "location": "atherton",
+                "saturday": "rain, low of 90F, high of 100F",
+                "today": "monday"
+              },
+              {
+                "monday": "snow, low of 80F, high of 100F",
+                "tuesday": "frost, low of 20F, high of 30F",
+                "friday": "blizzard, low of 40F, high of 60F",
+                "wednesday": "foggy, low of 40F, high of 50F",
+                "thursday": "clear skies, low of 60F, high of 70F",
+                "sunday": "stormy, low of 50F, high of 70F",
+                "location": "seattle",
+                "saturday": "snow, low of 40F, high of 60F",
+                "today": "monday"
+              },
+              {
+                "monday": "cloudy, low of 40F, high of 60F",
+                "tuesday": "snow, low of 40F, high of 60F",
+                "friday": "dry, low of 50F, high of 70F",
+                "wednesday": "humid, low of 70F, high of 90F",
+                "thursday": "windy, low of 50F, high of 60F",
+                "sunday": "hail, low of 30F, high of 50F",
+                "location": "fresno",
+                "saturday": "overcast, low of 30F, high of 50F",
+                "today": "monday"
+              }
+            ],
+            "column_names": [
+              "location",
+              "monday",
+              "tuesday",
+              "wednesday",
+              "thursday",
+              "friday",
+              "saturday",
+              "sunday",
+              "today"
+            ],
+            "kb_title": "weekly forecast"
+          },
+          "task": {
+            "intent": "weather"
+          },
+          "uuid": "9c27c0c6-ccac-4109-ae07-50782e0455c6"
+        }
+      },
+      {
+        "dialogue": [
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Where is home "
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": true,
+                "address": true,
+                "poi": true
+              },
+              "slots": {
+                "poi_type": "home",
+                "poi": "home"
+              },
+              "utterance": "Home is where is your heart is, at 56 cadwell street"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Okay, how far away am I and send me the quickest route"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": true,
+                "traffic_info": false,
+                "poi_type": false,
+                "address": false,
+                "poi": false
+              },
+              "slots": {
+                "distance": "quickest "
+              },
+              "utterance": "You are 3 miles away from home with heavy traffic noted. "
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "Thank you very much car!"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": false,
+              "requested": {
+                "distance": true,
+                "traffic_info": false,
+                "poi_type": true,
+                "address": false,
+                "poi": true
+              },
+              "slots": {
+                "distance": "quickest",
+                "poi_type": "home",
+                "poi": "home"
+              },
+              "utterance": "You are welcome driver!"
+            }
+          },
+          {
+            "turn": "driver",
+            "data": {
+              "end_dialogue": false,
+              "utterance": "no response needed"
+            }
+          },
+          {
+            "turn": "assistant",
+            "data": {
+              "end_dialogue": true,
+              "requested": {
+                "distance": false,
+                "traffic_info": false,
+                "poi_type": false,
+                "address": false,
+                "poi": false
+              },
+              "slots": {
+              },
+              "utterance": "glad to help"
+            }
+          }
+        ],
+        "scenario": {
+          "kb": {
+            "items": [
+              {
+                "distance": "5 miles",
+                "traffic_info": "heavy traffic",
+                "poi_type": "grocery store",
+                "address": "408 University Ave",
+                "poi": "Trader Joes"
+              },
+              {
+                "distance": "3 miles",
+                "traffic_info": "heavy traffic",
+                "poi_type": "home",
+                "address": "56 cadwell street",
+                "poi": "home"
+              },
+              {
+                "distance": "3 miles",
+                "traffic_info": "car collision nearby",
+                "poi_type": "coffee or tea place",
+                "address": "145 Amherst St",
+                "poi": "Teavana"
+              },
+              {
+                "distance": "3 miles",
+                "traffic_info": "car collision nearby",
+                "poi_type": "pizza restaurant",
+                "address": "776 Arastradero Rd",
+                "poi": "Dominos"
+              },
+              {
+                "distance": "3 miles",
+                "traffic_info": "car collision nearby",
+                "poi_type": "grocery store",
+                "address": "819 Alma St",
+                "poi": "Whole Foods"
+              },
+              {
+                "distance": "6 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "rest stop",
+                "address": "753 University Ave",
+                "poi": "Comfort Inn"
+              },
+              {
+                "distance": "2 miles",
+                "traffic_info": "no traffic",
+                "poi_type": "chinese restaurant",
+                "address": "842 Arrowhead Way",
+                "poi": "Panda Express"
+              },
+              {
+                "distance": "4 miles",
+                "traffic_info": "road block nearby",
+                "poi_type": "chinese restaurant",
+                "address": "830 Almanor Ln",
+                "poi": "tai pan"
+              }
+            ],
+            "column_names": [
+              "poi",
+              "poi_type",
+              "address",
+              "distance",
+              "traffic_info"
+            ],
+            "kb_title": "location information"
+          },
+          "task": {
+            "intent": "navigate"
+          },
+          "uuid": "24aee752-feb8-4a1c-ae70-22d51dc2f854"
+        }
+      }
+]

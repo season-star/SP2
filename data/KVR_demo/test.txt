@@ -1,0 +1,148 @@
+remind O
+me O
+to O
+take B-event
+my O
+pills I-event
+schedule
+
+i O
+need O
+to O
+take O
+my O
+pills O
+at O
+7 O
+pm. O
+schedule
+
+What O
+gas B-poi_type
+stations I-poi_type
+are O
+here O
+navigate
+
+Thats O
+good O
+Please O
+pick O
+the O
+quickest B-distance
+route O
+to O
+get O
+there O
+and O
+avoid B-traffic_info
+all I-traffic_info
+heavy I-traffic_info
+traffic I-traffic_info
+navigate
+
+What O
+is O
+the O
+address O
+navigate
+
+Perfect. O
+Thank O
+you O
+navigate
+
+whats O
+the O
+temperature B-weather_attribute
+going O
+to O
+be O
+like O
+on O
+friday O
+weather
+
+alhambra B-location
+weather
+
+And O
+the O
+temperature B-weather_attribute
+weather
+
+Thank O
+you. O
+weather
+
+give O
+me O
+directions O
+to O
+the O
+closest O
+grocery B-poi_type
+store I-poi_type
+navigate
+
+I O
+need O
+the O
+one O
+that O
+avoids B-traffic_info
+all O
+heavy O
+traffic. I-traffic_info
+navigate
+
+Thank O
+you. O
+navigate
+
+What O
+will O
+the O
+weather O
+in O
+Fresno O
+be O
+next B-date
+48 I-date
+hours I-date
+weather
+
+Thanks O
+weather
+
+Where O
+is O
+home B-poi
+navigate
+
+Okay O
+how O
+far O
+away O
+am O
+I O
+and O
+send O
+me O
+the O
+quickest B-distance
+route O
+navigate
+
+Thank O
+you O
+very O
+much O
+car O
+navigate
+
+no O
+response O
+needed O
+navigate
+

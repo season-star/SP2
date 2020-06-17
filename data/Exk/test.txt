@@ -1,0 +1,468 @@
+#navigate#
+0 2_miles road_block_nearby parking_garage poi dish_parking
+0 dish_parking distance 2_miles
+0 dish_parking traffic_info road_block_nearby
+0 dish_parking poi_type parking_garage
+0 dish_parking address 550_alester_ave
+0 6_miles no_traffic parking_garage poi stanford_oval_parking
+0 stanford_oval_parking distance 6_miles
+0 stanford_oval_parking traffic_info no_traffic
+0 stanford_oval_parking poi_type parking_garage
+0 stanford_oval_parking address 610_amarillo_ave
+0 4_miles car_collision_nearby grocery_store poi willows_market
+0 willows_market distance 4_miles
+0 willows_market traffic_info car_collision_nearby
+0 willows_market poi_type grocery_store
+0 willows_market address 409_bollard_st
+0 2_miles moderate_traffic rest_stop poi the_westin
+0 the_westin distance 2_miles
+0 the_westin traffic_info moderate_traffic
+0 the_westin poi_type rest_stop
+0 the_westin address 329_el_camino_real
+0 1_miles heavy_traffic friends_house poi toms_house
+0 toms_house distance 1_miles
+0 toms_house traffic_info heavy_traffic
+0 toms_house poi_type friends_house
+0 toms_house address 580_van_ness_ave
+0 4_miles heavy_traffic pizza_restaurant poi pizza_chicago
+0 pizza_chicago distance 4_miles
+0 pizza_chicago traffic_info heavy_traffic
+0 pizza_chicago poi_type pizza_restaurant
+0 pizza_chicago address 915_arbol_dr
+0 6_miles car_collision_nearby gas_station poi valero
+0 valero distance 6_miles
+0 valero traffic_info car_collision_nearby
+0 valero poi_type gas_station
+0 valero address 200_alester_ave
+0 2_miles no_traffic chinese_restaurant poi mandarin_roots
+0 mandarin_roots distance 2_miles
+0 mandarin_roots traffic_info no_traffic
+0 mandarin_roots poi_type chinese_restaurant
+0 mandarin_roots address 271_springer_street
+1 where s the nearest parking_garage	the nearest parking_garage is dish_parking at 550_alester_ave would you like directions there ?	['parking_garage', '550_alester_ave', 'dish_parking']
+2 yes , please set directions via a route that avoids all heavy_traffic if possible	it looks like there is a road block being reported on the route but i will still find the quickest route to 550_alester_ave	['550_alester_ave']
+3 thanks so much for your help	you are very welcome !	[]
+
+#navigate#
+0 4_miles moderate_traffic shopping_center poi town_and_country
+0 town_and_country distance 4_miles
+0 town_and_country traffic_info moderate_traffic
+0 town_and_country poi_type shopping_center
+0 town_and_country address 383_university_ave
+0 4_miles moderate_traffic gas_station poi 76
+0 76 distance 4_miles
+0 76 traffic_info moderate_traffic
+0 76 poi_type gas_station
+0 76 address 91_el_camino_real
+0 2_miles moderate_traffic shopping_center poi stanford_shopping_center
+0 stanford_shopping_center distance 2_miles
+0 stanford_shopping_center traffic_info moderate_traffic
+0 stanford_shopping_center poi_type shopping_center
+0 stanford_shopping_center address 773_alger_dr
+0 3_miles moderate_traffic coffee_or_tea_place poi teavana
+0 teavana distance 3_miles
+0 teavana traffic_info moderate_traffic
+0 teavana poi_type coffee_or_tea_place
+0 teavana address 145_amherst_st
+0 4_miles moderate_traffic pizza_restaurant poi dominos
+0 dominos distance 4_miles
+0 dominos traffic_info moderate_traffic
+0 dominos poi_type pizza_restaurant
+0 dominos address 776_arastradero_rd
+0 4_miles road_block_nearby parking_garage poi palo_alto_garage_r
+0 palo_alto_garage_r distance 4_miles
+0 palo_alto_garage_r traffic_info road_block_nearby
+0 palo_alto_garage_r poi_type parking_garage
+0 palo_alto_garage_r address 481_amaranta_ave
+0 5_miles no_traffic hospital poi stanford_express_care
+0 stanford_express_care distance 5_miles
+0 stanford_express_care traffic_info no_traffic
+0 stanford_express_care poi_type hospital
+0 stanford_express_care address 214_el_camino_real
+0 3_miles no_traffic hospital poi palo_alto_medical_foundation
+0 palo_alto_medical_foundation distance 3_miles
+0 palo_alto_medical_foundation traffic_info no_traffic
+0 palo_alto_medical_foundation poi_type hospital
+0 palo_alto_medical_foundation address 611_ames_ave
+1 where is the nearest gas_station ?	there is a 76 4_miles away	['76', '4_miles']
+2 what is the address ?	the 76 gas_station is located at 91_el_camino_real it is 4_miles away through moderate_traffic	['91_el_camino_real', 'gas_station', '4_miles', 'moderate_traffic', '76']
+3 thanks !	anytime !	[]
+
+#navigate#
+0 5_miles moderate_traffic chinese_restaurant poi p_._f_._changs
+0 p_._f_._changs distance 5_miles
+0 p_._f_._changs traffic_info moderate_traffic
+0 p_._f_._changs poi_type chinese_restaurant
+0 p_._f_._changs address 669_el_camino_real
+0 6_miles moderate_traffic shopping_center poi ravenswood_shopping_center
+0 ravenswood_shopping_center distance 6_miles
+0 ravenswood_shopping_center traffic_info moderate_traffic
+0 ravenswood_shopping_center poi_type shopping_center
+0 ravenswood_shopping_center address 434_arastradero_rd
+0 8_miles heavy_traffic chinese_restaurant poi chef_chu_s
+0 chef_chu_s distance 8_miles
+0 chef_chu_s traffic_info heavy_traffic
+0 chef_chu_s poi_type chinese_restaurant
+0 chef_chu_s address 593_arrowhead_way
+0 5_miles no_traffic rest_stop poi the_westin
+0 the_westin distance 5_miles
+0 the_westin traffic_info no_traffic
+0 the_westin poi_type rest_stop
+0 the_westin address 329_el_camino_real
+0 2_miles heavy_traffic parking_garage poi dish_parking
+0 dish_parking distance 2_miles
+0 dish_parking traffic_info heavy_traffic
+0 dish_parking poi_type parking_garage
+0 dish_parking address 550_alester_ave
+0 1_miles no_traffic home poi home
+0 home distance 1_miles
+0 home traffic_info no_traffic
+0 home poi_type home
+0 home address 5671_barringer_street
+0 4_miles heavy_traffic coffee_or_tea_place poi philz
+0 philz distance 4_miles
+0 philz traffic_info heavy_traffic
+0 philz poi_type coffee_or_tea_place
+0 philz address 583_alester_ave
+0 3_miles no_traffic hospital poi palo_alto_medical_foundation
+0 palo_alto_medical_foundation distance 3_miles
+0 palo_alto_medical_foundation traffic_info no_traffic
+0 palo_alto_medical_foundation poi_type hospital
+0 palo_alto_medical_foundation address 611_ames_ave
+1 show me the closest location where i can get chinese food	the closest chinese_restaurant is p_._f_._changs , located 5_miles away	['5_miles', 'chinese_restaurant', 'p_._f_._changs']
+2 ok , please give me an address and directions via a route that avoids all heavy_traffic	p_._f_._changs route set to 669_el_camino_real with only moderate_traffic noted	['669_el_camino_real', 'p_._f_._changs', 'moderate_traffic']
+3 thank you	you are welcome drive safely , and enjoy	[]
+
+#schedule#
+1 hi , please set up a reminder for my dinner on the_11th at 4pm with my sister thanks !	set ! have a good time	[]
+
+#schedule#
+0 dentist_appointment time 10am
+0 dentist_appointment date the_8th
+0 dentist_appointment party aunt
+0 taking_medicine time 5pm
+0 taking_medicine date saturday
+0 taking_medicine party marie
+0 football_activity time 4pm
+0 football_activity date monday
+0 football_activity party alex
+0 yoga_activity time 4pm
+0 yoga_activity date the_4th
+0 yoga_activity party marie
+0 lab_appointment time 5pm
+0 lab_appointment date the_13th
+0 lab_appointment party father
+0 dinner time 7pm
+0 dinner date the_8th
+0 dinner party jon
+1 what time is dinner and who is it with ?	dinner is at 7pm with jon	['7pm', 'dinner', 'jon']
+2 okay , perfect ! thanks	you are welcome	[]
+
+#schedule#
+1 schedule dentist_appointment	when is your dentist_appointment	['dentist_appointment']
+2 it is on sunday at 2pm	i have put on your calendar a dentist_appointment on sunday at 2pm	['sunday', '2pm', 'dentist_appointment']
+
+#weather#
+0 today monday
+0 manhattan monday stormy
+0 manhattan monday low 50f
+0 manhattan monday high 70f
+0 manhattan tuesday cloudy
+0 manhattan tuesday low 20f
+0 manhattan tuesday high 40f
+0 manhattan wednesday clear_skies
+0 manhattan wednesday low 50f
+0 manhattan wednesday high 60f
+0 manhattan thursday stormy
+0 manhattan thursday low 50f
+0 manhattan thursday high 70f
+0 manhattan friday windy
+0 manhattan friday low 20f
+0 manhattan friday high 40f
+0 manhattan saturday snow
+0 manhattan saturday low 60f
+0 manhattan saturday high 70f
+0 manhattan sunday hail
+0 manhattan sunday low 30f
+0 manhattan sunday high 50f
+0 camarillo monday overcast
+0 camarillo monday low 50f
+0 camarillo monday high 70f
+0 camarillo tuesday stormy
+0 camarillo tuesday low 90f
+0 camarillo tuesday high 100f
+0 camarillo wednesday frost
+0 camarillo wednesday low 50f
+0 camarillo wednesday high 60f
+0 camarillo thursday snow
+0 camarillo thursday low 80f
+0 camarillo thursday high 90f
+0 camarillo friday clear_skies
+0 camarillo friday low 70f
+0 camarillo friday high 80f
+0 camarillo saturday blizzard
+0 camarillo saturday low 40f
+0 camarillo saturday high 50f
+0 camarillo sunday dry
+0 camarillo sunday low 70f
+0 camarillo sunday high 80f
+0 menlo_park monday dry
+0 menlo_park monday low 50f
+0 menlo_park monday high 70f
+0 menlo_park tuesday warm
+0 menlo_park tuesday low 80f
+0 menlo_park tuesday high 90f
+0 menlo_park wednesday hail
+0 menlo_park wednesday low 20f
+0 menlo_park wednesday high 40f
+0 menlo_park thursday blizzard
+0 menlo_park thursday low 40f
+0 menlo_park thursday high 60f
+0 menlo_park friday cloudy
+0 menlo_park friday low 70f
+0 menlo_park friday high 80f
+0 menlo_park saturday foggy
+0 menlo_park saturday low 50f
+0 menlo_park saturday high 60f
+0 menlo_park sunday stormy
+0 menlo_park sunday low 90f
+0 menlo_park sunday high 100f
+0 new_york monday hot
+0 new_york monday low 70f
+0 new_york monday high 90f
+0 new_york tuesday foggy
+0 new_york tuesday low 70f
+0 new_york tuesday high 90f
+0 new_york wednesday dry
+0 new_york wednesday low 40f
+0 new_york wednesday high 50f
+0 new_york thursday hail
+0 new_york thursday low 40f
+0 new_york thursday high 50f
+0 new_york friday cloudy
+0 new_york friday low 70f
+0 new_york friday high 90f
+0 new_york saturday clear_skies
+0 new_york saturday low 70f
+0 new_york saturday high 90f
+0 new_york sunday rain
+0 new_york sunday low 20f
+0 new_york sunday high 30f
+0 corona monday windy
+0 corona monday low 70f
+0 corona monday high 80f
+0 corona tuesday overcast
+0 corona tuesday low 40f
+0 corona tuesday high 50f
+0 corona wednesday hail
+0 corona wednesday low 90f
+0 corona wednesday high 100f
+0 corona thursday rain
+0 corona thursday low 80f
+0 corona thursday high 100f
+0 corona friday hail
+0 corona friday low 60f
+0 corona friday high 70f
+0 corona saturday warm
+0 corona saturday low 60f
+0 corona saturday high 80f
+0 corona sunday frost
+0 corona sunday low 20f
+0 corona sunday high 30f
+0 seattle monday cloudy
+0 seattle monday low 90f
+0 seattle monday high 100f
+0 seattle tuesday dry
+0 seattle tuesday low 30f
+0 seattle tuesday high 40f
+0 seattle wednesday stormy
+0 seattle wednesday low 80f
+0 seattle wednesday high 100f
+0 seattle thursday snow
+0 seattle thursday low 20f
+0 seattle thursday high 30f
+0 seattle friday foggy
+0 seattle friday low 20f
+0 seattle friday high 30f
+0 seattle saturday drizzle
+0 seattle saturday low 40f
+0 seattle saturday high 60f
+0 seattle sunday drizzle
+0 seattle sunday low 50f
+0 seattle sunday high 60f
+0 grand_rapids monday drizzle
+0 grand_rapids monday low 70f
+0 grand_rapids monday high 80f
+0 grand_rapids tuesday overcast
+0 grand_rapids tuesday low 40f
+0 grand_rapids tuesday high 60f
+0 grand_rapids wednesday overcast
+0 grand_rapids wednesday low 60f
+0 grand_rapids wednesday high 80f
+0 grand_rapids thursday snow
+0 grand_rapids thursday low 20f
+0 grand_rapids thursday high 40f
+0 grand_rapids friday foggy
+0 grand_rapids friday low 50f
+0 grand_rapids friday high 60f
+0 grand_rapids saturday dry
+0 grand_rapids saturday low 90f
+0 grand_rapids saturday high 100f
+0 grand_rapids sunday cloudy
+0 grand_rapids sunday low 30f
+0 grand_rapids sunday high 40f
+1 check forecast for new_york	the weather this week will be hail and rain on thursday and sunday , with the lowest_temperature being 20f and the highest 90f , monday will be the only hot day	['hot', 'lowest_temperature', 'hail', 'monday', 'rain', 'week', '90f', 'thursday', 'sunday', '20f']
+2 will it be overcast on friday ?	on friday it will be cloudy on new_york	['cloudy', 'friday', 'new_york']
+3 thank you !	you are welcome !	[]
+
+#weather#
+0 today monday
+0 danville monday clear_skies
+0 danville monday low 90f
+0 danville monday high 100f
+0 danville tuesday stormy
+0 danville tuesday low 20f
+0 danville tuesday high 40f
+0 danville wednesday raining
+0 danville wednesday low 40f
+0 danville wednesday high 60f
+0 danville thursday stormy
+0 danville thursday low 80f
+0 danville thursday high 90f
+0 danville friday misty
+0 danville friday low 40f
+0 danville friday high 50f
+0 danville saturday blizzard
+0 danville saturday low 40f
+0 danville saturday high 50f
+0 danville sunday frost
+0 danville sunday low 30f
+0 danville sunday high 50f
+0 camarillo monday drizzle
+0 camarillo monday low 50f
+0 camarillo monday high 60f
+0 camarillo tuesday clear_skies
+0 camarillo tuesday low 30f
+0 camarillo tuesday high 40f
+0 camarillo wednesday misty
+0 camarillo wednesday low 70f
+0 camarillo wednesday high 80f
+0 camarillo thursday overcast
+0 camarillo thursday low 20f
+0 camarillo thursday high 30f
+0 camarillo friday overcast
+0 camarillo friday low 40f
+0 camarillo friday high 50f
+0 camarillo saturday raining
+0 camarillo saturday low 40f
+0 camarillo saturday high 50f
+0 camarillo sunday frost
+0 camarillo sunday low 50f
+0 camarillo sunday high 60f
+0 san_jose monday clear_skies
+0 san_jose monday low 60f
+0 san_jose monday high 70f
+0 san_jose tuesday misty
+0 san_jose tuesday low 30f
+0 san_jose tuesday high 50f
+0 san_jose wednesday hail
+0 san_jose wednesday low 90f
+0 san_jose wednesday high 100f
+0 san_jose thursday clear_skies
+0 san_jose thursday low 20f
+0 san_jose thursday high 30f
+0 san_jose friday misty
+0 san_jose friday low 30f
+0 san_jose friday high 40f
+0 san_jose saturday clear_skies
+0 san_jose saturday low 40f
+0 san_jose saturday high 60f
+0 san_jose sunday foggy
+0 san_jose sunday low 90f
+0 san_jose sunday high 100f
+0 los_angeles monday drizzle
+0 los_angeles monday low 60f
+0 los_angeles monday high 70f
+0 los_angeles tuesday warm
+0 los_angeles tuesday low 60f
+0 los_angeles tuesday high 70f
+0 los_angeles wednesday clear_skies
+0 los_angeles wednesday low 50f
+0 los_angeles wednesday high 60f
+0 los_angeles thursday clear_skies
+0 los_angeles thursday low 90f
+0 los_angeles thursday high 100f
+0 los_angeles friday foggy
+0 los_angeles friday low 90f
+0 los_angeles friday high 100f
+0 los_angeles saturday raining
+0 los_angeles saturday low 90f
+0 los_angeles saturday high 100f
+0 los_angeles sunday cloudy
+0 los_angeles sunday low 50f
+0 los_angeles sunday high 60f
+0 durham monday clear_skies
+0 durham monday low 50f
+0 durham monday high 70f
+0 durham tuesday dew
+0 durham tuesday low 40f
+0 durham tuesday high 60f
+0 durham wednesday clear_skies
+0 durham wednesday low 60f
+0 durham wednesday high 70f
+0 durham thursday drizzle
+0 durham thursday low 60f
+0 durham thursday high 80f
+0 durham friday humid
+0 durham friday low 50f
+0 durham friday high 70f
+0 durham saturday drizzle
+0 durham saturday low 30f
+0 durham saturday high 50f
+0 durham sunday misty
+0 durham sunday low 50f
+0 durham sunday high 60f
+0 san_francisco monday rain
+0 san_francisco monday low 30f
+0 san_francisco monday high 50f
+0 san_francisco tuesday foggy
+0 san_francisco tuesday low 50f
+0 san_francisco tuesday high 70f
+0 san_francisco wednesday rain
+0 san_francisco wednesday low 50f
+0 san_francisco wednesday high 60f
+0 san_francisco thursday stormy
+0 san_francisco thursday low 50f
+0 san_francisco thursday high 60f
+0 san_francisco friday hail
+0 san_francisco friday low 90f
+0 san_francisco friday high 100f
+0 san_francisco saturday blizzard
+0 san_francisco saturday low 40f
+0 san_francisco saturday high 60f
+0 san_francisco sunday hot
+0 san_francisco sunday low 80f
+0 san_francisco sunday high 90f
+0 boston monday misty
+0 boston monday low 70f
+0 boston monday high 80f
+0 boston tuesday clear_skies
+0 boston tuesday low 80f
+0 boston tuesday high 90f
+0 boston wednesday snow
+0 boston wednesday low 90f
+0 boston wednesday high 100f
+0 boston thursday clear_skies
+0 boston thursday low 80f
+0 boston thursday high 100f
+0 boston friday hail
+0 boston friday low 30f
+0 boston friday high 40f
+0 boston saturday blizzard
+0 boston saturday low 20f
+0 boston saturday high 30f
+0 boston sunday cloudy
+0 boston sunday low 70f
+0 boston sunday high 80f
+1 will it be warm in camarillo over the next 2 days ?	no , it s not gonna be warm in camarillo over the next 2 days	['camarillo', 'warm']
+2 thank you car !	you are very welcome	[]

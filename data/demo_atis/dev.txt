@@ -1,0 +1,354 @@
+i O
+want O
+to O
+fly O
+from O
+boston B-fromloc.city_name
+at O
+838 B-depart_time.time
+am I-depart_time.time
+and O
+arrive O
+in O
+denver B-toloc.city_name
+at O
+1110 B-arrive_time.time
+in O
+the O
+morning B-arrive_time.period_of_day
+atis_flight
+
+show O
+me O
+all O
+round B-round_trip
+trip I-round_trip
+flights O
+between O
+houston B-fromloc.city_name
+and O
+las B-toloc.city_name
+vegas I-toloc.city_name
+atis_flight
+
+i O
+would O
+like O
+some O
+information O
+on O
+a O
+flight O
+from O
+denver B-fromloc.city_name
+to O
+san B-toloc.city_name
+francisco I-toloc.city_name
+on O
+united B-airline_name
+airlines I-airline_name
+atis_flight
+
+what O
+are O
+the O
+coach B-class_type
+flights O
+between O
+dallas B-fromloc.city_name
+and O
+baltimore B-toloc.city_name
+leaving O
+august B-depart_date.month_name
+tenth B-depart_date.day_number
+and O
+returning O
+august B-return_date.month_name
+twelve B-return_date.day_number
+atis_flight
+
+i'm O
+flying O
+from O
+boston B-fromloc.city_name
+to O
+the O
+bay B-toloc.city_name
+area I-toloc.city_name
+atis_flight
+
+okay O
+can O
+you O
+tell O
+me O
+the O
+flight O
+cost O
+between O
+denver B-fromloc.city_name
+and O
+atlanta B-toloc.city_name
+atis_flight
+
+from O
+montreal B-fromloc.city_name
+to O
+las B-toloc.city_name
+vegas I-toloc.city_name
+atis_flight
+
+what O
+is O
+the O
+earliest B-flight_mod
+breakfast B-meal_description
+flight O
+from O
+philadelphia B-fromloc.city_name
+to O
+fort B-toloc.city_name
+worth I-toloc.city_name
+atis_flight
+
+flights O
+from O
+pittsburgh B-fromloc.city_name
+to O
+baltimore B-toloc.city_name
+between O
+10 B-depart_time.start_time
+am I-depart_time.start_time
+and O
+2 B-depart_time.end_time
+pm I-depart_time.end_time
+atis_flight
+
+what O
+is O
+the O
+latest B-flight_mod
+flight O
+departing O
+from O
+boston B-fromloc.city_name
+to O
+san B-toloc.city_name
+francisco I-toloc.city_name
+atis_flight
+
+flights O
+from O
+ontario B-fromloc.city_name
+to O
+florida B-toloc.state_name
+atis_flight
+
+i O
+would O
+like O
+to O
+know O
+the O
+first B-class_type
+class I-class_type
+fare O
+on O
+a O
+flight O
+from O
+baltimore B-fromloc.city_name
+to O
+denver B-toloc.city_name
+atis_airfare
+
+okay O
+that O
+sounds O
+great O
+let's O
+go O
+from O
+atlanta B-fromloc.city_name
+on O
+april B-depart_date.month_name
+twenty B-depart_date.day_number
+one I-depart_date.day_number
+in O
+the O
+morning B-depart_time.period_of_day
+to O
+dallas B-toloc.city_name
+least B-cost_relative
+expensive I-cost_relative
+fare O
+one B-round_trip
+way I-round_trip
+atis_flight
+
+show O
+me O
+the O
+prices O
+of O
+all O
+flights O
+from O
+atlanta B-fromloc.city_name
+to O
+washington B-toloc.city_name
+dc B-toloc.state_code
+atis_airfare
+
+flights O
+from O
+cincinnati B-fromloc.city_name
+to O
+o'hare B-toloc.airport_name
+departing O
+after B-depart_time.time_relative
+718 B-depart_time.time
+am I-depart_time.time
+american B-airline_name
+atis_flight
+
+i'm O
+interested O
+in O
+a O
+flight O
+from O
+pittsburgh B-fromloc.city_name
+to O
+atlanta B-toloc.city_name
+atis_flight
+
+i O
+am B-depart_time.period_of_day
+interested O
+in O
+booking O
+an O
+early B-depart_time.period_of_day
+morning B-depart_time.period_of_day
+flight O
+from O
+dallas B-fromloc.city_name
+into O
+houston B-toloc.city_name
+on O
+february B-depart_date.month_name
+twenty B-depart_date.day_number
+second I-depart_date.day_number
+and O
+returning O
+late O
+in O
+the O
+evening B-return_time.period_of_day
+of O
+february B-return_date.month_name
+twenty B-return_date.day_number
+second I-return_date.day_number
+atis_flight
+
+i'm O
+looking O
+for O
+a O
+flight O
+from O
+oakland B-fromloc.city_name
+to O
+denver B-toloc.city_name
+with O
+a O
+stopover O
+in O
+dallas B-stoploc.city_name
+fort I-stoploc.city_name
+worth I-stoploc.city_name
+atis_flight
+
+what's O
+restriction O
+ap68 B-restriction_code
+atis_restriction
+
+what O
+types O
+of O
+ground O
+transportation O
+are O
+available O
+in O
+philadelphia B-city_name
+atis_ground_service
+
+what O
+does O
+the O
+abbreviation O
+co B-airline_code
+mean O
+atis_abbreviation
+
+a O
+first B-class_type
+class I-class_type
+flight O
+on O
+american B-airline_name
+to O
+san B-toloc.city_name
+francisco I-toloc.city_name
+on O
+the O
+coming B-depart_date.date_relative
+tuesday B-depart_date.day_name
+atis_flight
+
+please O
+list O
+the O
+flights O
+from O
+baltimore B-fromloc.city_name
+to O
+san B-toloc.city_name
+francisco I-toloc.city_name
+on O
+fridays B-depart_date.day_name
+atis_flight
+
+what O
+flights O
+return O
+from O
+denver B-fromloc.city_name
+to O
+philadelphia B-toloc.city_name
+on O
+a O
+saturday B-depart_date.day_name
+atis_flight
+
+on O
+united B-airline_name
+airlines I-airline_name
+flying O
+from O
+denver B-fromloc.city_name
+to O
+san B-toloc.city_name
+francisco I-toloc.city_name
+before B-depart_time.time_relative
+10 B-depart_time.time
+am I-depart_time.time
+what O
+type O
+of O
+aircraft O
+is O
+used O
