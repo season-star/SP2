@@ -178,24 +178,28 @@ class TorchDataset(Dataset):
     instantiate DataLoader which deliveries data batch.
     """
 
-    def __init__(self, text, slot, intent, kb,text_triple, dial_id, turn_id, history):
-        self.__text = text
-        self.__slot = slot
-        self.__intent = intent
-        self.__kb = kb
-        self.__text_triple = text_triple
-        self.__dial_id = dial_id
-        self.__turn_id = turn_id
-        self.__history = history
+    def __init__(self, dialogue_detail):
+        # self.__text = text
+        # self.__slot = slot
+        # self.__intent = intent
+        # self.__kb = kb
+        # self.__text_triple = text_triple
+        # self.__dial_id = dial_id
+        # self.__turn_id = turn_id
+        # self.__history = history
+        self.__dialogue_detail = dialogue_detail
 
-    def __getitem__(self, index):
-        return self.__text[index], self.__slot[index], self.__intent[index],self.__kb[index], self.__text_triple[index], self.__dial_id[index], self.__turn_id[index], self.__history[index]
+    def __getitem__(self, dialogue_index):
+        # print(self.__dialogue_detail[dialogue_index])
+        return self.__dialogue_detail[dialogue_index]  #这样就实现了以dialogue为基本单元取batch
+        # return self.__text[index], self.__slot[index], self.__intent[index],self.__kb[index], self.__text_triple[index], self.__dial_id[index], self.__turn_id[index], self.__history[index]
 
     def __len__(self):
         # Pre-check to avoid bug.
-        assert len(self.__text) == len(self.__slot)
-        assert len(self.__text) == len(self.__intent)
-        return len(self.__text)
+        # assert len(self.__text) == len(self.__slot)
+        # assert len(self.__text) == len(self.__intent)
+        # return len(self.__text)
+        return len(self.__dialogue_detail)
 
 
 class DatasetManager(object):
@@ -523,7 +527,6 @@ class DatasetManager(object):
         #     self.__digit_turn_id_data[data_name] = self.__turn_id_alphabet.get_index(turn_id)
         #     self.__digit_history_data[data_name] = self.__history_alphabet.get_index(history)
 
-
     @staticmethod
     def __read_file(file_path):
         """ Read data file of given path.
@@ -557,28 +560,34 @@ class DatasetManager(object):
             batch_size = self.batch_size
 
         if is_digital:
-            self.__digit_data_detail
-            text = self.__digit_word_data[data_name]
-            slot = self.__digit_slot_data[data_name]
-            intent = self.__digit_intent_data[data_name]
-            kb = self.__digit_kb_data[data_name]
-            text_triple = self.__digit_text_triple_data[data_name]
-            dial_id = self.__digit_dial_id_data[data_name]
-            turn_id = self.__digit_turn_id_data[data_name]
-            history = self.__digit_history_data[data_name]
+            dialogue_detail = self.__digit_data_detail[data_name]
+            # text = self.__digit_word_data[data_name]
+            # slot = self.__digit_slot_data[data_name]
+            # intent = self.__digit_intent_data[data_name]
+            # kb = self.__digit_kb_data[data_name]
+            # text_triple = self.__digit_text_triple_data[data_name]
+            # dial_id = self.__digit_dial_id_data[data_name]
+            # turn_id = self.__digit_turn_id_data[data_name]
+            # history = self.__digit_history_data[data_name]
 
         else:
-            text = self.__text_word_data[data_name]
-            slot = self.__text_slot_data[data_name]
-            intent = self.__text_intent_data[data_name]
-            kb = self.__text_kb_data[data_name]
-            text_triple = self.__text_text_triple_data[data_name]
-            dial_id = self.__text_dial_id_data[data_name]
-            turn_id = self.__text_turn_id_data[data_name]
-            history = self.__text_history_data[data_name]
+            dialogue_detail = self.__text_data_detail[data_name]
+            # text = self.__text_word_data[data_name]
+            # slot = self.__text_slot_data[data_name]
+            # intent = self.__text_intent_data[data_name]
+            # kb = self.__text_kb_data[data_name]
+            # text_triple = self.__text_text_triple_data[data_name]
+            # dial_id = self.__text_dial_id_data[data_name]
+            # turn_id = self.__text_turn_id_data[data_name]
+            # history = self.__text_history_data[data_name]
 
-        dataset = TorchDataset(text, slot, intent, kb, text_triple, dial_id, turn_id, history)
+        print("==================batch delivery===============")
+        for i in dialogue_detail:
+            print(i)
+        # print(dialogue_detail)
+        dataset = TorchDataset(dialogue_detail)
 
+        # print(dialogue_detail)
         return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, collate_fn=self.__collate_fn)
 
     # padded_text, [sorted_slot, sorted_intent], seq_lens = self.__dataset.add_padding(text_batch, [(slot_batch, False), (intent_batch, False)])
@@ -643,6 +652,11 @@ class DatasetManager(object):
         """
         helper function to instantiate a DataLoader Object.
         """
+        print("====================collatefn================")
+        print(batch)
+
+        for turn in batch:
+
 
         n_entity = len(batch[0])
         modified_batch = [[] for _ in range(0, n_entity)]
@@ -651,4 +665,4 @@ class DatasetManager(object):
             for jdx in range(0, n_entity):
                 modified_batch[jdx].append(batch[idx][jdx])
 
-        return modified_batch
+        return batch

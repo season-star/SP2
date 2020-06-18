@@ -29,7 +29,7 @@ parser.add_argument('--data_dir', '-dd', type=str, default='data/KVR') #开发�
 parser.add_argument('--save_dir', '-sd', type=str, default='save')
 parser.add_argument("--random_state", '-rs', type=int, default=0)
 parser.add_argument('--num_epoch', '-ne', type=int, default=200) #原本默认300
-parser.add_argument('--batch_size', '-bs', type=int, default=32)
+parser.add_argument('--batch_size', '-bs', type=int, default=2)
 parser.add_argument('--l2_penalty', '-lp', type=float, default=1e-6)
 parser.add_argument("--learning_rate", '-lr', type=float, default=0.001)
 parser.add_argument('--dropout_rate', '-dr', type=float, default=0.4)
