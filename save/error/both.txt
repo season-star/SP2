@@ -1,9 +1,9 @@
 wheres	O	O	navigate
 the	O	O	navigate
 nearest	O	O	navigate
-parking	O	O	schedule
-garage	O	O	schedule
-schedule	schedule
+parking	O	O	navigate
+garage	O	O	navigate
+schedule	navigate
 
 Yes	O	O	navigate
 please	O	O	navigate
@@ -13,21 +13,21 @@ via	O	O	navigate
 a	O	O	navigate
 route	O	O	navigate
 that	O	O	navigate
-avoids	O	O	schedule
-all	O	O	schedule
-heavy	O	O	schedule
-traffic	O	O	schedule
-if	B-traffic_info	O	schedule
-possible.	O	O	schedule
+avoids	O	O	navigate
+all	O	O	navigate
+heavy	O	O	navigate
+traffic	O	O	navigate
+if	B-traffic_info	O	navigate
+possible.	O	O	navigate
 navigate	navigate
 
-Thanks	O	O	schedule
-so	O	O	schedule
-much	O	O	schedule
-for	O	O	schedule
-your	O	O	schedule
-help.	O	O	schedule
-navigate	schedule
+Thanks	O	O	navigate
+so	O	O	navigate
+much	O	O	navigate
+for	O	O	navigate
+your	O	O	navigate
+help.	O	O	navigate
+navigate	navigate
 
 Where	O	O	navigate
 is	O	O	navigate
@@ -37,14 +37,14 @@ gas	O	O	navigate
 station	O	O	navigate
 navigate	navigate
 
-What	O	O	schedule
-is	O	O	schedule
-the	O	O	schedule
-address	B-weather_attribute	O	schedule
-weather	schedule
+What	O	O	navigate
+is	O	O	navigate
+the	O	O	navigate
+address	B-weather_attribute	O	navigate
+weather	navigate
 
-Thanks	O	O	weather
-schedule	schedule
+Thanks	O	O	navigate
+schedule	navigate
 
 show	O	O	navigate
 me	O	O	navigate
@@ -63,10 +63,6 @@ an	O	O	navigate
 address	O	O	navigate
 weather	navigate
 
-Thank	O	O	navigate
-you	O	O	weather
-navigate	weather
-
 Hi	O	O	navigate
 please	O	O	navigate
 set	O	O	navigate
@@ -83,9 +79,9 @@ and	I-poi_type	O	navigate
 navigate	navigate
 
 Okay	O	O	navigate
-perfect	O	O	schedule
-Thanks.	O	O	schedule
-weather	schedule
+perfect	O	O	navigate
+Thanks.	O	O	navigate
+weather	navigate
 
 It	O	O	navigate
 is	O	O	navigate
@@ -93,7 +89,7 @@ on	O	O	navigate
 schedule	navigate
 
 check	O	O	navigate
-forecast	B-event	O	navigate
+forecast	B-event	B-time	navigate
 for	I-event	O	navigate
 schedule	navigate
 
@@ -105,4 +101,7 @@ weather	navigate
 Will	O	O	navigate
 it	O	O	navigate
 weather	navigate
+
+Thank	O	O	schedule
+navigate	schedule
 

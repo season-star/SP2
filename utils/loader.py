@@ -81,6 +81,9 @@ class Alphabet(object):
         if isinstance(instance, (list, tuple)):
             for element in instance:
                 self.add_instance(element)
+            # for dial in instance:
+            #     for turn in dial:
+            #         self.add_instance(turn)
             return
 
         # We only support elements of str type.
@@ -211,28 +214,28 @@ class DatasetManager(object):
         self.__history_alphabet = Alphabet('history', if_use_pad=False, if_use_unk=False)
 
         # Record the raw text of dataset.
-        self.__text_word_data = {}
-        self.__text_slot_data = {}
-        self.__text_intent_data = {}
-        self.__text_kb_data = {}
-        self.__text_text_triple_data = {}
-        self.__text_dial_id_data = {}
-        self.__text_turn_id_data = {}
-        self.__text_history_data = {}
+        # self.__text_word_data = {}
+        # self.__text_slot_data = {}
+        # self.__text_intent_data = {}
+        # self.__text_kb_data = {}
+        # self.__text_text_triple_data = {}
+        # self.__text_dial_id_data = {}
+        # self.__text_turn_id_data = {}
+        # self.__text_history_data = {}
 
-        self.__text_data_detail = []
+        self.__text_data_detail = {}
 
         # Record the serialization of dataset.
-        self.__digit_word_data = {}
-        self.__digit_slot_data = {}
-        self.__digit_intent_data = {}
-        self.__digit_kb_data = {}
-        self.__digit_text_triple_data = {}
-        self.__digit_dial_id_data = {}
-        self.__digit_turn_id_data = {}
-        self.__digit_history_data = {}
+        # self.__digit_word_data = {}
+        # self.__digit_slot_data = {}
+        # self.__digit_intent_data = {}
+        # self.__digit_kb_data = {}
+        # self.__digit_text_triple_data = {}
+        # self.__digit_dial_id_data = {}
+        # self.__digit_turn_id_data = {}
+        # self.__digit_history_data = {}
 
-        self.__digit_data_detail = []
+        self.__digit_data_detail = {}
 
         # 因为word slot的 alpha都一样，就先用word
         self.__index2instance = self.__kb_alphabet.getindex2instance()
@@ -404,12 +407,13 @@ class DatasetManager(object):
         def show_single(data_detail):
             show_count = 0
             for dial in data_detail:
-                # if(show_count > 0 ):break
+                if(show_count > 0 ):break
                 show_count += 1
                 for turn in dial:
-                    for thing in turn:
-                        print(thing)
-                        # print("--------------")
+                    for key,value in turn.items():
+                        print(key)
+                        print(value)
+                    print("-------------------")
                 print("==========================\n")
 
         # text_arr, slot_arr, intent_arr, kb_arr, cn_arr, triple_arr,\
@@ -419,61 +423,106 @@ class DatasetManager(object):
         dial_id, turn_id, history = [], [], []
 
         # show_single(data_detail)
+        # 到这之前 都是以dialogue作为基本单元的
 
-        # 将他们分别降低维度 cn是column names
-        text = reduce_dim(data_detail, text, 'text')
-        slot = reduce_dim(data_detail, slot, 'slot')
-        intent = reduce_dim(data_detail, intent, 'intent')
-        kb = reduce_dim(data_detail, kb, 'kb')
-        cn = reduce_dim(data_detail, cn, 'cn')
-        text_triple = reduce_dim(data_detail, text_triple, 'triple')
-        # 天哪!有朝一日 我一定要把这里改成data detail的格式, 太难看了!.先按照这种lowb的格式写吧
-        dial_id = reduce_dim(data_detail, dial_id, 'dial_id')
-        turn_id = reduce_dim(data_detail, turn_id, 'turn_id')
-        history = reduce_dim(data_detail, history, 'history')
+        # # 将他们分别降低维度 cn是column names
+        # text = reduce_dim(data_detail, text, 'text')
+        # slot = reduce_dim(data_detail, slot, 'slot')
+        # intent = reduce_dim(data_detail, intent, 'intent')
+        # kb = reduce_dim(data_detail, kb, 'kb')
+        # cn = reduce_dim(data_detail, cn, 'cn')
+        # text_triple = reduce_dim(data_detail, text_triple, 'triple')
+        # # 天哪!有朝一日 我一定要把这里改成data detail的格式, 太难看了!.先按照这种lowb的格式写吧
+        # dial_id = reduce_dim(data_detail, dial_id, 'dial_id')
+        # turn_id = reduce_dim(data_detail, turn_id, 'turn_id')
+        # history = reduce_dim(data_detail, history, 'history')
 
-        # 应该是将它转化成三元组，原本的kb是五元组，转化成 s-r-o的三元组
-        kb_triple = []
-        for i in range(len(text)):
-            single_kb_triple = handle_kb2triple(kb[i], cn[i], intent[i])
-            kb_triple.append(single_kb_triple)
+        # # 应该是将它转化成三元组，原本的kb是五元组，转化成 s-r-o的三元组
+        # kb_triple = []
+        # for i in range(len(text)):
+        #     single_kb_triple = handle_kb2triple(kb[i], cn[i], intent[i])
+        #     kb_triple.append(single_kb_triple)
+        #
 
-        text_len_list = (len(single_text) for single_text in text) #用户问话的长度
-        max_text_len = max(text_len_list)
-        self.__mem_sentence_size = max(self.SINGLE_KB_SIZE,max_text_len)
 
         # --------------------end here-----------------------
         if if_train_file:
-            self.__word_alphabet.add_instance(text)
-            self.__slot_alphabet.add_instance(slot)
-            self.__intent_alphabet.add_instance(intent)
-            self.__kb_alphabet.add_instance(kb_triple)
-            self.__text_triple_alphabet.add_instance(text_triple)
-            self.__dial_id_alphabet.add_instance(dial_id) #为了使得接口统一,就还是将dial_id转化成str,然后添加进去.   其实不应该转成str,就应该是int,
-            self.__turn_id_alphabet.add_instance(turn_id)
-            self.__history_alphabet.add_instance(history)
+            # 数据就是应该按照dial和turn来组织,而不是text等分开,那样句子就乱了 .但是在这里,为了alphabet,所以暂时用遍历分开
+            # self.__word_alphabet.add_instance(text)
+            # self.__slot_alphabet.add_instance(slot)
+            # self.__intent_alphabet.add_instance(intent)
+            # self.__kb_alphabet.add_instance(kb_triple)
+            # self.__text_triple_alphabet.add_instance(text_triple)
+            # self.__dial_id_alphabet.add_instance(dial_id) #为了使得接口统一,就还是将dial_id转化成str,然后添加进去.   其实不应该转成str,就应该是int,
+            # self.__turn_id_alphabet.add_instance(turn_id)
+            # self.__history_alphabet.add_instance(history)
 
+            # text_len_list = (len(single_text) for single_text in text) #用户问话的长度
+            # max_text_len = max(text_len_list)
+            # self.__mem_sentence_size = max(self.SINGLE_KB_SIZE,max_text_len)
+            for dial_data_detail in data_detail:
+                for turn_data_detail in dial_data_detail:
+                    # print(turn_data_detail['kb'])
+                    self.__word_alphabet.add_instance(turn_data_detail['text'])
+                    self.__slot_alphabet.add_instance(turn_data_detail['slot'])
+                    self.__intent_alphabet.add_instance(turn_data_detail['intent'])
+                    self.__kb_alphabet.add_instance(turn_data_detail['kb']) #因为将五元组转成了三元组 所以不加column names
+                    self.__text_triple_alphabet.add_instance(turn_data_detail['triple'])
+                    self.__dial_id_alphabet.add_instance(turn_data_detail['dial_id']) #为了使得接口统一,就还是将dial_id转化成str,然后添加进去.   其实不应该转成str,就应该是int,
+                    self.__turn_id_alphabet.add_instance(turn_data_detail['turn_id'])
+                    self.__history_alphabet.add_instance(turn_data_detail['history'])
+            # print(self.__kb_alphabet)
 
         # Record the raw text of dataset.
-        self.__text_word_data[data_name] = text
-        self.__text_slot_data[data_name] = slot
-        self.__text_intent_data[data_name] = intent
-        self.__text_kb_data[data_name] = kb_triple
-        self.__text_text_triple_data[data_name] = text_triple
-        self.__text_dial_id_data[data_name] = dial_id
-        self.__text_turn_id_data[data_name] = turn_id
-        self.__text_history_data[data_name] = history
+        # self.__text_word_data[data_name] = text
+        # self.__text_slot_data[data_name] = slot
+        # self.__text_intent_data[data_name] = intent
+        # self.__text_kb_data[data_name] = kb_triple
+        # self.__text_text_triple_data[data_name] = text_triple
+        # self.__text_dial_id_data[data_name] = dial_id
+        # self.__text_turn_id_data[data_name] = turn_id
+        # self.__text_history_data[data_name] = history
+
+        self.__text_data_detail[data_name] = data_detail
 
         # Serialize raw text and stored it.
-        self.__digit_word_data[data_name] = self.__word_alphabet.get_index(text)
-        if if_train_file:  #train的时候 下面都要经历
-            self.__digit_slot_data[data_name] = self.__slot_alphabet.get_index(slot)
-            self.__digit_intent_data[data_name] = self.__intent_alphabet.get_index(intent)
-            self.__digit_kb_data[data_name] = self.__kb_alphabet.get_index(kb_triple)
-            self.__digit_text_triple_data[data_name] = self.__text_triple_alphabet.get_index(text_triple)
-            self.__digit_dial_id_data[data_name] = self.__dial_id_alphabet.get_index(dial_id)
-            self.__digit_turn_id_data[data_name] = self.__turn_id_alphabet.get_index(turn_id)
-            self.__digit_history_data[data_name] = self.__history_alphabet.get_index(history)
+        # getindex不用弄 ,但是得思考,如何能够分别对text等进行index映射
+        #TODO: 或许还是可以分散进行index映射, 然后再封装成digit_data_detail
+
+        self.__digit_data_detail[data_name] = data_detail  #未经seriealed的data detail
+        max_text_len = 0
+        for digit_dialogue_index in range(len(self.__digit_data_detail[data_name])):
+            for digit_turn_index in range(len(self.__digit_data_detail[data_name][digit_dialogue_index])):
+                curr_detail = self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index] #当前dialogue中 当前turn的
+                curr_text_len = len(curr_detail['text'])
+                if curr_text_len > max_text_len:
+                    max_text_len = curr_text_len
+
+                self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['text'] = self.__word_alphabet.get_index(curr_detail['text'])
+                if if_train_file:
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['slot'] = self.__slot_alphabet.get_index(curr_detail['slot'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['intent'] = self.__intent_alphabet.get_index(curr_detail['intent'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['kb'] = self.__kb_alphabet.get_index(curr_detail['kb'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['triple'] = self.__text_triple_alphabet.get_index(curr_detail['triple'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['dial_id'] = self.__dial_id_alphabet.get_index(curr_detail['dial_id'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['turn_id'] = self.__turn_id_alphabet.get_index(curr_detail['turn_id'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['history'] = self.__history_alphabet.get_index(curr_detail['history'])
+        self.__mem_sentence_size = max_text_len
+
+                # print(self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['text'])
+        # for thing in self.__digit_data_detail[data_name]:
+        #     print(thing)
+
+        # self.__digit_word_data[data_name] = self.__word_alphabet.get_index(text)
+        # if if_train_file:  #train的时候 下面都要经历
+        #     self.__digit_slot_data[data_name] = self.__slot_alphabet.get_index(slot)
+        #     self.__digit_intent_data[data_name] = self.__intent_alphabet.get_index(intent)
+        #     self.__digit_kb_data[data_name] = self.__kb_alphabet.get_index(kb_triple)
+        #     self.__digit_text_triple_data[data_name] = self.__text_triple_alphabet.get_index(text_triple)
+        #     self.__digit_dial_id_data[data_name] = self.__dial_id_alphabet.get_index(dial_id)
+        #     self.__digit_turn_id_data[data_name] = self.__turn_id_alphabet.get_index(turn_id)
+        #     self.__digit_history_data[data_name] = self.__history_alphabet.get_index(history)
+
 
     @staticmethod
     def __read_file(file_path):
@@ -508,6 +557,7 @@ class DatasetManager(object):
             batch_size = self.batch_size
 
         if is_digital:
+            self.__digit_data_detail
             text = self.__digit_word_data[data_name]
             slot = self.__digit_slot_data[data_name]
             intent = self.__digit_intent_data[data_name]

@@ -1,15 +1,11 @@
-O	99
+O	80
 I-traffic_info	4
 B-distance	3
 B-poi_type	3
 B-event	3
-B-date	3
 I-poi_type	2
 B-traffic_info	2
+B-date	2
 B-time	2
-B-location	2
-B-weather_attribute	2
-I-date	2
 I-event	1
 I-time	1
-I-location	1

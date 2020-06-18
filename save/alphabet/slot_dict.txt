@@ -9,7 +9,3 @@ B-date	7
 B-time	8
 I-event	9
 I-time	10
-B-location	11
-I-location	12
-B-weather_attribute	13
-I-date	14

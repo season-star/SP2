@@ -74,11 +74,6 @@ class Processor(object):
             print("-------------------------TRAIN----------------------------------")
             for text_batch, slot_batch, intent_batch, kb_batch, text_triple_batch, dial_id_batch, turn_id_batch, history_batch in tqdm(dataloader, ncols=50):
 
-                print("\n====================")
-                print(dial_id_batch)
-                print(turn_id_batch)
-                print(history_batch)
-
                 padded_text, [sorted_slot, sorted_intent], seq_lens = self.__dataset.add_padding(
                     text_batch, [(slot_batch, False), (intent_batch, False)]
                 )

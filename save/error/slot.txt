@@ -73,6 +73,6 @@ perfect	O	O
 Thanks.	O	O
 
 check	O	O
-forecast	B-event	O
+forecast	B-event	B-time
 for	I-event	O
 

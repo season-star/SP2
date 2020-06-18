@@ -1,16 +1,18 @@
-Thanks	schedule
-so	schedule
-much	schedule
-for	schedule
-your	schedule
-help.	schedule
-navigate	schedule
+wheres	navigate
+the	navigate
+nearest	navigate
+parking	navigate
+garage	navigate
+schedule	navigate
 
-What	schedule
-is	schedule
-the	schedule
-address	schedule
-weather	schedule
+What	navigate
+is	navigate
+the	navigate
+address	navigate
+weather	navigate
+
+Thanks	navigate
+schedule	navigate
 
 show	navigate
 me	navigate
@@ -29,14 +31,10 @@ an	navigate
 address	navigate
 weather	navigate
 
-Thank	navigate
-you	weather
-navigate	weather
-
 Okay	navigate
-perfect	schedule
-Thanks.	schedule
-weather	schedule
+perfect	navigate
+Thanks.	navigate
+weather	navigate
 
 It	navigate
 is	navigate
@@ -56,4 +54,7 @@ weather	navigate
 Will	navigate
 it	navigate
 weather	navigate
+
+Thank	schedule
+navigate	schedule
 

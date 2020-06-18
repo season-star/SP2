@@ -1,74 +1,54 @@
+poi	72
+poi_type	72
 address	72
 distance	72
 traffic_info	72
-monday	72
-poi_type	69
-camarillo	40
-saturday	37
-tuesday	35
-wednesday	35
-thursday	35
-friday	35
-sunday	35
-today	35
-Dish Parking	24
-The Westin	24
+Dish Parking	36
+The Westin	36
+Palo Alto Medical Foundation	36
 moderate traffic	24
-Palo Alto Medical Foundation	24
 -	24
-manhattan	24
-menlo park	24
-new york	24
-corona	24
-seattle	24
-grand rapids	24
 no traffic	21
 4 miles	21
-danville	16
-san jose	16
-los angeles	16
-durham	16
-san francisco	16
-boston	16
+home	21
+Stanford Oval Parking	18
+Willows Market	18
+toms house	18
+Pizza Chicago	18
+Valero	18
+Mandarin Roots	18
+Town and Country	18
+76	18
+Stanford Shopping Center	18
+Teavana	18
+Dominos	18
+Palo Alto Garage R	18
+Stanford Express Care	18
+P.F. Changs	18
+Ravenswood Shopping Center	18
+Chef Chu's	18
+Philz	18
 2 miles	15
 heavy traffic	15
+dentist appointment	14
+taking medicine	14
+football activity	14
+yoga activity	14
+lab appointment	14
+dinner	14
 parking garage	12
-Stanford Oval Parking	12
-Willows Market	12
-toms house	12
-Pizza Chicago	12
-Valero	12
-Mandarin Roots	12
-Town and Country	12
-76	12
-Stanford Shopping Center	12
-Teavana	12
-Dominos	12
-Palo Alto Garage R	12
-Stanford Express Care	12
-P.F. Changs	12
-Ravenswood Shopping Center	12
-Chef Chu's	12
-Philz	12
+event	12
 time	12
 date	12
 room	12
 agenda	12
 party	12
-dentist appointment	10
-taking medicine	10
-football activity	10
-yoga activity	10
-lab appointment	10
-dinner	10
 6 miles	9
 chinese restaurant	9
 shopping center	9
 3 miles	9
 hospital	9
 5 miles	9
-home	9
-hail, low of 90F, high of 100F	7
 550 Alester Ave	6
 road block nearby	6
 car collision nearby	6
@@ -79,24 +59,10 @@ pizza restaurant	6
 gas station	6
 coffee or tea place	6
 611 Ames Ave	6
-stormy, low of 50F, high of 70F	6
-stormy, low of 90F, high of 100F	6
-foggy, low of 50F, high of 60F	6
-clear skies, low of 50F, high of 60F	5
-frost, low of 50F, high of 60F	5
-blizzard, low of 40F, high of 50F	5
-blizzard, low of 40F, high of 60F	5
-cloudy, low of 70F, high of 80F	5
-overcast, low of 40F, high of 50F	5
-drizzle, low of 50F, high of 60F	5
 the 8th	4
 5pm	4
 Marie	4
 4pm	4
-clear skies, low of 90F, high of 100F	4
-misty, low of 70F, high of 80F	4
-clear skies, low of 60F, high of 70F	4
-foggy, low of 90F, high of 100F	4
 610 Amarillo Ave	3
 grocery store	3
 409 Bollard St	3
@@ -118,78 +84,13 @@ friends house	3
 8 miles	3
 5671 barringer street	3
 583 Alester Ave	3
-cloudy, low of 20F, high of 40F	3
-windy, low of 20F, high of 40F	3
-snow, low of 60F, high of 70F	3
-hail, low of 30F, high of 50F	3
-overcast, low of 50F, high of 70F	3
-snow, low of 80F, high of 90F	3
-clear skies, low of 70F, high of 80F	3
-dry, low of 70F, high of 80F	3
-dry, low of 50F, high of 70F	3
-warm, low of 80F, high of 90F	3
-hail, low of 20F, high of 40F	3
-hot, low of 70F, high of 90F	3
-foggy, low of 70F, high of 90F	3
-dry, low of 40F, high of 50F	3
-hail, low of 40F, high of 50F	3
-cloudy, low of 70F, high of 90F	3
-clear skies, low of 70F, high of 90F	3
-rain, low of 20F, high of 30F	3
-windy, low of 70F, high of 80F	3
-rain, low of 80F, high of 100F	3
-hail, low of 60F, high of 70F	3
-warm, low of 60F, high of 80F	3
-frost, low of 20F, high of 30F	3
-cloudy, low of 90F, high of 100F	3
-dry, low of 30F, high of 40F	3
-stormy, low of 80F, high of 100F	3
-snow, low of 20F, high of 30F	3
-foggy, low of 20F, high of 30F	3
-drizzle, low of 40F, high of 60F	3
-drizzle, low of 70F, high of 80F	3
-overcast, low of 40F, high of 60F	3
-overcast, low of 60F, high of 80F	3
-snow, low of 20F, high of 40F	3
-dry, low of 90F, high of 100F	3
-cloudy, low of 30F, high of 40F	3
 10am	2
 aunt	2
+saturday	2
+monday	2
 Alex	2
 the 4th	2
 the 13th	2
 father	2
 7pm	2
 Jon	2
-stormy, low of 20F, high of 40F	2
-raining, low of 40F, high of 60F	2
-stormy, low of 80F, high of 90F	2
-misty, low of 40F, high of 50F	2
-frost, low of 30F, high of 50F	2
-clear skies, low of 30F, high of 40F	2
-overcast, low of 20F, high of 30F	2
-raining, low of 40F, high of 50F	2
-misty, low of 30F, high of 50F	2
-clear skies, low of 20F, high of 30F	2
-misty, low of 30F, high of 40F	2
-clear skies, low of 40F, high of 60F	2
-drizzle, low of 60F, high of 70F	2
-warm, low of 60F, high of 70F	2
-raining, low of 90F, high of 100F	2
-cloudy, low of 50F, high of 60F	2
-clear skies, low of 50F, high of 70F	2
-dew, low of 40F, high of 60F	2
-drizzle, low of 60F, high of 80F	2
-humid, low of 50F, high of 70F	2
-drizzle, low of 30F, high of 50F	2
-misty, low of 50F, high of 60F	2
-rain, low of 30F, high of 50F	2
-foggy, low of 50F, high of 70F	2
-rain, low of 50F, high of 60F	2
-stormy, low of 50F, high of 60F	2
-hot, low of 80F, high of 90F	2
-clear skies, low of 80F, high of 90F	2
-snow, low of 90F, high of 100F	2
-clear skies, low of 80F, high of 100F	2
-hail, low of 30F, high of 40F	2
-blizzard, low of 20F, high of 30F	2
