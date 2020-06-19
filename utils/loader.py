@@ -255,7 +255,7 @@ class DatasetManager(object):
 
     @property
     def test_sentence(self):
-        return deepcopy(self.__text_word_data['test'])
+        return deepcopy(self.__text_data_detail['test'])
 
     @property
     def word_alphabet(self):
@@ -360,31 +360,31 @@ class DatasetManager(object):
         self.__intent_alphabet.save_content(alphabet_dir)
         self.__kb_alphabet.save_content(alphabet_dir)
 
-    def get_dataset(self, data_name, is_digital):
-        """ Get dataset of given unique name
-
-        :param data_name: is name of stored dataset.
-        :param is_digital: make sure if want serialized data.
-        :return: the required dataset.
-        """
-
-        if is_digital:
-            return self.__digit_word_data[data_name], \
-                   self.__digit_slot_data[data_name], \
-                   self.__digit_intent_data[data_name],\
-                   self.__digit_kb_data[data_name], \
-                   self.__digit_dial_id_data[data_name], \
-                   self.__digit_turn_id_data[data_name], \
-                   self.__digit_history_data[data_name]
-
-        else:
-            return self.__text_word_data[data_name], \
-                   self.__text_slot_data[data_name], \
-                   self.__text_intent_data[data_name],\
-                   self.__text_kb_data[data_name], \
-                   self.__text_dial_id_data[data_name], \
-                   self.__text_turn_id_data[data_name], \
-                   self.__text_history_data[data_name]
+    # def get_dataset(self, data_name, is_digital):
+    #     """ Get dataset of given unique name
+    #
+    #     :param data_name: is name of stored dataset.
+    #     :param is_digital: make sure if want serialized data.
+    #     :return: the required dataset.
+    #     """
+    #
+    #     if is_digital:
+    #         return self.__digit_word_data[data_name], \
+    #                self.__digit_slot_data[data_name], \
+    #                self.__digit_intent_data[data_name],\
+    #                self.__digit_kb_data[data_name], \
+    #                self.__digit_dial_id_data[data_name], \
+    #                self.__digit_turn_id_data[data_name], \
+    #                self.__digit_history_data[data_name]
+    #
+    #     else:
+    #         return self.__text_word_data[data_name], \
+    #                self.__text_slot_data[data_name], \
+    #                self.__text_intent_data[data_name],\
+    #                self.__text_kb_data[data_name], \
+    #                self.__text_dial_id_data[data_name], \
+    #                self.__text_turn_id_data[data_name], \
+    #                self.__text_history_data[data_name]
 
     def add_file(self, file_path, data_name, if_train_file):
         # text, slot, intent = self.__read_file(file_path)
@@ -487,13 +487,13 @@ class DatasetManager(object):
         # self.__text_turn_id_data[data_name] = turn_id
         # self.__text_history_data[data_name] = history
 
-        self.__text_data_detail[data_name] = data_detail
+        self.__text_data_detail[data_name] = deepcopy(data_detail)
 
         # Serialize raw text and stored it.
         # getindex不用弄 ,但是得思考,如何能够分别对text等进行index映射
         #TODO: 或许还是可以分散进行index映射, 然后再封装成digit_data_detail
 
-        self.__digit_data_detail[data_name] = data_detail  #未经seriealed的data detail
+        self.__digit_data_detail[data_name] = deepcopy(data_detail)  #未经seriealed的data detail
         max_text_len = 0
         for digit_dialogue_index in range(len(self.__digit_data_detail[data_name])):
             for digit_turn_index in range(len(self.__digit_data_detail[data_name][digit_dialogue_index])):
@@ -581,14 +581,12 @@ class DatasetManager(object):
             # turn_id = self.__text_turn_id_data[data_name]
             # history = self.__text_history_data[data_name]
 
-        print("==================batch delivery===============")
-        for i in dialogue_detail:
-            print(i)
-        # print(dialogue_detail)
+        # print("==================batch delivery===============")
+        # print(dialogue_detail[0])
         dataset = TorchDataset(dialogue_detail)
 
         # print(dialogue_detail)
-        return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, collate_fn=self.__collate_fn)
+        return DataLoader(dataset, batch_size=batch_size,collate_fn=self.__collate_fn)
 
     # padded_text, [sorted_slot, sorted_intent], seq_lens = self.__dataset.add_padding(text_batch, [(slot_batch, False), (intent_batch, False)])
 
@@ -652,17 +650,27 @@ class DatasetManager(object):
         """
         helper function to instantiate a DataLoader Object.
         """
-        print("====================collatefn================")
-        print(batch)
+        # print("====================collatefn================")
+        info_type = len(batch[0][0]) #如 slot text 这些有多少种类
+        modified_batch = [[] for _ in range(0, info_type)]
 
-        for turn in batch:
+        for dialogue in batch:
+            for turn in dialogue:
+                curr_key_index = 0
+                for key,value in turn.items():
+                    modified_batch[curr_key_index].append(value)
+                    curr_key_index += 1
+                    # print(value)
+                # print("--------------")
+        # for thing in modified_batch:
+        #     print(thing)
 
 
-        n_entity = len(batch[0])
-        modified_batch = [[] for _ in range(0, n_entity)]
 
-        for idx in range(0, len(batch)):
-            for jdx in range(0, n_entity):
-                modified_batch[jdx].append(batch[idx][jdx])
 
-        return batch
+        # for idx in range(0, len(batch)):  #种类
+        #     for jdx in range(0, n_entity):  #每个种类里有多长
+        #         # todo 探究下为什么会超界
+        #         modified_batch[jdx].append(batch[idx][jdx])
+
+        return modified_batch

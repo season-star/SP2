@@ -72,7 +72,10 @@ class Processor(object):
             # 计算得到slot和intent的loss
 
             print("-------------------------TRAIN----------------------------------")
-            for dialogue_batch in tqdm(dataloader, ncols=50):
+            # dial_id, turn_id, history, slot, text, intent, kb, triple
+            #  原本的 text_batch, slot_batch, intent_batch, kb_batch, text_triple_batch, dial_id_batch, turn_id_batch, history_batch
+            for dial_id_batch, turn_id_batch, history_batch,slot_batch, text_batch, intent_batch, kb_batch, text_triple_batch in tqdm(dataloader, ncols=50):
+                # print(text_batch)
                 # print(dialogue_batch)
                 # print("=========================")
                 # for dialogue in dialogue_batch:
@@ -145,7 +148,6 @@ class Processor(object):
                     slot_out, intent_out = self.__model(
                         text_var,kb=kb_var, text_triple= text_triple_var, seq_lens=seq_lens
                     )
-                print(slot_var.size())
                 slot_loss = self.__criterion(slot_out, slot_var) # slot_out.size=130*15     slot_var.size=130
                 intent_loss = self.__criterion(intent_out, intent_var)
                 batch_loss = slot_loss + intent_loss
@@ -244,31 +246,32 @@ class Processor(object):
         intent_file_path = os.path.join(mistake_dir, "intent.txt")
         both_file_path = os.path.join(mistake_dir, "both.txt")
 
-        # Write those sample with mistaken slot prediction.
-        with open(slot_file_path, 'w') as fw:
-            for w_list, r_slot_list, p_slot_list in zip(sent_list, real_slot, pred_slot):
-                if r_slot_list != p_slot_list:
-                    for w, r, p in zip(w_list, r_slot_list, p_slot_list):
-                        fw.write(w + '\t' + r + '\t' + p + '\n')
-                    fw.write('\n')
-
-        # Write those sample with mistaken intent prediction.
-        with open(intent_file_path, 'w') as fw:
-            for w_list, p_intent_list, r_intent, p_intent in zip(sent_list, pred_intent, real_intent, exp_pred_intent):
-                if p_intent != r_intent:
-                    for w, p in zip(w_list, p_intent_list):
-                        fw.write(w + '\t' + p + '\n')
-                    fw.write(r_intent + '\t' + p_intent + '\n\n')
-
-        # Write those sample both have intent and slot errors.
-        with open(both_file_path, 'w') as fw:
-            for w_list, r_slot_list, p_slot_list, p_intent_list, r_intent, p_intent in \
-                    zip(sent_list, real_slot, pred_slot, pred_intent, real_intent, exp_pred_intent):
-
-                if r_slot_list != p_slot_list or r_intent != p_intent:
-                    for w, r_slot, p_slot, p_intent_ in zip(w_list, r_slot_list, p_slot_list, p_intent_list):
-                        fw.write(w + '\t' + r_slot + '\t' + p_slot + '\t' + p_intent_ + '\n')
-                    fw.write(r_intent + '\t' + p_intent + '\n\n')
+        # 暂时封印这个, 后期改进的时候再弄
+        # # Write those sample with mistaken slot prediction.
+        # with open(slot_file_path, 'w') as fw:
+        #     for w_list, r_slot_list, p_slot_list in zip(sent_list, real_slot, pred_slot):
+        #         if r_slot_list != p_slot_list:
+        #             for w, r, p in zip(w_list, r_slot_list, p_slot_list):
+        #                 fw.write(w + '\t' + r + '\t' + p + '\n')
+        #             fw.write('\n')
+        #
+        # # Write those sample with mistaken intent prediction.
+        # with open(intent_file_path, 'w') as fw:
+        #     for w_list, p_intent_list, r_intent, p_intent in zip(sent_list, pred_intent, real_intent, exp_pred_intent):
+        #         if p_intent != r_intent:
+        #             for w, p in zip(w_list, p_intent_list):
+        #                 fw.write(w + '\t' + p + '\n')
+        #             fw.write(r_intent + '\t' + p_intent + '\n\n')
+        #
+        # # Write those sample both have intent and slot errors.
+        # with open(both_file_path, 'w') as fw:
+        #     for w_list, r_slot_list, p_slot_list, p_intent_list, r_intent, p_intent in \
+        #             zip(sent_list, real_slot, pred_slot, pred_intent, real_intent, exp_pred_intent):
+        #
+        #         if r_slot_list != p_slot_list or r_intent != p_intent:
+        #             for w, r_slot, p_slot, p_intent_ in zip(w_list, r_slot_list, p_slot_list, p_intent_list):
+        #                 fw.write(w + '\t' + r_slot + '\t' + p_slot + '\t' + p_intent_ + '\n')
+        #             fw.write(r_intent + '\t' + p_intent + '\n\n')
 
         slot_f1 = miulab.computeF1Score(pred_slot, real_slot)[0]
         intent_acc = Evaluator.accuracy(exp_pred_intent, real_intent)
@@ -290,7 +293,8 @@ class Processor(object):
         pred_slot, real_slot = [], []
         pred_intent, real_intent = [], []
 
-        for text_batch, slot_batch, intent_batch, kb_batch, text_triple_batch, dial_id_batch, turn_id_batch, history_batch in tqdm(dataloader, ncols=50):
+        for dial_id_batch, turn_id_batch, history_batch,slot_batch, text_batch, intent_batch, kb_batch, text_triple_batch in tqdm(dataloader, ncols=50):
+
             # for i in range(len(text_batch)):
             #     print(len((text_batch)))
             #     print(text_batch[i])
@@ -306,8 +310,8 @@ class Processor(object):
 
             real_slot.extend(sorted_slot)
             real_intent.extend(list(Evaluator.expand_list(sorted_intent)))
-
             digit_text = dataset.word_alphabet.get_index(padded_text)
+
             var_text = Variable(torch.LongTensor(digit_text))
 
             # ---------------add here-------------------
