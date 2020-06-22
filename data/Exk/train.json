@@ -693,5 +693,174 @@
       },
       "uuid": "c07c01eb-8c56-49db-abd3-d70a8c540a4b"
     }
+  },
+  {
+    "dialogue": [
+      {
+        "turn": "driver",
+        "data": {
+          "end_dialogue": false,
+          "utterance": "what will the weather be like tomorrow"
+        }
+      },
+      {
+        "turn": "assistant",
+        "data": {
+          "end_dialogue": false,
+          "requested": {
+            "weather_attribute": true,
+            "date": true,
+            "location": false
+          },
+          "slots": {
+            "date": "tomorrow"
+          },
+          "utterance": "Where can I give you the weather forecast for?"
+        }
+      },
+      {
+        "turn": "driver",
+        "data": {
+          "end_dialogue": false,
+          "utterance": "I want to know if it will be humid in Compton tomorrow"
+        }
+      },
+      {
+        "turn": "assistant",
+        "data": {
+          "end_dialogue": false,
+          "requested": {
+            "weather_attribute": true,
+            "date": true,
+            "location": true
+          },
+          "slots": {
+            "weather_attribute": "humid",
+            "date": "tomorrow",
+            "location": "Compton"
+          },
+          "utterance": "The forecast does not state that it will be humid in Compton tomorrow."
+        }
+      },
+      {
+        "turn": "driver",
+        "data": {
+          "end_dialogue": false,
+          "utterance": "Thanks."
+        }
+      },
+      {
+        "turn": "assistant",
+        "data": {
+          "end_dialogue": true,
+          "requested": {
+            "weather_attribute": false,
+            "date": false,
+            "location": false
+          },
+          "slots": {},
+          "utterance": "No problem!"
+        }
+      }
+    ],
+    "scenario": {
+      "kb": {
+        "items": [
+          {
+            "monday": "snow, low of 40F, high of 50F",
+            "tuesday": "frost, low of 20F, high of 40F",
+            "friday": "rain, low of 40F, high of 50F",
+            "wednesday": "clear skies, low of 60F, high of 70F",
+            "thursday": "drizzle, low of 90F, high of 100F",
+            "sunday": "clear skies, low of 90F, high of 100F",
+            "location": "manhattan",
+            "saturday": "rain, low of 70F, high of 80F",
+            "today": "monday"
+          },
+          {
+            "monday": "hot, low of 70F, high of 90F",
+            "tuesday": "clear skies, low of 80F, high of 90F",
+            "friday": "windy, low of 50F, high of 60F",
+            "wednesday": "overcast, low of 80F, high of 100F",
+            "thursday": "clear skies, low of 50F, high of 60F",
+            "sunday": "clear skies, low of 50F, high of 70F",
+            "location": "grand rapids",
+            "saturday": "overcast, low of 70F, high of 80F",
+            "today": "monday"
+          },
+          {
+            "monday": "windy, low of 40F, high of 60F",
+            "tuesday": "overcast, low of 60F, high of 80F",
+            "friday": "snow, low of 40F, high of 60F",
+            "wednesday": "cloudy, low of 60F, high of 80F",
+            "thursday": "raining, low of 60F, high of 70F",
+            "sunday": "cloudy, low of 40F, high of 50F",
+            "location": "compton",
+            "saturday": "overcast, low of 70F, high of 90F",
+            "today": "monday"
+          },
+          {
+            "monday": "rain, low of 70F, high of 90F",
+            "tuesday": "raining, low of 20F, high of 30F",
+            "friday": "snow, low of 40F, high of 50F",
+            "wednesday": "windy, low of 60F, high of 70F",
+            "thursday": "foggy, low of 40F, high of 60F",
+            "sunday": "blizzard, low of 30F, high of 50F",
+            "location": "san jose",
+            "saturday": "overcast, low of 90F, high of 100F",
+            "today": "monday"
+          },
+          {
+            "monday": "rain, low of 40F, high of 60F",
+            "tuesday": "cloudy, low of 80F, high of 90F",
+            "friday": "blizzard, low of 20F, high of 40F",
+            "wednesday": "drizzle, low of 30F, high of 40F",
+            "thursday": "overcast, low of 70F, high of 80F",
+            "sunday": "frost, low of 40F, high of 60F",
+            "location": "oakland",
+            "saturday": "overcast, low of 50F, high of 70F",
+            "today": "monday"
+          },
+          {
+            "monday": "raining, low of 50F, high of 60F",
+            "tuesday": "dry, low of 70F, high of 90F",
+            "friday": "rain, low of 80F, high of 90F",
+            "wednesday": "clear skies, low of 60F, high of 80F",
+            "thursday": "snow, low of 80F, high of 90F",
+            "sunday": "clear skies, low of 50F, high of 60F",
+            "location": "mountain view",
+            "saturday": "rain, low of 80F, high of 100F",
+            "today": "monday"
+          },
+          {
+            "monday": "foggy, low of 90F, high of 100F",
+            "tuesday": "raining, low of 20F, high of 30F",
+            "friday": "windy, low of 60F, high of 80F",
+            "wednesday": "overcast, low of 70F, high of 90F",
+            "thursday": "raining, low of 80F, high of 90F",
+            "sunday": "drizzle, low of 80F, high of 100F",
+            "location": "cleveland",
+            "saturday": "dry, low of 50F, high of 70F",
+            "today": "monday"
+          }
+        ],
+        "column_names": [
+          "location",
+          "monday",
+          "tuesday",
+          "wednesday",
+          "thursday",
+          "friday",
+          "saturday",
+          "sunday",
+          "today"
+        ],
+        "kb_title": "weekly forecast"
+      },
+      "task": {
+        "intent": "weather"
+      },
+      "uuid": "1e4d4726-d4c3-4118-84aa-e5caf6b561bb"
+    }
   }
 ]

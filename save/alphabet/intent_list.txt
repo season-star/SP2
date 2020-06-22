@@ -1,2 +1,3 @@
-navigate	9
-schedule	5
+navigate	2620
+weather	2147
+schedule	1520

@@ -24,7 +24,7 @@ from torch.autograd import Variable
 
 class ModelManager(nn.Module):
 
-    def __init__(self, args, num_word, num_slot, num_intent,num_kb,mem_sentence_size):
+    def __init__(self, args, num_word, num_slot, num_intent, num_kb, num_history, mem_sentence_size):
         super(ModelManager, self).__init__()
 
         self.__num_word = num_word
@@ -36,7 +36,8 @@ class ModelManager(nn.Module):
         self.__mem_embedding_dim = self.__args.mem_embedding_dim
         self.__add_mem = self.__args.use_mem
 
-        self.__num_vocab = num_word+num_slot+num_intent+num_kb
+        self.__kb_num_vocab = num_word+num_slot+num_intent+num_kb
+        self.__his_num_vocab = num_word + num_slot + num_intent + num_kb + num_history
 
         # Initialize an embedding object.
         self.__embedding = EmbeddingCollection(
@@ -61,16 +62,24 @@ class ModelManager(nn.Module):
         )
 
         self._ctrnn = ContextRNN(
-            input_size=self.__num_vocab,
+            input_size=self.__kb_num_vocab,
             hidden_size=self.__args.ctrnn_embedding_dim, #256
             dropout= self.__args.dropout_rate #0.4
         )
 
-        self.__mem = MemN2N(
-            num_vocab=self.__num_vocab,
+        self.__kb_mem = MemN2N(
+            num_vocab=self.__kb_num_vocab,
             embedding_dim=self.__mem_embedding_dim, #256
             sentence_size=mem_sentence_size,
             max_hops=self.__args.max_hops, #6
+            uc=self.__args.use_cuda
+        )
+
+        self.__his_mem = MemN2N(
+            num_vocab=self.__his_num_vocab,
+            embedding_dim=self.__mem_embedding_dim,  # 256
+            sentence_size=mem_sentence_size,
+            max_hops=self.__args.max_hops,  # 6
             uc=self.__args.use_cuda
         )
 
@@ -127,24 +136,28 @@ class ModelManager(nn.Module):
         print('\nEnd of parameters show. Now training begins.\n\n')
 
     def forward(self, text, seq_lens, text_triple=None, kb=None, dial_id=None, turn_id=None, history=None, n_predicts=None, forced_slot=None, forced_intent=None):
-
+        # print(history)
         # 为了增加mem而加上的ContextRNN 主要是对text形成的三元组编码
         _,ctrnn_hiddens = self._ctrnn(text_triple, seq_lens)  # ctrnn 1*19*256
 
         # 6.9备注 mem中得到的对应batch的，也就是一个单句的kb，那么可以讲130中的，每个词，都去对应它的单句，从而每个词都有一个，对应的kb，也就是讲4*128 扩充为 130*128，这是6.10要做的事
         # 6.10 按照原本的ctrnn和mem走，然后在最后mem输出的时候，原本不是对应4*128吗，就按照seqlen拓展为130*128
         # hidden作为mem的query，之后再输出到pred-intent里 .  额外的story是KB
-        _, mem_tmp_hiddens = self.__mem.load_memory(story=kb, hidden=ctrnn_hiddens, seq_len=seq_lens)  # 19*256
+
         # 将19扩展成130
-        mem_hiddens = torch.empty_like(mem_tmp_hiddens[0].unsqueeze(0))
-        for index,length in enumerate(seq_lens):
-            if(index==0):  #初始化
-                mem_hiddens = mem_tmp_hiddens[0].unsqueeze(0)
-                for times in range(length-1):
-                    mem_hiddens = torch.cat((mem_hiddens, mem_tmp_hiddens[0].unsqueeze(0)), 0)
-                continue
-            for times in range(length):# 后面的迭代
-                mem_hiddens = torch.cat((mem_hiddens,mem_tmp_hiddens[index].unsqueeze(0)),0)
+        def extend_mem(mem_tmp_hiddens, seq_len):
+            mem_hiddens = torch.empty_like(mem_tmp_hiddens[0].unsqueeze(0))
+            for index, length in enumerate(seq_lens):
+                if (index == 0):  # 初始化
+                    mem_hiddens = mem_tmp_hiddens[0].unsqueeze(0)
+                    for times in range(length - 1):
+                        mem_hiddens = torch.cat((mem_hiddens, mem_tmp_hiddens[0].unsqueeze(0)), 0)
+                    continue
+                for times in range(length):  # 后面的迭代
+                    mem_hiddens = torch.cat((mem_hiddens, mem_tmp_hiddens[index].unsqueeze(0)), 0)
+
+            return mem_hiddens
+
         # print(mem_hiddens.size()) # 130 256 验证完毕，扩充之后的数据还是原本的19个数据，只不过是重复了而已
         '''
         # curr_index = 0
@@ -155,6 +168,15 @@ class ModelManager(nn.Module):
         # print(mem_hiddens[0].unsqueeze(0).size())
         '''
 
+
+        # if kb is not None:
+        kb_tmp_hiddens = self.__kb_mem(story=kb, hidden=ctrnn_hiddens, seq_len=seq_lens)  # kb=14*40*3 mem_tmp_hiddens=14*256
+        kb_hiddens = extend_mem(kb_tmp_hiddens, seq_lens)
+        # if history is not None:
+        his_tmp_hiddens = self.__his_mem(story=history, hidden=ctrnn_hiddens, seq_len=seq_lens,p=True)
+        his_hiddens = extend_mem(his_tmp_hiddens, seq_lens)
+        # TODO: 将load_memory 改成forward 是不是会更好?
+
         word_tensor, _ = self.__embedding(text)  # 基本操作是nn.Embedding #word_tensor19 17 256    test.size:19*17
         lstm_hiddens = self.__encoder(word_tensor, seq_lens) #130*256
         # transformer_hiddens = self.__transformer(pos_tensor, seq_lens)
@@ -162,7 +184,7 @@ class ModelManager(nn.Module):
 
         # 这主要涉及到init上面的ietentdecoder 和slotdecoder的input dim的区别
         if (self.__add_mem):
-            hiddens = torch.cat([lstm_hiddens, attention_hiddens ,mem_hiddens],dim=1)  # 将未经att的hidden，和经att的hidden进行全连接，作为预测slot和intent的输入  加mem
+            hiddens = torch.cat([lstm_hiddens, attention_hiddens ,kb_hiddens],dim=1)  # 将未经att的hidden，和经att的hidden进行全连接，作为预测slot和intent的输入  加mem
         else:
             hiddens = torch.cat([ lstm_hiddens ,attention_hiddens],dim=1) #不加mem
         # print(hiddens.size()) # 130 384
@@ -297,7 +319,7 @@ class LSTMEncoder(nn.Module):
         dropout_text = self.__dropout_layer(embedded_text)
 
         # Pack and Pad process for input of variable length.
-        packed_text = pack_padded_sequence(dropout_text, seq_lens, batch_first=True) #将一个填充后的变长序列压紧
+        packed_text = pack_padded_sequence(dropout_text, seq_lens, batch_first=True, enforce_sorted=False) #将一个填充后的变长序列压紧
         lstm_hiddens, (h_last, c_last) = self.__lstm_layer(packed_text) #经过nn.LSTM将补全padding之后的packed_text编码成lstm隐状态
         padded_hiddens, _ = pad_packed_sequence(lstm_hiddens, batch_first=True)
 
@@ -326,7 +348,7 @@ class LSTMDecoder(nn.Module):
         super(LSTMDecoder, self).__init__()
 
         if(add_mem):
-            self.__input_dim = input_dim + mem_dim
+            self.__input_dim = input_dim + mem_dim #+mem_dim #第三个mem_dim其实是history_dim
         else:
             self.__input_dim = input_dim
 
@@ -547,20 +569,6 @@ class SelfAttention(nn.Module):
 
 # ---------add here---------------------
 
-
-class AttrProxy(object):
-    """
-    Translates index lookups into attribute lookups.
-    To implement some trick which able to use list of nn.Module in a nn.Module
-    see https://discuss.pytorch.org/t/list-of-nn-module-in-a-nn-module/219/2
-    """
-    def __init__(self, module, prefix):
-        self.module = module
-        self.prefix = prefix
-
-    def __getitem__(self, i):
-        return getattr(self.module, self.prefix + str(i)) #getattr() 函数用于返回一个对象属性值。 module中的属性 predix+str(i) 的值
-
 class ContextRNN(nn.Module):
     def __init__(self, input_size, hidden_size, dropout, n_layers=1):
         super(ContextRNN, self).__init__()
@@ -594,7 +602,7 @@ class ContextRNN(nn.Module):
         hidden = self.get_state(input_seqs.size(0)) #3 #2 3 128        2*19*256
 
         if input_lengths:
-            embedded = nn.utils.rnn.pack_padded_sequence(embedded, input_lengths, batch_first=False)
+            embedded = nn.utils.rnn.pack_padded_sequence(embedded, input_lengths, batch_first=False, enforce_sorted=False)
         outputs, hidden = self.gru(embedded, hidden)
         if input_lengths:
            outputs, _ = nn.utils.rnn.pad_packed_sequence(outputs, batch_first=False)
@@ -607,15 +615,23 @@ class ContextRNN(nn.Module):
         outputs = self.W(outputs)
         return outputs.transpose(0,1), hidden
 
+class AttrProxy(object):
+    """
+    Translates index lookups into attribute lookups.
+    To implement some trick which able to use list of nn.Module in a nn.Module
+    see https://discuss.pytorch.org/t/list-of-nn-module-in-a-nn-module/219/2
+    """
+    def __init__(self, module, prefix):
+        self.module = module
+        self.prefix = prefix
+
+    def __getitem__(self, i):
+        return getattr(self.module, self.prefix + str(i)) #getattr() 函数用于返回一个对象属性值。 module中的属性 predix+str(i) 的值
+
 class MemN2N(nn.Module):
     def __init__(self,num_vocab,embedding_dim,sentence_size,max_hops,uc=False):
         super(MemN2N, self).__init__()
 
-        # use_cuda = settings["use_cuda"]
-        # num_vocab = settings["num_vocab"]
-        # embedding_dim = settings["embedding_dim"]
-        # sentence_size = settings["sentence_size"]
-        # self.max_hops = settings["max_hops"]
         use_cuda = uc
         self.max_hops = max_hops
 
@@ -627,17 +643,31 @@ class MemN2N(nn.Module):
         self.sigmoid = nn.Sigmoid()
         self.softmax = nn.Softmax()
 
+        # print("num vocab{} embeding {}".format(num_vocab,embedding_dim))
+
 
     #将text作为hidden输入
-    def load_memory(self, story, hidden, seq_len=None):
+    def forward(self, story, hidden, seq_len=None,p=None):
         # Forward multiple hop mechanism
         # u = [hidden.squeeze(0)] #130*128
         u = [hidden.squeeze(0)]  #hidden是1×19×256
+        # 就不经过mem添加了 两个size是一样的(这里的,和结尾的)
+        # print(story.size())
+        if story.size()[-1] == 0:
+            return u[-1]
+
+
         story_size = story.size()  #19 56 3 MEM_TOKEN_SIZE
         self.m_story = []
+
+        # print(self.C.size())
         for hop in range(self.max_hops):
-            embed_A = self.C[hop](story.contiguous().view(story_size[0], -1))  # .long()) # b * (m * s) * e embedA # 19 168 256
+            # if p:
+            #     print(story>=0)
+            embed_A = self.C[hop](story.contiguous().view(story_size[0], -1))  # .long()) # b *(m * s) * e embedA # 19 168 256
+
             embed_A = embed_A.view(story_size + (embed_A.size(-1),))  # b * m * s * e embedA #19 56 3 256
+            # print(embed_A.size())
             embed_A = torch.sum(embed_A, 2).squeeze(2)  # b * m * e # embedA 19 56 256
 
             # dialogue history H； add language model embedding
@@ -662,44 +692,44 @@ class MemN2N(nn.Module):
             u.append(u_k)
             self.m_story.append(embed_A)
         self.m_story.append(embed_C)
-        return self.sigmoid(prob_logit), u[-1]
-
-    def forward(self, story, hidden,seq_lens):
-        print(hidden.size())
-        print(story.size())
-
-        story_size = story.size()
-
-        u = [hidden.squeeze(0)]
-        # query_embed = hidden
-
-        # print(query_embed)
-        # weired way to perform reduce_dot
-        # encoding = self.encoding.unsqueeze(0).expand_as(query_embed)
-
-        # u.append(torch.sum(query_embed, 1)) #encoding
-
-        for hop in range(self.max_hops):
-
-            embed_A = self.C[hop](story.view(story.size(0), -1))
-            embed_A = embed_A.view(story_size + (embed_A.size(-1),))
-
-            # encoding = self.encoding.unsqueeze(0).unsqueeze(1).expand_as(embed_A)
-            m_A = torch.sum(embed_A, 2)  #encoding
-            print(m_A.size())
-            print(u[-1].size())
-            u_temp = u[-1].unsqueeze(1).expand_as(m_A)
-            prob = self.softmax(torch.sum(m_A * u_temp, 2))
-
-            embed_C = self.C[hop + 1](story.view(story.size(0), -1))
-            embed_C = embed_C.view(story_size + (embed_C.size(-1),))
-            m_C = torch.sum(embed_C, 2) #encoding
-
-            prob = prob.unsqueeze(2).expand_as(m_C)
-            o_k = torch.sum(m_C * prob, 1)
-
-            u_k = u[-1] + o_k
-            u.append(u_k)
-
-        a_hat = u[-1] @ self.C[self.max_hops].weight.transpose(0, 1)
         return u[-1]
+
+    # def forward(self, story, hidden,seq_lens):
+    #     print(hidden.size())
+    #     print(story.size())
+    #
+    #     story_size = story.size()
+    #
+    #     u = [hidden.squeeze(0)]
+    #     # query_embed = hidden
+    #
+    #     # print(query_embed)
+    #     # weired way to perform reduce_dot
+    #     # encoding = self.encoding.unsqueeze(0).expand_as(query_embed)
+    #
+    #     # u.append(torch.sum(query_embed, 1)) #encoding
+    #
+    #     for hop in range(self.max_hops):
+    #
+    #         embed_A = self.C[hop](story.view(story.size(0), -1))
+    #         embed_A = embed_A.view(story_size + (embed_A.size(-1),))
+    #
+    #         # encoding = self.encoding.unsqueeze(0).unsqueeze(1).expand_as(embed_A)
+    #         m_A = torch.sum(embed_A, 2)  #encoding
+    #         print(m_A.size())
+    #         print(u[-1].size())
+    #         u_temp = u[-1].unsqueeze(1).expand_as(m_A)
+    #         prob = self.softmax(torch.sum(m_A * u_temp, 2))
+    #
+    #         embed_C = self.C[hop + 1](story.view(story.size(0), -1))
+    #         embed_C = embed_C.view(story_size + (embed_C.size(-1),))
+    #         m_C = torch.sum(embed_C, 2) #encoding
+    #
+    #         prob = prob.unsqueeze(2).expand_as(m_C)
+    #         o_k = torch.sum(m_C * prob, 1)
+    #
+    #         u_k = u[-1] + o_k
+    #         u.append(u_k)
+    #
+    #     a_hat = u[-1] @ self.C[self.max_hops].weight.transpose(0, 1)
+    #     return u[-1]

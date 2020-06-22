@@ -22,6 +22,7 @@ from collections import Counter
 # 	https://github.com/MiuLab/SlotGated-SLU/blob/master/utils.py
 from utils import miulab
 
+
 class Processor(object):
 
     def __init__(self, dataset, model, batch_size):
@@ -41,8 +42,6 @@ class Processor(object):
             self.__model.parameters(), lr=self.__dataset.learning_rate,
             weight_decay=self.__dataset.l2_penalty
         )
-    # 6.11 next step
-    # word也变成三元组
 
     # exk是DataLoader对象训练数据
     def train(self):
@@ -70,54 +69,53 @@ class Processor(object):
             self.__model.train()
             # 分epoch输入进行slot和intent的预测，其中分比例决定是否输入slot_var和intent_var
             # 计算得到slot和intent的loss
-
             print("-------------------------TRAIN----------------------------------")
             # dial_id, turn_id, history, slot, text, intent, kb, triple
             #  原本的 text_batch, slot_batch, intent_batch, kb_batch, text_triple_batch, dial_id_batch, turn_id_batch, history_batch
-            for dial_id_batch, turn_id_batch, history_batch,slot_batch, text_batch, intent_batch, kb_batch, text_triple_batch in tqdm(dataloader, ncols=50):
-                # print(text_batch)
-                # print(dialogue_batch)
-                # print("=========================")
-                # for dialogue in dialogue_batch:
-                #     for key,value in dialogue.items():
-                #         print(key)
-                #         print(value)
-                #     # print(item)
+            # for dial_id_batch, turn_id_batch, history_batch, slot_batch, text_batch, intent_batch, kb_batch, text_triple_batch in tqdm(dataloader, ncols=50):
+            # print(text_batch)
+            for data_detail in tqdm(dataloader, ncols=50):
+                dial_id_batch = data_detail[0]
+                turn_id_batch = data_detail[1]
+                history_batch = data_detail[2]
+                slot_batch = data_detail[3]
 
-                padded_text, [sorted_slot, sorted_intent], seq_lens = self.__dataset.add_padding(
-                    text_batch, [(slot_batch, False), (intent_batch, False)]
+                text_batch = data_detail[4]
+                intent_batch = data_detail[5]
+                kb_batch = data_detail[6]
+                text_triple_batch = data_detail[7]
+                uuid = data_detail[8]
+
+                # print(uuid)
+                # for thing in history_batch:
+                #     print(thing)
+                # print("----------------------------------------------")
+
+                # 在这里解决的kb 和triple 的对应和padding问题 ,
+                # todo history的问题还没处理
+                padded_text, seq_lens, sorted_dial_id, sorted_turn_id, \
+                sorted_history, sorted_slot, sorted_intent, sorted_kb, sorted_text_triple = self.__dataset.add_padding(
+                    text_batch, dial_id_batch, turn_id_batch,
+                    history_batch, slot_batch, intent_batch, kb_batch, text_triple_batch, digital=True
                 )
-                # print(text_batch)
-                # print("=====================")
-                # print(kb_batch)
-                # padded_text = self.__dataset.kb_padding(text_batch)
-                sorted_kb = self.__dataset.kb_padding(kb_batch)
-                sorted_text_triple = self.__dataset.kb_padding(text_triple_batch)
-
-
+                # add padding既有padding 又有排序
                 sorted_intent = [item * num for item, num in zip(sorted_intent, seq_lens)]
                 sorted_intent = list(Evaluator.expand_list(sorted_intent))
 
-                # print(list(Evaluator.expand_list(sorted_slot)))
+                # 转化成Var
                 # sorted_kb = list(Evaluator.expand_list(sorted_kb))
                 text_var = Variable(torch.LongTensor(padded_text))
                 slot_var = Variable(torch.LongTensor(list(Evaluator.expand_list(sorted_slot))))
                 intent_var = Variable(torch.LongTensor(sorted_intent))
-                kb_var = Variable(torch.LongTensor(sorted_kb))
+                kb_var = Variable(torch.LongTensor(sorted_kb))  #14*40*3
                 text_triple_var = Variable(torch.LongTensor(sorted_text_triple))
+                history_var = Variable(torch.LongTensor(sorted_history)) # 14*6*25   总共14句话,每句话的history中有六句话,每个history的话中有25个词
+                # for thing in sorted_history:
+                #     print(thing)
+                # print("=======================")
 
-                # dial_id_var = Variable(torch.LongTensor(dial_id_batch))
-                # turn_id_var = Variable(torch.LongTensor(turn_id_batch))
-                # history_var = Variable(torch.LongTensor(history_batch))
-
-
-
-                # print(dial_id_var.size())
-                # print(turn_id_var.size())
-                # print(history_var.size())
 
                 # show_var(text_var,slot_var,intent_var,kb_var)
-
                 if torch.cuda.is_available():
                     text_var = text_var.cuda()
                     slot_var = slot_var.cuda()
@@ -127,28 +125,31 @@ class Processor(object):
                 # 81%的epoch 有slot和intent的标注来训练，剩下9%+9%分别是只有slot和intent，1%啥都没有
                 # 不太清楚这种训练技巧，估计论文中有
                 random_slot, random_intent = random.random(), random.random()
-                #1 都有
+                # 1 都有
                 if random_slot < self.__dataset.slot_forcing_rate and random_intent < self.__dataset.intent_forcing_rate:
                     # def forward(self, text, seq_lens, n_predicts=None, forced_slot=None, forced_intent=None)
                     slot_out, intent_out = self.__model(
-                        text_var,kb=kb_var,text_triple= text_triple_var, seq_lens=seq_lens, forced_slot=slot_var, forced_intent=intent_var
+                        text_var, kb=kb_var, history=history_var, text_triple=text_triple_var, seq_lens=seq_lens,
+                        forced_slot=slot_var, forced_intent=intent_var
                     )
-                #2 只有slot
+                # 2 只有slot
                 elif random_slot < self.__dataset.slot_forcing_rate:
                     slot_out, intent_out = self.__model(
-                        text_var,kb=kb_var, text_triple= text_triple_var, seq_lens=seq_lens, forced_slot=slot_var
+                        text_var, kb=kb_var, history=history_var, text_triple=text_triple_var, seq_lens=seq_lens,
+                        forced_slot=slot_var
                     )
-                #3 只有intent
+                # 3 只有intent
                 elif random_intent < self.__dataset.intent_forcing_rate:
                     slot_out, intent_out = self.__model(
-                        text_var,kb=kb_var, text_triple= text_triple_var, seq_lens=seq_lens, forced_intent=intent_var
+                        text_var, kb=kb_var, history=history_var, text_triple=text_triple_var, seq_lens=seq_lens,
+                        forced_intent=intent_var
                     )
-                #4 啥玩意都没有
+                # 4 啥玩意都没有
                 else:
                     slot_out, intent_out = self.__model(
-                        text_var,kb=kb_var, text_triple= text_triple_var, seq_lens=seq_lens
+                        text_var, kb=kb_var, history=history_var, text_triple=text_triple_var, seq_lens=seq_lens
                     )
-                slot_loss = self.__criterion(slot_out, slot_var) # slot_out.size=130*15     slot_var.size=130
+                slot_loss = self.__criterion(slot_out, slot_var)  # slot_out.size=130*15     slot_var.size=130
                 intent_loss = self.__criterion(intent_out, intent_var)
                 batch_loss = slot_loss + intent_loss
 
@@ -167,6 +168,7 @@ class Processor(object):
             print('[Epoch {:2d}]: TRAIN: slot loss is {:2.6f}, intent loss is {:2.6f}, cost time ' \
                   'about {:2.6} seconds.'.format(epoch, total_slot_loss, total_intent_loss, time_con))
 
+            # exit("测试train")
             # 暂时封印DEV和TEST的显示结果，只输出TRAIN
             # 使用estimate函数计算F1
             #  train为训练语料，用于模型训练；dev为开发集，用于模型参数调优；test用于测试
@@ -183,7 +185,7 @@ class Processor(object):
                 if dev_sent_acc > best_dev_sent: best_dev_sent = dev_sent_acc
 
                 print('\n[Epoch {:2d}]: TEST: slot f1: {:.6f}, intent acc: {:.6f}, semantic '
-                      'acc: {:.6f}.'.format(epoch,test_f1, test_acc, test_sent_acc))
+                      'acc: {:.6f}.'.format(epoch, test_f1, test_acc, test_sent_acc))
                 # 保存model
                 model_save_dir = os.path.join(self.__dataset.save_dir, "model")
                 if not os.path.exists(model_save_dir):
@@ -197,8 +199,6 @@ class Processor(object):
                 print('[Epoch {:2d}]: DEV : slot f1：{:2.6f}, ' \
                       'intent acc：{:2.6f}, semantic acc：{:.2f}, cost about ' \
                       '{:2.6f} seconds.'.format(epoch, dev_f1_score, dev_acc, dev_sent_acc, time_con))
-
-
 
     def estimate(self, if_dev, test_batch=100):
         """
@@ -293,8 +293,15 @@ class Processor(object):
         pred_slot, real_slot = [], []
         pred_intent, real_intent = [], []
 
-        for dial_id_batch, turn_id_batch, history_batch,slot_batch, text_batch, intent_batch, kb_batch, text_triple_batch in tqdm(dataloader, ncols=50):
-
+        for data_detail in tqdm(dataloader, ncols=50):
+            dial_id_batch = data_detail[0]
+            turn_id_batch = data_detail[1]
+            history_batch = data_detail[2]
+            slot_batch = data_detail[3]
+            text_batch = data_detail[4]
+            intent_batch = data_detail[5]
+            kb_batch = data_detail[6]
+            text_triple_batch = data_detail[7]
             # for i in range(len(text_batch)):
             #     print(len((text_batch)))
             #     print(text_batch[i])
@@ -304,8 +311,10 @@ class Processor(object):
             #     print(kb_batch[i])
             #     print("------------------")
 
-            padded_text, [sorted_slot, sorted_intent], seq_lens = dataset.add_padding(
-                text_batch, [(slot_batch, False), (intent_batch, False)], digital=False
+            padded_text, seq_lens, sorted_dial_id, sorted_turn_id, \
+            sorted_history, sorted_slot, sorted_intent, sorted_kb, sorted_text_triple = dataset.add_padding(
+                text_batch, dial_id_batch, turn_id_batch,
+                history_batch, slot_batch, intent_batch, kb_batch, text_triple_batch, digital=False
             )
 
             real_slot.extend(sorted_slot)
@@ -316,22 +325,27 @@ class Processor(object):
 
             # ---------------add here-------------------
             # 这是最终的test，那么是否真的要加kb进去呢？先把kb准备好 然后调一下 不加kb不行了呀，那就加，也就是将kb按照batch delivery走一遍
-            digit_kb = dataset.kb_alphabet.get_index(kb_batch)
-            digit_kb = dataset.kb_padding(digit_kb)
+
+
+            digit_kb = dataset.kb_alphabet.get_index(sorted_kb)
+            # digit_kb = dataset.kb_padding(digit_kb)
             var_kb = Variable(torch.LongTensor(digit_kb))
 
             # 按照kb的思路,将text_triple也加进去
-            digit_text_triple = dataset.text_triple_alphabet.get_index(text_triple_batch)
-            digit_text_triple = dataset.kb_padding(digit_text_triple)
+            digit_text_triple = dataset.text_triple_alphabet.get_index(sorted_text_triple)
+            # digit_text_triple = dataset.kb_padding(digit_text_triple)
             var_text_triple = Variable(torch.LongTensor(digit_text_triple))
 
-            #----------------end here--------
+            digit_history = dataset.history_alphabet.get_index(sorted_history)
+            var_history = Variable(torch.LongTensor(digit_history))
+            # ----------------end here--------
 
             if torch.cuda.is_available():
                 var_text = var_text.cuda()
 
             # 在这里重新输入到model中
-            slot_idx, intent_idx = model(text=var_text,kb=var_kb, text_triple=var_text_triple, seq_lens=seq_lens, n_predicts=1)
+            slot_idx, intent_idx = model(text=var_text, kb=var_kb, history= var_history, text_triple=var_text_triple, seq_lens=seq_lens,
+                                         n_predicts=1)
 
             nested_slot = Evaluator.nested_list([list(Evaluator.expand_list(slot_idx))], seq_lens)[0]
             pred_slot.extend(dataset.slot_alphabet.get_instance(nested_slot))

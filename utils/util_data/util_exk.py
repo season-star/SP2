@@ -66,6 +66,7 @@ def load_json_file(path, dataname):
         driver_utt = ""
         driver_utt_slot = {}
         curr_intent = json_data[dialogue_id]['scenario']['task']['intent']
+        uuid = json_data[dialogue_id]['scenario']['uuid']
 
         # kb是适用于dialogue中的每一个turn的 在turn外围处理好就行
         kb = json_data[dialogue_id]['scenario']['kb']
@@ -99,7 +100,7 @@ def load_json_file(path, dataname):
             # print(curr_kb)
             # print("===========================")
 
-        dialogue_history = []
+        dialogue_history = [['null']]  #为了防止后面报错sequence为空,所以加个null
         turn_data_detail = {}  # 注意 是在每次dialogue_data_detail添加完turn之后,才清理的turn.在下方for循环的最后清理
         for turn_index, turn in enumerate(json_data[dialogue_id]['dialogue']):
 
@@ -108,7 +109,6 @@ def load_json_file(path, dataname):
             turn_text_arr, turn_slot_arr, turn_intent_arr, turn_kb_arr, turn_cn_arr, turn_triple_arr = [], [], [], [], [], []
 
             curr_subject = turn['turn']
-            dialogue_history.append(turn['data']['utterance'])  # 无论是driver还是assistant,都需要作为history加入
 
             # 我只需要对应 先是每个dial 然后是每个turn 就行
             if curr_subject == 'driver':
@@ -116,7 +116,7 @@ def load_json_file(path, dataname):
                 tmp_data_detail = {
                     'dial_id': str(dialogue_id),
                     'turn_id': str(turn_index),
-                    'history': dialogue_history
+                    'history': deepcopy(dialogue_history)
                 }
                 # print(dialogue_id)
                 # print(turn_index)
@@ -180,7 +180,8 @@ def load_json_file(path, dataname):
                     'intent': turn_intent_arr,
                     'kb': turn_kb_arr,
                     # 'cn': turn_cn_arr, 不加cn 不然在digit_detail不好转,也没必要加cn,因为triple里都有
-                    'triple': turn_triple_arr
+                    'triple': turn_triple_arr,
+                    'uuid': uuid
                 }
                 turn_data_detail.update(tmp_data_detail)
 
@@ -190,6 +191,9 @@ def load_json_file(path, dataname):
                 # for key,value in slot_dict.items():
                 #     print("%s %s\n"%(key,value))
                 # fw.write(curr_dia_intent+"\n\n")
+
+            # 需要在经历完之后,再添加,不然dialoguehistory会乱
+            dialogue_history.append(turn['data']['utterance'].split())  # 无论是driver还是assistant,都需要作为history加入
 
             def add_single(result, single):
                 result.append([])
@@ -227,6 +231,8 @@ def load_json_file(path, dataname):
     # print(slot_intent_arr)
 
 
+# 将之前的GLMP的读取数据的方法全部封印 ,暂时留着吧
+'''
 def read_langs(file_name, max_line=None, file_type='txt'):
     print(("Reading lines from {}".format(file_name)))
     data, context_arr, conv_arr, kb_arr = [], [], [], []
@@ -417,3 +423,4 @@ def get_data_seq(file_name, lang, max_len, batch_size=1):
     # print(pair)
     d = get_seq(pair, lang, batch_size, False)
     return d
+'''

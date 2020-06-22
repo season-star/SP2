@@ -1,2 +1,3 @@
 navigate	0
 schedule	1
+weather	2

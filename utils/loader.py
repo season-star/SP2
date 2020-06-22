@@ -65,7 +65,6 @@ class Alphabet(object):
     def getinstance2index(self):
         return self.__instance2index
 
-
     def add_instance(self, instance):
         """ Add instances to alphabet.
 
@@ -112,7 +111,6 @@ class Alphabet(object):
 
         if isinstance(instance, (list, tuple)):
             return [self.get_index(elem) for elem in instance]
-
         assert isinstance(instance, str)
 
         try:
@@ -191,7 +189,7 @@ class TorchDataset(Dataset):
 
     def __getitem__(self, dialogue_index):
         # print(self.__dialogue_detail[dialogue_index])
-        return self.__dialogue_detail[dialogue_index]  #这样就实现了以dialogue为基本单元取batch
+        return self.__dialogue_detail[dialogue_index]  # 这样就实现了以dialogue为基本单元取batch
         # return self.__text[index], self.__slot[index], self.__intent[index],self.__kb[index], self.__text_triple[index], self.__dial_id[index], self.__turn_id[index], self.__history[index]
 
     def __len__(self):
@@ -210,8 +208,8 @@ class DatasetManager(object):
         self.__word_alphabet = Alphabet('word', if_use_pad=True, if_use_unk=True)
         self.__slot_alphabet = Alphabet('slot', if_use_pad=False, if_use_unk=False)
         self.__intent_alphabet = Alphabet('intent', if_use_pad=False, if_use_unk=False)
-        self.__kb_alphabet = Alphabet('kb', if_use_pad=False, if_use_unk=False)
-        self.__text_triple_alphabet = Alphabet('text_triple', if_use_pad=False, if_use_unk=False)
+        self.__kb_alphabet = Alphabet('kb', if_use_pad=True, if_use_unk=False)
+        self.__text_triple_alphabet = Alphabet('text_triple', if_use_pad=True, if_use_unk=False)
 
         self.__dial_id_alphabet = Alphabet('dial_id', if_use_pad=False, if_use_unk=False)
         self.__turn_id_alphabet = Alphabet('turn_id', if_use_pad=False, if_use_unk=False)
@@ -276,6 +274,10 @@ class DatasetManager(object):
     @property
     def text_triple_alphabet(self):
         return deepcopy(self.__text_triple_alphabet)
+
+    @property
+    def history_alphabet(self):
+        return deepcopy(self.__history_alphabet)
 
     @property
     def num_epoch(self):
@@ -387,9 +389,7 @@ class DatasetManager(object):
     #                self.__text_history_data[data_name]
 
     def add_file(self, file_path, data_name, if_train_file):
-        # text, slot, intent = self.__read_file(file_path)
         # print(file_path)
-        # --------------------add util exk here----------------
         # 对他们都进行两个for循环的原因：原本的格式是按照dialogue进行分块的，但是因为这是单句的预测，所以不分dialogue了，都变成单句，为了之后还能用dialogue进行分块（加入local时），所以读取数据的时候，仍然多一个维度。
         # 为了现在单句的处理，所以需要将该维度降下来（我不太会unsqueze）所以两个for循环
 
@@ -403,137 +403,90 @@ class DatasetManager(object):
                     info.append(turn_info[type])
             return info
 
-        def only_use_first(arr,info):
+        def only_use_first(arr, info):
             for dial_info in arr:
-                if(len(dial_info)!=0):
+                if (len(dial_info) != 0):
                     info.append(dial_info[0])
             return info
+
         def show_single(data_detail):
             show_count = 0
             for dial in data_detail:
-                if(show_count > 0 ):break
+                if (show_count > 0): break
                 show_count += 1
                 for turn in dial:
-                    for key,value in turn.items():
+                    for key, value in turn.items():
                         print(key)
                         print(value)
                     print("-------------------")
                 print("==========================\n")
 
-        # text_arr, slot_arr, intent_arr, kb_arr, cn_arr, triple_arr,\
-        data_detail = load_json_file(file_path,data_name)
-
-        text, slot, intent, kb, cn, text_triple=[],[],[],[],[],[]
-        dial_id, turn_id, history = [], [], []
-
+        data_detail = load_json_file(file_path, data_name)
+        """
+        show data detail
+        """
         # show_single(data_detail)
         # 到这之前 都是以dialogue作为基本单元的
 
-        # # 将他们分别降低维度 cn是column names
-        # text = reduce_dim(data_detail, text, 'text')
-        # slot = reduce_dim(data_detail, slot, 'slot')
-        # intent = reduce_dim(data_detail, intent, 'intent')
-        # kb = reduce_dim(data_detail, kb, 'kb')
-        # cn = reduce_dim(data_detail, cn, 'cn')
-        # text_triple = reduce_dim(data_detail, text_triple, 'triple')
-        # # 天哪!有朝一日 我一定要把这里改成data detail的格式, 太难看了!.先按照这种lowb的格式写吧
-        # dial_id = reduce_dim(data_detail, dial_id, 'dial_id')
-        # turn_id = reduce_dim(data_detail, turn_id, 'turn_id')
-        # history = reduce_dim(data_detail, history, 'history')
-
-        # # 应该是将它转化成三元组，原本的kb是五元组，转化成 s-r-o的三元组
-        # kb_triple = []
-        # for i in range(len(text)):
-        #     single_kb_triple = handle_kb2triple(kb[i], cn[i], intent[i])
-        #     kb_triple.append(single_kb_triple)
-        #
-
-
-        # --------------------end here-----------------------
         if if_train_file:
-            # 数据就是应该按照dial和turn来组织,而不是text等分开,那样句子就乱了 .但是在这里,为了alphabet,所以暂时用遍历分开
-            # self.__word_alphabet.add_instance(text)
-            # self.__slot_alphabet.add_instance(slot)
-            # self.__intent_alphabet.add_instance(intent)
-            # self.__kb_alphabet.add_instance(kb_triple)
-            # self.__text_triple_alphabet.add_instance(text_triple)
-            # self.__dial_id_alphabet.add_instance(dial_id) #为了使得接口统一,就还是将dial_id转化成str,然后添加进去.   其实不应该转成str,就应该是int,
-            # self.__turn_id_alphabet.add_instance(turn_id)
-            # self.__history_alphabet.add_instance(history)
-
-            # text_len_list = (len(single_text) for single_text in text) #用户问话的长度
-            # max_text_len = max(text_len_list)
-            # self.__mem_sentence_size = max(self.SINGLE_KB_SIZE,max_text_len)
             for dial_data_detail in data_detail:
                 for turn_data_detail in dial_data_detail:
-                    # print(turn_data_detail['kb'])
+                    # print(turn_data_detail)
+                    # print(turn_data_detail['text'])
+                    # print(turn_data_detail['uuid']) #排查有问题的dialogue
                     self.__word_alphabet.add_instance(turn_data_detail['text'])
                     self.__slot_alphabet.add_instance(turn_data_detail['slot'])
                     self.__intent_alphabet.add_instance(turn_data_detail['intent'])
-                    self.__kb_alphabet.add_instance(turn_data_detail['kb']) #因为将五元组转成了三元组 所以不加column names
+                    self.__kb_alphabet.add_instance(turn_data_detail['kb'])  # 因为将五元组转成了三元组 所以不加column names
                     self.__text_triple_alphabet.add_instance(turn_data_detail['triple'])
-                    self.__dial_id_alphabet.add_instance(turn_data_detail['dial_id']) #为了使得接口统一,就还是将dial_id转化成str,然后添加进去.   其实不应该转成str,就应该是int,
+                    self.__dial_id_alphabet.add_instance(
+                        turn_data_detail['dial_id'])  # 为了使得接口统一,就还是将dial_id转化成str,然后添加进去.   其实不应该转成str,就应该是int,
                     self.__turn_id_alphabet.add_instance(turn_data_detail['turn_id'])
-                    self.__history_alphabet.add_instance(turn_data_detail['history'])
-            # print(self.__kb_alphabet)
-
+                    for single_history in turn_data_detail['history']:
+                        self.__history_alphabet.add_instance(single_history)
+                    # self.__history_alphabet = deepcopy(self.__word_alphabet)
         # Record the raw text of dataset.
-        # self.__text_word_data[data_name] = text
-        # self.__text_slot_data[data_name] = slot
-        # self.__text_intent_data[data_name] = intent
-        # self.__text_kb_data[data_name] = kb_triple
-        # self.__text_text_triple_data[data_name] = text_triple
-        # self.__text_dial_id_data[data_name] = dial_id
-        # self.__text_turn_id_data[data_name] = turn_id
-        # self.__text_history_data[data_name] = history
-
         self.__text_data_detail[data_name] = deepcopy(data_detail)
 
         # Serialize raw text and stored it.
         # getindex不用弄 ,但是得思考,如何能够分别对text等进行index映射
-        #TODO: 或许还是可以分散进行index映射, 然后再封装成digit_data_detail
 
-        self.__digit_data_detail[data_name] = deepcopy(data_detail)  #未经seriealed的data detail
+        self.__digit_data_detail[data_name] = deepcopy(data_detail)  # 未经seriealed的data detail
         max_text_len = 0
         for digit_dialogue_index in range(len(self.__digit_data_detail[data_name])):
             for digit_turn_index in range(len(self.__digit_data_detail[data_name][digit_dialogue_index])):
-                curr_detail = self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index] #当前dialogue中 当前turn的
+                curr_detail = self.__digit_data_detail[data_name][digit_dialogue_index][
+                    digit_turn_index]  # 当前dialogue中 当前turn的
                 curr_text_len = len(curr_detail['text'])
                 if curr_text_len > max_text_len:
                     max_text_len = curr_text_len
 
-                self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['text'] = self.__word_alphabet.get_index(curr_detail['text'])
+                self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                    'text'] = self.__word_alphabet.get_index(curr_detail['text'])
                 if if_train_file:
-                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['slot'] = self.__slot_alphabet.get_index(curr_detail['slot'])
-                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['intent'] = self.__intent_alphabet.get_index(curr_detail['intent'])
-                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['kb'] = self.__kb_alphabet.get_index(curr_detail['kb'])
-                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['triple'] = self.__text_triple_alphabet.get_index(curr_detail['triple'])
-                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['dial_id'] = self.__dial_id_alphabet.get_index(curr_detail['dial_id'])
-                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['turn_id'] = self.__turn_id_alphabet.get_index(curr_detail['turn_id'])
-                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['history'] = self.__history_alphabet.get_index(curr_detail['history'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                        'slot'] = self.__slot_alphabet.get_index(curr_detail['slot'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                        'intent'] = self.__intent_alphabet.get_index(curr_detail['intent'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                        'kb'] = self.__kb_alphabet.get_index(curr_detail['kb'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                        'triple'] = self.__text_triple_alphabet.get_index(curr_detail['triple'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                        'dial_id'] = self.__dial_id_alphabet.get_index(curr_detail['dial_id'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                        'turn_id'] = self.__turn_id_alphabet.get_index(curr_detail['turn_id'])
+                    self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index][
+                        'history'] = self.__history_alphabet.get_index(curr_detail['history'])
         self.__mem_sentence_size = max_text_len
-
-                # print(self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['text'])
+        # print(self.__digit_data_detail[data_name][digit_dialogue_index][digit_turn_index]['text'])
         # for thing in self.__digit_data_detail[data_name]:
         #     print(thing)
 
-        # self.__digit_word_data[data_name] = self.__word_alphabet.get_index(text)
-        # if if_train_file:  #train的时候 下面都要经历
-        #     self.__digit_slot_data[data_name] = self.__slot_alphabet.get_index(slot)
-        #     self.__digit_intent_data[data_name] = self.__intent_alphabet.get_index(intent)
-        #     self.__digit_kb_data[data_name] = self.__kb_alphabet.get_index(kb_triple)
-        #     self.__digit_text_triple_data[data_name] = self.__text_triple_alphabet.get_index(text_triple)
-        #     self.__digit_dial_id_data[data_name] = self.__dial_id_alphabet.get_index(dial_id)
-        #     self.__digit_turn_id_data[data_name] = self.__turn_id_alphabet.get_index(turn_id)
-        #     self.__digit_history_data[data_name] = self.__history_alphabet.get_index(history)
-
+    """
     @staticmethod
     def __read_file(file_path):
-        """ Read data file of given path.
-
-        :param file_path: path of data file.
-        :return: list of sentence, list of slot and list of intent.
-        """
+        #  Read data file of given path. param file_path: path of data file. return: list of sentence, list of slot and list of intent.
         texts, slots, intents = [], [], []
         text, slot = [], []
 
@@ -554,6 +507,7 @@ class DatasetManager(object):
                     slot.append(items[1].strip())
 
         return texts, slots, intents
+    """
 
     def batch_delivery(self, data_name, batch_size=None, is_digital=True, shuffle=True):
         if batch_size is None:
@@ -561,39 +515,21 @@ class DatasetManager(object):
 
         if is_digital:
             dialogue_detail = self.__digit_data_detail[data_name]
-            # text = self.__digit_word_data[data_name]
-            # slot = self.__digit_slot_data[data_name]
-            # intent = self.__digit_intent_data[data_name]
-            # kb = self.__digit_kb_data[data_name]
-            # text_triple = self.__digit_text_triple_data[data_name]
-            # dial_id = self.__digit_dial_id_data[data_name]
-            # turn_id = self.__digit_turn_id_data[data_name]
-            # history = self.__digit_history_data[data_name]
 
         else:
             dialogue_detail = self.__text_data_detail[data_name]
-            # text = self.__text_word_data[data_name]
-            # slot = self.__text_slot_data[data_name]
-            # intent = self.__text_intent_data[data_name]
-            # kb = self.__text_kb_data[data_name]
-            # text_triple = self.__text_text_triple_data[data_name]
-            # dial_id = self.__text_dial_id_data[data_name]
-            # turn_id = self.__text_turn_id_data[data_name]
-            # history = self.__text_history_data[data_name]
 
         # print("==================batch delivery===============")
         # print(dialogue_detail[0])
         dataset = TorchDataset(dialogue_detail)
 
-        # print(dialogue_detail)
-        return DataLoader(dataset, batch_size=batch_size,collate_fn=self.__collate_fn)
+        return DataLoader(dataset, batch_size=batch_size, collate_fn=self.__collate_fn)
 
-    # padded_text, [sorted_slot, sorted_intent], seq_lens = self.__dataset.add_padding(text_batch, [(slot_batch, False), (intent_batch, False)])
-
-    def kb_padding(self,kb):
+    def kb_padding(self, kb, pad_number=3):
         max_len_sinngle_kb = 0
-        pad = [0, 0, 0]
-        padded_kb =[]
+        # pad = [0, 0, 0]
+        pad = [0 for _ in range(pad_number)]
+        padded_kb = []
 
         len_kb = [len(single_kb) for single_kb in kb]
         max_len_sinngle_kb = max(len_kb)
@@ -601,76 +537,176 @@ class DatasetManager(object):
         for single_kb in kb:
             curr_kb = single_kb
             curr_len = len(single_kb)
-            if(curr_len<max_len_sinngle_kb):
-                for _ in range(max_len_sinngle_kb-curr_len):
+            if (curr_len < max_len_sinngle_kb):
+                for _ in range(max_len_sinngle_kb - curr_len):
                     curr_kb.append(pad)
             padded_kb.append([])
             padded_kb[-1] = curr_kb
         return padded_kb
 
     # @staticmethod
-    def add_padding(self,texts, items=None, digital=True):
+    def add_padding(self, texts, dial_id_batch=None, turn_id_batch=None,
+                    history_batch=None, slot_batch=None, intent_batch=None, kb_batch=None, text_triple_batch=None,
+                    digital=True):
         len_list = [len(text) for text in texts]
         max_len = max(len_list)
 
-        # Get sorted index of len_list.
-        sorted_index = np.argsort(len_list)[::-1]
+        # # Get sorted index of len_list.
+        # sorted_index = np.argsort(len_list)[::-1]
+        # trans_texts, seq_lens, trans_items = [], [], None
+        # if items is not None:
+        #     trans_items = [[] for _ in range(0, len(items))]
+        #
+        # # print(len_list)  #[5, 14, 6, 6, 4, 1, 11, 16, 2, 17, 8, 3, 3, 7]
+        # # print(sorted_index) # [ 9  7  1  6 10 13  3  2  0  4 12 11  8  5]
+        # print(dial_id_batch)
+        # for (thing, type) in items:
+        #     print(thing)
+        # for index in sorted_index:
+        #     seq_lens.append(deepcopy(len_list[index]))
+        #     trans_texts.append(deepcopy(texts[index]))
+        #     if digital:
+        #         trans_texts[-1].extend([0] * (max_len - len_list[index]))
+        #     else:
+        #         trans_texts[-1].extend(['<PAD>'] * (max_len - len_list[index]))
+        #
+        #     # This required specific if padding after sorting.
+        #     if items is not None:
+        #         for item, (o_item, required) in zip(trans_items, items):
+        #
+        #             item.append(deepcopy(o_item[index]))
+        #             if required:
+        #                 if digital:
+        #                     item[-1].extend([0] * (max_len - len_list[index]))
+        #                 else:
+        #                     item[-1].extend(['<PAD>'] * (max_len - len_list[index]))
 
-        trans_texts, seq_lens, trans_items = [], [], None
-        if items is not None:
-            trans_items = [[] for _ in range(0, len(items))]
+        # handle kb 首先要kb和text对齐,其次才是padding
 
+        sorted_texts = deepcopy(texts)
+        sorted_dial_id = deepcopy(dial_id_batch)
+        sorted_turn_id = deepcopy(turn_id_batch)
+        sorted_history = deepcopy(history_batch)
+        sorted_slot = deepcopy(slot_batch)
+        sorted_intent = deepcopy(intent_batch)
+        sorted_kb = deepcopy(kb_batch)
+        sorted_text_triple = deepcopy(text_triple_batch)
 
-        for index in sorted_index:
-            seq_lens.append(deepcopy(len_list[index]))
-            trans_texts.append(deepcopy(texts[index]))
+        # print(texts)
+        # print(len(texts))
+        # for index in range(len(texts)):
+        #     pass
+        # for index in sorted_index:
+        #     if dial_id_batch is not None:
+        #         sorted_dial_id.append(dial_id_batch[index])
+        #         sorted_turn_id.append(turn_id_batch[index])
+        #         sorted_history.append(history_batch[index])
+        #         sorted_kb.append(kb_batch[index])
+        #         sorted_text_triple.append(text_triple_batch[index])
+        #     # 匹配complete
+
+        # padding
+        kb_len_list = [len(single_kb) for single_kb in sorted_kb]  # print(kb_len_list)  #0, 40, 40, 40, 36, 0, 40, 40, 40, 40, 0, 36, 40, 40]
+        max_kb_len = max(kb_len_list)
+
+        triple_len_list = [len(single_triple) for single_triple in sorted_text_triple]
+        max_triple_len = max(triple_len_list)
+        digitalPAD = [0, 0, 0]
+        textPAD = ['<PAD>', '<PAD>', '<PAD>']
+        for index in range(len(sorted_texts)):
+            #  dial_id和 turn_id不用填 就一行就行  主要是history和text_triple  . kb和text_triple固定三元组,history没定长, 需要两次填充
             if digital:
-                trans_texts[-1].extend([0] * (max_len - len_list[index]))
+                sorted_texts[index].extend([0] * (max_len - len_list[index]))
+                # slot 也不用 后面有expand list
+                # intent也不用弄
+                sorted_kb[index].extend([digitalPAD] * (max_kb_len - kb_len_list[index]))
+                sorted_text_triple[index].extend([digitalPAD] * (max_triple_len - triple_len_list[index]))
             else:
-                trans_texts[-1].extend(['<PAD>'] * (max_len - len_list[index]))
+                sorted_texts[index].extend(['<PAD>'] * (max_len - len_list[index]))
 
-            # This required specific if padding after sorting.
-            if items is not None:
-                for item, (o_item, required) in zip(trans_items, items):
+                sorted_kb[index].extend([textPAD] * (max_kb_len - kb_len_list[index]))
+                sorted_text_triple[index].extend([textPAD] * (max_triple_len - triple_len_list[index]))
 
-                    item.append(deepcopy(o_item[index]))
-                    if required:
-                        if digital:
-                            item[-1].extend([0] * (max_len - len_list[index]))
-                        else:
-                            item[-1].extend(['<PAD>'] * (max_len - len_list[index]))
+        # 单独弄history吧
+        single_history_len_list = [[len(single_history) for single_history in history] for history in history_batch]
+        # print(single_history_len_list)  #[[5, 16], [5, 16, 14, 25], [5, 16, 14, 25, 6, 3], [6, 7], [6, 7, 4, 19], [6, 7, 4, 19, 1, 1], [11, 11], [11, 11, 16, 14], [11, 11, 16, 14, 2, 6], [18, 5], [9, 7], [9, 7, 3, 2], [3, 5], [3, 5, 7, 14]]
+        max_his_len = 0
+        for single_his_len in single_history_len_list:
+            his_len = max(single_his_len)
+            if his_len > max_his_len:
+                max_his_len = his_len
+        # print(max_his_len)  #25
 
-        if items is not None:
-            return trans_texts, trans_items, seq_lens
-        else:
-            return trans_texts, seq_lens
+        row_his_len_list = [len(row_history) for row_history in history_batch]
+        # print(row_his_len_list)
+        max_row_his_len = max(row_his_len_list)
+        # print(max_row_his_len)
 
+        his_digit_PAD=[0]*max_his_len
+        his_text_PAD = ['<PAD>']*max_his_len
+        # print(his_PAD)
+        for his_index in range(len(sorted_history)):
+            for single_his_index in range(len(sorted_history[his_index])):
+                curr_len = len(sorted_history[his_index][single_his_index])
+                if digital:
+                    sorted_history[his_index][single_his_index].extend([0] * (max_his_len - curr_len))
+                else:
+                    sorted_history[his_index][single_his_index].extend(['<PAD>'] * (max_his_len - curr_len))
+            if digital:
+                sorted_history[his_index].extend([his_digit_PAD]*(max_row_his_len-row_his_len_list[his_index]))
+            else:
+                sorted_history[his_index].extend([his_text_PAD]*(max_row_his_len-row_his_len_list[his_index]))
+
+
+        # for i in range(len(sorted_dial_id)):
+        #     print(sorted_dial_id[i])
+        #     print(sorted_turn_id[i])
+        #     print(trans_texts[i])
+        #     # print(sorted_kb[i])
+        #     print(sorted_history[i])
+        #     print("===========")
+
+        return sorted_texts, len_list, sorted_dial_id, sorted_turn_id, sorted_history, sorted_slot, sorted_intent, sorted_kb, sorted_text_triple
+        # if items is not None:
+        #     return trans_texts, trans_items, seq_lens, sorted_dial_id, sorted_turn_id, sorted_history, sorted_kb, sorted_text_triple
+        # else:
+        #     return trans_texts, seq_lens, sorted_dial_id, sorted_turn_id, sorted_history, sorted_kb, sorted_text_triple
+
+    # helper function to instantiate a DataLoader Object.
     @staticmethod
     def __collate_fn(batch):
-        """
-        helper function to instantiate a DataLoader Object.
-        """
         # print("====================collatefn================")
-        info_type = len(batch[0][0]) #如 slot text 这些有多少种类
-        modified_batch = [[] for _ in range(0, info_type)]
+        # print(batch)
+        # print("-------")
 
+        # info_type = 8 # 默认8
+        # print(batch[0])
+        info_type = len(batch[0][0])  # 如 slot text 这些有多少种类
+
+        # for thing in batch:
+        #     for t in thing:
+        #         # print(t)
+        #         print(len(t))
+
+
+        modified_batch = [[] for _ in range(0, info_type)]
         for dialogue in batch:
             for turn in dialogue:
+                # if(turn['uuid'] == "690bc2d7-f726-43db-a778-b4806a1ed743"):
+                #     print(turn)
                 curr_key_index = 0
-                for key,value in turn.items():
+                for key, value in turn.items():
                     modified_batch[curr_key_index].append(value)
+                    # modified_batch[curr_key_index].append([value])
+                    # print(value) #output uuid
                     curr_key_index += 1
+                    # print(key)
                     # print(value)
-                # print("--------------")
+                # print(turn)
+            #     print("--------------")
+            # print("==================")
         # for thing in modified_batch:
         #     print(thing)
-
-
-
-
-        # for idx in range(0, len(batch)):  #种类
-        #     for jdx in range(0, n_entity):  #每个种类里有多长
-        #         # todo 探究下为什么会超界
-        #         modified_batch[jdx].append(batch[idx][jdx])
+        #     print("==================")
 
         return modified_batch

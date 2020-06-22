@@ -1,96 +1,520 @@
-poi	72
-poi_type	72
-address	72
-distance	72
-traffic_info	72
-Dish Parking	36
-The Westin	36
-Palo Alto Medical Foundation	36
-moderate traffic	24
--	24
-no traffic	21
-4 miles	21
-home	21
-Stanford Oval Parking	18
-Willows Market	18
-toms house	18
-Pizza Chicago	18
-Valero	18
-Mandarin Roots	18
-Town and Country	18
-76	18
-Stanford Shopping Center	18
-Teavana	18
-Dominos	18
-Palo Alto Garage R	18
-Stanford Express Care	18
-P.F. Changs	18
-Ravenswood Shopping Center	18
-Chef Chu's	18
-Philz	18
-2 miles	15
-heavy traffic	15
-dentist appointment	14
-taking medicine	14
-football activity	14
-yoga activity	14
-lab appointment	14
-dinner	14
-parking garage	12
-event	12
-time	12
-date	12
-room	12
-agenda	12
-party	12
-6 miles	9
-chinese restaurant	9
-shopping center	9
-3 miles	9
-hospital	9
-5 miles	9
-550 Alester Ave	6
-road block nearby	6
-car collision nearby	6
-rest stop	6
-329 El Camino Real	6
-1 miles	6
-pizza restaurant	6
-gas station	6
-coffee or tea place	6
-611 Ames Ave	6
-the 8th	4
-5pm	4
-Marie	4
-4pm	4
-610 Amarillo Ave	3
-grocery store	3
-409 Bollard St	3
-friends house	3
-580 Van Ness Ave	3
-915 Arbol Dr	3
-200 Alester Ave	3
-271 Springer Street	3
-383 University Ave	3
-91 El Camino Real	3
-773 Alger Dr	3
-145 Amherst St	3
-776 Arastradero Rd	3
-481 Amaranta Ave	3
-214 El Camino Real	3
-669 El Camino Real	3
-434 Arastradero Rd	3
-593 Arrowhead Way	3
-8 miles	3
-5671 barringer street	3
-583 Alester Ave	3
-10am	2
-aunt	2
-saturday	2
-monday	2
-Alex	2
-the 4th	2
-the 13th	2
-father	2
-7pm	2
-Jon	2
+monday	30553
+poi	19662
+poi_type	19662
+address	19662
+distance	19662
+traffic_info	19662
+thursday	15565
+friday	15531
+tuesday	15484
+wednesday	15442
+sunday	15268
+saturday	15241
+location	15029
+today	15029
+-	10023
+home	7360
+new york	6930
+mountain view	6810
+boston	6590
+los angeles	6500
+redwood city	6430
+grand rapids	6380
+fresno	6260
+compton	6220
+downtown chicago	6210
+menlo park	6080
+durham	5950
+inglewood	5930
+san francisco	5860
+oakland	5840
+cleveland	5810
+seattle	5780
+manhattan	5640
+san mateo	5590
+san jose	5580
+exeter	5530
+event	5374
+time	5374
+date	5374
+room	5374
+agenda	5374
+party	5374
+heavy traffic	5184
+no traffic	5137
+moderate traffic	5085
+danville	3870
+alhambra	3710
+brentwood	3690
+corona	3640
+carson	3580
+5 miles	3480
+atherton	3450
+doctor appointment	3402
+4 miles	3387
+swimming activity	3367
+alameda	3360
+dentist appointment	3332
+football activity	3325
+2 miles	3217
+6 miles	3171
+yoga activity	3136
+lab appointment	3136
+conference	3101
+camarillo	3070
+3 miles	3065
+meeting	3059
+1 miles	3014
+optometrist appointment	2849
+dinner	2842
+tennis activity	2653
+Pizza Chicago	2640
+5677 southwest 4th street	2625
+Dish Parking	2598
+Palo Alto Medical Foundation	2550
+Palo Alto Cafe	2532
+toms house	2514
+P.F. Changs	2508
+Philz	2508
+coffee or tea place	2481
+Cafe Venetia	2442
+jacks house	2424
+Palo Alto Garage R	2406
+Town and Country	2400
+Stanford Express Care	2394
+Mandarin Roots	2388
+Chef Chu's	2364
+Jing Jing	2358
+Round Table	2352
+chinese restaurant	2335
+Trader Joes	2334
+Panda Express	2334
+Starbucks	2328
+Whole Foods	2310
+jills house	2304
+Chevron	2298
+Ravenswood Shopping Center	2292
+Safeway	2280
+The Westin	2274
+Stanford Childrens Health	2268
+Four Seasons	2262
+Coupa	2244
+The Clement Hotel	2244
+Pizza My Heart	2238
+road block nearby	2227
+Teavana	2208
+Midtown Shopping Center	2190
+Stanford Shopping Center	2148
+taking medicine	2142
+Civic Center Garage	2130
+Dominos	2124
+pizza restaurant	2114
+5677 springer street	2107
+5672 barringer street	2089
+Sigona Farmers Market	2070
+tai pan	2058
+Pizza Hut	2046
+car collision nearby	2029
+Stanford Oval Parking	2028
+Hotel Keen	2004
+rest stop	1968
+Valero	1902
+Webster Garage	1896
+parking garage	1843
+Comfort Inn	1836
+grocery store	1734
+shopping center	1683
+Papa Johns	1284
+friends house	1207
+hospital	1202
+Travelers Lodge	1188
+76	1176
+rain, low of 90F, high of 100F	1091
+foggy, low of 90F, high of 100F	1080
+clear skies, low of 90F, high of 100F	1075
+overcast, low of 90F, high of 100F	1073
+gas station	1070
+cloudy, low of 90F, high of 100F	1068
+Topanga Mall	1068
+Shell	1044
+certain address	971
+warm, low of 90F, high of 100F	963
+dry, low of 90F, high of 100F	946
+windy, low of 90F, high of 100F	903
+snow, low of 90F, high of 100F	880
+hot, low of 90F, high of 100F	848
+raining, low of 90F, high of 100F	830
+Willows Market	750
+dentist	749
+humid, low of 90F, high of 100F	735
+overcast, low of 40F, high of 60F	734
+drizzle, low of 90F, high of 100F	728
+clear skies, low of 40F, high of 60F	690
+cloudy, low of 30F, high of 40F	674
+Hacienda Market	660
+foggy, low of 40F, high of 60F	639
+clear skies, low of 30F, high of 40F	637
+foggy, low of 30F, high of 40F	624
+Peets Coffee	624
+cloudy, low of 40F, high of 60F	620
+overcast, low of 30F, high of 40F	615
+overcast, low of 70F, high of 80F	603
+snow, low of 40F, high of 60F	601
+raining, low of 30F, high of 40F	600
+rain, low of 30F, high of 40F	595
+raining, low of 40F, high of 60F	588
+overcast, low of 60F, high of 80F	586
+clear skies, low of 70F, high of 90F	569
+foggy, low of 60F, high of 80F	567
+overcast, low of 70F, high of 90F	565
+windy, low of 40F, high of 60F	562
+foggy, low of 60F, high of 70F	559
+snow, low of 30F, high of 40F	559
+cloudy, low of 70F, high of 80F	556
+cloudy, low of 80F, high of 100F	548
+overcast, low of 80F, high of 100F	547
+rain, low of 70F, high of 80F	546
+clear skies, low of 70F, high of 80F	541
+clear skies, low of 80F, high of 100F	541
+cloudy, low of 80F, high of 90F	535
+foggy, low of 80F, high of 100F	535
+rain, low of 40F, high of 60F	534
+rain, low of 60F, high of 80F	532
+foggy, low of 70F, high of 90F	531
+rain, low of 80F, high of 100F	530
+raining, low of 80F, high of 100F	525
+medicine	525
+overcast, low of 80F, high of 90F	522
+rain, low of 70F, high of 90F	518
+clear skies, low of 50F, high of 60F	517
+warm, low of 60F, high of 70F	516
+rain, low of 80F, high of 90F	515
+hot, low of 70F, high of 90F	513
+windy, low of 30F, high of 40F	513
+clear skies, low of 60F, high of 70F	510
+foggy, low of 80F, high of 90F	509
+overcast, low of 60F, high of 70F	506
+foggy, low of 50F, high of 60F	505
+cloudy, low of 60F, high of 70F	503
+dry, low of 30F, high of 50F	503
+foggy, low of 70F, high of 80F	502
+dry, low of 40F, high of 50F	501
+cloudy, low of 70F, high of 90F	500
+hot, low of 60F, high of 80F	500
+clear skies, low of 80F, high of 90F	496
+7pm	494
+raining, low of 80F, high of 90F	493
+dry, low of 50F, high of 60F	493
+hot, low of 80F, high of 90F	487
+foggy, low of 30F, high of 50F	486
+5pm	485
+warm, low of 60F, high of 80F	485
+rain, low of 60F, high of 70F	482
+dry, low of 30F, high of 40F	481
+overcast, low of 50F, high of 70F	479
+hot, low of 80F, high of 100F	478
+raining, low of 60F, high of 70F	475
+foggy, low of 20F, high of 30F	472
+windy, low of 60F, high of 80F	470
+stormy, low of 90F, high of 100F	469
+cloudy, low of 60F, high of 80F	469
+clear skies, low of 20F, high of 40F	469
+rain, low of 30F, high of 50F	468
+overcast, low of 30F, high of 50F	468
+foggy, low of 40F, high of 50F	468
+rain, low of 50F, high of 60F	466
+dry, low of 20F, high of 30F	466
+clear skies, low of 60F, high of 80F	465
+clear skies, low of 40F, high of 50F	465
+dry, low of 50F, high of 70F	464
+overcast, low of 20F, high of 30F	464
+clear skies, low of 50F, high of 70F	463
+rain, low of 40F, high of 50F	462
+raining, low of 70F, high of 80F	462
+snow, low of 60F, high of 70F	461
+raining, low of 20F, high of 30F	461
+cloudy, low of 30F, high of 50F	460
+overcast, low of 40F, high of 50F	457
+clear skies, low of 20F, high of 30F	457
+snow, low of 60F, high of 80F	456
+6pm	455
+cloudy, low of 20F, high of 30F	455
+raining, low of 70F, high of 90F	453
+raining, low of 60F, high of 80F	451
+hot, low of 70F, high of 80F	450
+overcast, low of 20F, high of 40F	449
+warm, low of 70F, high of 80F	447
+cloudy, low of 20F, high of 40F	445
+blizzard, low of 20F, high of 30F	445
+warm, low of 80F, high of 100F	445
+drizzle, low of 20F, high of 40F	445
+dry, low of 70F, high of 80F	444
+cloudy, low of 50F, high of 60F	444
+windy, low of 20F, high of 40F	442
+dry, low of 40F, high of 60F	442
+dry, low of 60F, high of 80F	441
+915 Arbol Dr	440
+rain, low of 20F, high of 30F	439
+hot, low of 60F, high of 70F	439
+dry, low of 80F, high of 100F	438
+cloudy, low of 40F, high of 50F	438
+foggy, low of 20F, high of 40F	437
+550 Alester Ave	433
+snow, low of 80F, high of 100F	432
+frost, low of 30F, high of 40F	430
+windy, low of 60F, high of 70F	429
+windy, low of 80F, high of 100F	429
+hail, low of 90F, high of 100F	428
+611 Ames Ave	425
+drizzle, low of 50F, high of 70F	424
+windy, low of 70F, high of 80F	423
+foggy, low of 50F, high of 70F	423
+drizzle, low of 20F, high of 30F	422
+436 Alger Dr	422
+580 Van Ness Ave	419
+rain, low of 20F, high of 40F	419
+669 El Camino Real	418
+583 Alester Ave	418
+windy, low of 20F, high of 30F	418
+rain, low of 50F, high of 70F	417
+overcast, low of 50F, high of 60F	417
+hot, low of 50F, high of 70F	416
+11am	415
+snow, low of 80F, high of 90F	414
+warm, low of 70F, high of 90F	414
+warm, low of 80F, high of 90F	413
+blizzard, low of 40F, high of 60F	412
+drizzle, low of 50F, high of 60F	412
+dry, low of 80F, high of 90F	412
+blizzard, low of 30F, high of 50F	412
+snow, low of 20F, high of 40F	411
+blizzard, low of 50F, high of 60F	407
+269 Alger Dr	407
+dry, low of 70F, high of 90F	406
+cloudy, low of 50F, high of 70F	406
+clear skies, low of 30F, high of 50F	404
+dry, low of 60F, high of 70F	404
+864 Almanor Ln	404
+snow, low of 30F, high of 50F	403
+snow, low of 20F, high of 30F	402
+481 Amaranta Ave	401
+383 University Ave	400
+214 El Camino Real	399
+271 Springer Street	398
+windy, low of 30F, high of 50F	398
+windy, low of 70F, high of 90F	398
+windy, low of 80F, high of 90F	397
+3pm	396
+593 Arrowhead Way	394
+drizzle, low of 70F, high of 90F	394
+113 Arbol Dr	393
+5671 barringer street	392
+113 Anton Ct	392
+raining, low of 30F, high of 50F	390
+frost, low of 20F, high of 30F	389
+drizzle, low of 40F, high of 60F	389
+408 University Ave	389
+842 Arrowhead Way	389
+792 Bedoin Street	388
+frost, low of 20F, high of 40F	387
+raining, low of 20F, high of 40F	387
+819 Alma St	385
+raining, low of 50F, high of 70F	385
+347 Alta Mesa Ave	384
+783 Arcadia Pl	383
+434 Arastradero Rd	382
+drizzle, low of 30F, high of 40F	382
+frost, low of 30F, high of 50F	381
+frost, low of 40F, high of 60F	381
+452 Arcadia Pl	380
+329 El Camino Real	379
+windy, low of 50F, high of 60F	379
+899 Ames Ct	378
+snow, low of 70F, high of 90F	378
+humid, low of 60F, high of 80F	377
+465 Arcadia Pl	377
+394 Van Ness Ave	374
+657 Ames Ave	374
+4pm	373
+9am	373
+528 Anton Ct	373
+humid, low of 70F, high of 80F	372
+2pm	371
+snow, low of 40F, high of 50F	371
+10am	370
+145 Amherst St	368
+windy, low of 50F, high of 70F	368
+windy, low of 40F, high of 50F	367
+humid, low of 80F, high of 90F	366
+blizzard, low of 40F, high of 50F	365
+frost, low of 40F, high of 50F	365
+338 Alester Ave	365
+humid, low of 80F, high of 100F	361
+dry, low of 20F, high of 40F	360
+raining, low of 40F, high of 50F	359
+snow, low of 50F, high of 70F	359
+raining, low of 50F, high of 60F	359
+773 Alger Dr	358
+56 cadwell street	358
+snow, low of 50F, high of 60F	356
+270 Altaire Walk	355
+776 Arastradero Rd	354
+snow, low of 70F, high of 80F	353
+drizzle, low of 40F, high of 50F	352
+humid, low of 70F, high of 90F	349
+drizzle, low of 30F, high of 50F	348
+drizzle, low of 70F, high of 80F	346
+638 Amherst St	345
+frost, low of 50F, high of 60F	343
+830 Almanor Ln	343
+1pm	341
+704 El Camino Real	341
+Jon	339
+blizzard, low of 30F, high of 40F	339
+610 Amarillo Ave	338
+578 Arbol Dr	334
+drizzle, low of 80F, high of 100F	334
+aunt	332
+humid, low of 50F, high of 70F	328
+humid, low of 60F, high of 70F	328
+warm, low of 50F, high of 70F	327
+drizzle, low of 60F, high of 70F	324
+dew, low of 90F, high of 100F	320
+200 Alester Ave	317
+880 Ames Ct	316
+misty, low of 90F, high of 100F	314
+drizzle, low of 60F, high of 80F	310
+father	306
+753 University Ave	306
+brother	305
+10 ames street	298
+drizzle, low of 80F, high of 90F	297
+Martha	291
+Alex	290
+hail, low of 60F, high of 70F	288
+Marie	278
+sister	278
+stormy, low of 80F, high of 90F	277
+Tom	275
+stormy, low of 40F, high of 60F	273
+Jeff	272
+the 8th	271
+hail, low of 20F, high of 30F	268
+stormy, low of 40F, high of 50F	267
+stormy, low of 20F, high of 40F	263
+mother	262
+blizzard, low of 20F, high of 40F	258
+hail, low of 20F, high of 40F	257
+stormy, low of 30F, high of 50F	247
+hail, low of 30F, high of 50F	246
+stormy, low of 50F, high of 60F	241
+stormy, low of 60F, high of 80F	240
+stormy, low of 30F, high of 40F	239
+stormy, low of 70F, high of 90F	236
+Ana	231
+conference room 102	231
+conference room 100	229
+hail, low of 50F, high of 60F	228
+conference room 50	224
+hail, low of 50F, high of 70F	224
+stormy, low of 50F, high of 70F	223
+hail, low of 70F, high of 80F	223
+hail, low of 30F, high of 40F	220
+hail, low of 70F, high of 90F	219
+110 Arastradero Rd	214
+1 pm	214
+stormy, low of 20F, high of 30F	212
+stormy, low of 60F, high of 70F	211
+stormy, low of 80F, high of 100F	210
+hail, low of 80F, high of 100F	210
+hail, low of 40F, high of 50F	207
+hail, low of 40F, high of 60F	207
+hail, low of 80F, high of 90F	207
+the 13th	206
+the 3rd	206
+the 10th	205
+3 pm	204
+the 4th	200
+stormy, low of 70F, high of 80F	199
+10 am	199
+hail, low of 60F, high of 80F	198
+333 Arbol Dr	198
+91 El Camino Real	196
+100 conference room	196
+dew, low of 30F, high of 40F	189
+dew, low of 40F, high of 60F	188
+misty, low of 50F, high of 60F	188
+discuss the merger	186
+2 pm	184
+7 pm	180
+the 5th	179
+171 Oak Rd	178
+dew, low of 20F, high of 40F	177
+discuss the company picnic	177
+misty, low of 80F, high of 90F	177
+dew, low of 50F, high of 60F	176
+53 University Av	174
+dew, low of 20F, high of 30F	172
+misty, low of 70F, high of 90F	170
+11 am	169
+warm, low of 30F, high of 40F	169
+dew, low of 80F, high of 100F	168
+dew, low of 30F, high of 50F	168
+go over budget	168
+misty, low of 60F, high of 70F	166
+dew, low of 40F, high of 50F	165
+8 miles	164
+dew, low of 50F, high of 70F	164
+7 miles	164
+misty, low of 60F, high of 80F	163
+misty, low of 30F, high of 50F	162
+dew, low of 60F, high of 70F	161
+misty, low of 40F, high of 50F	159
+misty, low of 70F, high of 80F	158
+misty, low of 40F, high of 60F	158
+misty, low of 30F, high of 40F	156
+executive team	154
+misty, low of 20F, high of 40F	154
+hot, low of 30F, high of 40F	153
+warm, low of 40F, high of 60F	151
+hot, low of 40F, high of 60F	151
+infrastructure team	150
+dew, low of 70F, high of 90F	148
+HR	148
+sales team	144
+dew, low of 70F, high of 80F	143
+dew, low of 80F, high of 90F	143
+misty, low of 50F, high of 70F	141
+misty, low of 20F, high of 30F	141
+misty, low of 80F, high of 100F	134
+409 Bollard St	125
+dew, low of 60F, high of 80F	124
+discuss dress code	118
+the 6th	112
+1313 Chester Ave	110
+the 12th	108
+the 18th	107
+9981 Archuleta Ave	104
+the 17th	102
+boss	101
+the 16th	96
+the 14th	93
+the 1st	92
+vice president	92
+management	91
+the 2nd	90
+go over quarterly report	90
+the 7th	89
+the 19th	87
+5 pm	86
+the 15th	80
+onboard new members	74
+the 20th	73
+the 9th	69
+sign the NDA	67
+8pm	65
+the 11th	57
+cold, low of 20F, high of 30F	4
+clear, low of 80F, high of 100F	3
+cold, low of 50F, high of 60F	3
+<PAD>	1
